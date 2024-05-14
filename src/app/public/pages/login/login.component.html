@@ -1,0 +1,73 @@
+<mat-toolbar class="toolbar font-col">
+  <img src="../../../../assets/log.png" style=" margin-left: 6%" width="150px" alt="">
+  <div class="menu-options">
+    <a mat-button  [routerLink]="'/'">START</a>
+    <a mat-button  [routerLink]="'/home-client'">STORE</a>
+    <a mat-button  [routerLink]="'/'">US</a>
+    <a mat-button  [routerLink]="'/home-client'">SERVICES</a>
+    <a mat-button  [routerLink]="'/sign-in'">SIGN-IN</a>
+    <a mat-button  [routerLink]="'/register'">SIGN-UP</a>
+
+    <mat-divider [vertical] ="true" [inset]="true"></mat-divider>
+
+  </div>
+</mat-toolbar>
+
+<router-outlet></router-outlet>
+<section class="home" id="home">
+
+</section>
+
+<footer >
+<div class="footer">
+  <div class="footer-column">
+    <h4 class="footer-title">MINIMARKET'S YOES</h4>
+    <ul class="footer-list">
+      <li><a href="#" >About Us</a></li>
+      <li><a href="#" >Become A Minimarket's YOES</a></li>
+      <li><a href="#" >In News</a></li>
+      <li><a href="#" >Contact us</a></li>
+      <li><a href="#" >Green Minimarket's YOES</a></li>
+      <li><a href="#" >Privacy Policy</a></li>
+      <li><a href="#" >Frequent questions</a></li>
+    </ul>
+  </div>
+  <div class="footer-column">
+    <h4 class="footer-title">AFILIATE</h4>
+    <ul class="footer-list">
+      <li><a href="#">Términos y condiciones</a></li>
+      <li><a href="#">Política de privacidad</a></li>
+      <li><a href="#">Política de devoluciones</a></li>
+    </ul>
+  </div>
+  <div class="footer-column">
+    <h5 class="footer-title"><strong>HELP</strong></h5>
+    <ul class="footer-list">
+      <li><a href="#" >FAQs</a></li>
+      <li><a href="#" >Contact Us</a></li>
+      <li><a href="#" >Minimarket's Wallet FAQs</a></li>
+      <li><a href="#" >Minimarket's Wallet T&Cs</a></li>
+      <li><a href="#" >Vendor Connect</a></li>
+    </ul>
+  </div>
+  <div class="footer-column">
+    <h4 class="footer-title">SOCIAL NETWORKS</h4>
+    <div class="footer-logo">
+      <img src="assets/minimarket-logo.jpg" style="margin-left: 15%" alt="Logo de YOES">
+    </div>
+    <div class="footer-download">
+      <a href="#"><img src="assets/download-on-the-app-store-apple-logo-svgrepo-com.svg" style="width: 130px"></a>
+      <a href="#"><img class="footImg2" src="assets/download-on-the-app-store-apple-logo-svgrepo-com.svg" style="width: 130px" alt=""></a>
+    </div>
+    <div class="footer-social">
+         <a href="/#"><img src="assets/red.webp" style="cursor: pointer; width: 70%"></a>
+    </div>
+  </div>
+</div>
+
+  <div style="text-align: center; font-size: 18px; background-color: black; color: white; padding: 20px; margin-top: -4%">
+    <p>@Todos los Derechos Reservados YOES - 2024</p>
+  </div>
+
+</footer>
+

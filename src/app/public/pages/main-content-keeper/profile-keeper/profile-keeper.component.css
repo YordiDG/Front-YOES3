@@ -1,0 +1,140 @@
+.toolbar {
+  display: flex;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #000000;
+  color: #ffffff;
+  font-family: 'Montserrat', sans-serif;
+  border-bottom: 2px solid #6EC6FF;
+  height: 100px;
+}
+
+.toolbar a {
+  width: 150px;
+  margin: 10px;
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+  color: white;
+  position: relative;
+  border-radius: 10px;
+
+}
+
+.toolbar .buttonnav:hover {
+  color: white;
+  background-color: #0fb5ec;
+  border: 3px solid #ffffff;
+}
+
+.contador {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  display: inline-block;
+  width: 27px;
+  height: 27px;
+  border-radius: 50%;
+  background-color: #f10404;
+  color: white;
+  text-align: center;
+  line-height: 27px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/**/
+
+.user-dialog{
+  background-color: rgba(0,0,0,0.4);
+  z-index: 999;
+}
+
+.user-dialog-container {
+  padding-left: 0;
+  background-color: white;
+  color: #000000;
+  position: absolute;
+  top: 60px;
+  right: 0;
+  width: 200%;
+}
+
+.user-dialog-container ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.user-dialog-container ul li {
+  margin-bottom: 10px;
+}
+
+.user-dialog-container ul li a {
+  color: #000000;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: bold;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.user-dialog-container ul li a:hover {
+  text-decoration: underline;
+  color: #00a6dc;
+}
+
+
+.user-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 50px;
+}
+
+.title {
+  font-size: 35px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.subtitle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+
+}
+
+.user-data {
+  font-size: 20px;
+}
+
+.update-button {
+  background-color: #7cb9e8;
+  color: black;
+  margin-top: 15px;
+  font-size: 16px;
+}
+
+.user-image{
+  display: block;
+  margin: 0 auto;
+  width: 250px;
+}
+
+mat-card {
+  max-width: 500px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+.image-container {
+  text-align: center;
+  padding-top: 20px;
+}

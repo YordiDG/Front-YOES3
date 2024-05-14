@@ -1,0 +1,7 @@
+{
+  "/api/v1/*": "/$1",
+  "/auth/*": "$1",
+  "/sign-in": "/signin",
+  "/sign-up-keeper": "/signup-keeper",
+  "/sign-up-traveller": "/signup-traveller"
+}

@@ -1,0 +1,59 @@
+
+<div class="structure">
+
+  <div style="display: flex; ">
+    <img src="assets/log.png" alt="" width="300px" height="150px" style="position: fixed; left: 10px; top: 10px;">
+
+  </div>
+
+  <mat-card class="form" style="width: 1000px !important;" >
+    <mat-card-content>
+      <div class="user-info">
+        <mat-label style="text-align: center; font-size: 28px"><b>Customer Registration</b></mat-label> <br> <br>
+        <section>
+          <div class="user-options">
+            <button mat-button style=" padding: 8px" id="btn1" class="active">Customer</button>
+            <button mat-button style=" padding: 8px"  id="btn2" (click)="goToRegisterTraveller();">Administrator</button>
+          </div>
+        </section>
+        <br>
+
+        <mat-form-field class="input-field">
+          <mat-label style="color: #0694a1">FullName*</mat-label>
+          <input matInput [(ngModel)]="fullname" type="email" >
+        </mat-form-field>
+
+        <mat-form-field class="input-field">
+          <div class="phone-wrapper">
+            <mat-label class="telephone-label" style="color: #0694a1">Telephone*</mat-label>
+            <div class="phone-prefix">(+51)</div>
+            <input matInput [(ngModel)]="phone" type="text" (input)="onPhoneInput($event)" class="phone-input" [maxLength]="9">
+          </div>
+        </mat-form-field>
+
+        <mat-form-field class="input-field">
+          <mat-label style="color: #0694a1">Birthday*</mat-label>
+          <input matInput [(ngModel)]="birthdate" type="date" >
+        </mat-form-field>
+
+        <mat-form-field class="input-field">
+          <mat-label style="color: #0694a1">Email*</mat-label>
+          <input matInput [(ngModel)]="email" type="text" >
+        </mat-form-field>
+
+        <mat-form-field class="input-field">
+          <mat-label style="color: #0694a1">Password*</mat-label>
+          <input matInput [(ngModel)]="password" type="password" >
+        </mat-form-field>
+
+        <mat-form-field class="input-field">
+          <mat-label style="color: #0694a1">Repeat Password*</mat-label>
+          <input matInput [(ngModel)]="repeat_password" type="password" >
+        </mat-form-field>
+
+        <button mat-button style="color: #000000; font-size: 22px; margin: 10px; background-color: #0cca98; height: 50px; transition: background-color 0.3s;" class="submit-button" (click)="goToLogin();"><strong>Register Account</strong></button>
+
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

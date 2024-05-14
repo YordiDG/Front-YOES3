@@ -1,0 +1,334 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&family=Montserrat&display=swap');
+
+
+.toolbar {
+  display: flex;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #000000;
+  color: #ffffff;
+  font-family: 'Montserrat', sans-serif;
+  border-bottom: 2px solid #6EC6FF;
+  height: 100px;
+}
+
+.toolbar a {
+  width: 150px;
+  margin: 10px;
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+  color: white;
+  position: relative;
+
+}
+
+.toolbar .buttonnav:hover {
+  color: white;
+  background-color: #0fb5ec;
+  border: 3px solid #00a6dc;
+}
+
+.contador {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  display: inline-block;
+  width: 27px;
+  height: 27px;
+  border-radius: 50%;
+  background-color: #f10404;
+  color: white;
+  text-align: center;
+  line-height: 27px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/**/
+
+.user-dialog-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  z-index: 1;
+}
+
+.user-dialog-container ul {
+  list-style-type: none;
+  margin-top: 70px;
+  margin-left: 78%;
+  width: 20%;
+  height: 40%;
+  border-radius: 10px;
+  background-color: rgb(255, 255, 255);
+  padding: 0;
+}
+
+.user-dialog-container ul li {
+  margin-bottom: 10px;
+}
+
+.user-dialog-container ul li a {
+  color: #000000;
+  text-decoration: none;
+  font-size: 18px;
+  margin-left: 3%;
+  font-weight: bold;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.user-dialog-container ul li a:hover {
+  text-decoration: underline;
+  color: #00a6dc;
+}
+
+/**/
+.mat-card-header{
+  text-align: center;
+  align-content: center;
+}
+
+h1 {
+  font-size:40px;
+  font-weight: bold;
+  margin-top: 8%;
+  color: #ffffff;
+}
+
+
+.mat-card {
+  width: 280px; /* Ancho fijo para todas las tarjetas */
+  height: auto;
+}
+
+
+
+.general{
+  background-image: radial-gradient(circle closest-corner at center, #00918E 40%, #0C7B76);
+  margin-top: 6%;
+}
+
+.examples-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+
+.example-data {
+  width: 360px;
+  height: 445px; /* Alto estándar */
+  margin: 10px;
+  background-color: rgb(255, 255, 255);
+  color: #000000; /* Letras blancas */
+  border-radius: 10px; /* Bordes redondeados */
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.7); /* Sombra */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Estilos para la imagen del producto */
+.example-data img {
+  width: 200px;
+  height: 200px;
+  justify-content: center;
+}
+
+/* Estilos para los elementos dentro de la tarjeta */
+.example-data label {
+  font-size: 18px; /* Tamaño de la letra */
+  margin: 5px 0; /* Espaciado entre elementos */
+}
+
+
+.example-data .disponibilidad {
+  font-weight: bold;
+}
+
+/* Estilos para los botones dentro de la tarjeta */
+.botones-container {
+  display: flex;
+  align-items: center;
+}
+
+.botones-container button {
+  background-color: black;
+  color: white;
+  width: 120px;
+  height: 40px;
+  font-weight: bold;
+  border:4px solid #f9fbfb;
+  padding: 8px 16px;
+  border-radius: 10px;
+  margin-right: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.botones-container button mat-icon {
+  margin-right: 5px;
+}
+
+.example-data button:hover {
+  background-color: #ffffff;
+  color: #0b67c7;
+}
+
+.detalle-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
+
+.detalle-producto {
+  width: 35%;
+  height: auto;
+  background-color: rgb(255, 255, 255);
+  padding: 20px;
+  border-radius: 13px;
+
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 15px;
+}
+
+.btnss {
+  font-size: 18px;
+  padding: 10px 20px;
+  margin: 13px;
+  top: 5%;
+}
+
+.btnss:hover {
+  background-color: white;
+  border: 3px solid #000000;
+  color: #0b67c7;
+}
+
+.mensaje-limite {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 0, 0, 0.8);
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  z-index: 1000;
+}
+
+.container {
+  position: relative;
+}
+
+.fondo-oscuro {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 999;
+}
+
+
+.formulario-carrito {
+  position: fixed;
+  top: 0;
+  right: 1px;
+  width:500px;
+  height: 100%;
+  background-color: #ffffff;
+  padding: 10px;
+  z-index: 1000;
+}
+
+/* Estilos para separar cada producto */
+.producto {
+  margin-bottom: 10px;
+  padding: 10px;
+  border:6px solid #cccccc;
+  border-radius: 5px;
+
+}
+
+.lista-productos {
+  list-style-type: none;
+  padding: 0;
+}
+
+.producto {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Esto agrega una sombra ligera */
+  padding: 10px; /* Esto agrega espacio entre los productos */
+}
+
+.producto img {
+  margin-right: 10px;
+}
+
+.info-producto {
+  flex-grow: 1;
+}
+
+.delete-button {
+  margin-left: auto;
+}
+
+.delete-button {
+  color: #ff0015;
+}
+
+.cerrar-button {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.cerrar-button:hover{
+  background-color: #dccfcf;
+}
+
+/***************/
+
+.menu-btn {
+  display: none;
+}
+
+.menu-items {
+  display: flex;
+  flex-direction: column;
+}
+
+@media screen and (max-width: 600px) {
+  .toolbar > * {
+    display: none;
+  }
+
+  .menu-btn {
+    display: inline-block;
+  }
+}

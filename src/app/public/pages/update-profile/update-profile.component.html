@@ -1,0 +1,33 @@
+<h2 mat-dialog-title>Actualizar Información</h2>
+<mat-dialog-content>
+  <form #updateForm="ngForm">
+    <b>Nombres:</b>
+    <mat-form-field class="full-width">
+      <input matInput [(ngModel)]="data.name" name="name" placeholder="Nombres">
+    </mat-form-field>
+
+    <b>Apellidos:</b>
+    <mat-form-field class="full-width">
+      <input matInput [(ngModel)]="data.lastName" name="lastName" placeholder="Apellidos">
+    </mat-form-field>
+
+    <b>Fecha de nacimiento:</b>
+    <mat-form-field class="full-width">
+      <input matInput [(ngModel)]="data.birthdate" type="date" name="birthdate" placeholder="Día de Nacimiento">
+    </mat-form-field>
+
+    <b>Teléfono:</b>
+    <mat-form-field class="full-width">
+      <input matInput [(ngModel)]="data.phone" type="number" name="phone" placeholder="Teléfono">
+    </mat-form-field>
+
+    <b>Correo electrónico</b>
+    <mat-form-field class="full-width">
+      <input matInput [(ngModel)]="data.email" name="email" placeholder="Correo Electrónico">
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button [mat-dialog-close]="data" class="action-button" cdkFocusInitial>Guardar</button>
+  <button mat-button (click)="onNoClick()" class="action-button">Cancelar</button>
+</mat-dialog-actions>

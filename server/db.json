@@ -1,0 +1,304 @@
+{
+  "viajes": [
+    {
+      "id": "30843977760853",
+      "title": "Brasil",
+      "description": "Explora playas paradisíacas, selvas tropicales, y vibrante cultura en la tierra del fútbol, samba, y el icónico Cristo Redentor en Río de Janeiro.",
+      "photoUrl": "https://i.imgur.com/XNQyIuo.png",
+      "rating": 8.5
+    },
+    {
+      "id": "31570607800405",
+      "title": "España",
+      "description": "Descubre rica historia, deliciosa gastronomía, festivales animados, y bellas costas en este país diverso, hogar de ciudades fascinantes como Barcelona y Madrid.",
+      "photoUrl": "https://i.imgur.com/3f08p6D.jpg",
+      "rating": 7.3
+    },
+    {
+      "id": "43036912976057",
+      "title": "Estados unidos",
+      "description": "Experimenta desde metrópolis pulsantes y parques nacionales impresionantes hasta cultura pop icónica en este vasto país de oportunidades ilimitadas.",
+      "photoUrl": "https://i.imgur.com/itrBlqm.png",
+      "rating": 9
+    },
+    {
+      "id": "30843977760853",
+      "title": "Argentina",
+      "description": "Viaja por paisajes impresionantes, desde las cataratas del Iguazú hasta la Patagonia, y disfruta del tango, el asado, y la amabilidad argentina.",
+      "photoUrl": "https://i.imgur.com/fACxrIF.png",
+      "rating": 8.5
+    },
+    {
+      "id": "484988977",
+      "title": "Portugal",
+      "description": "Encántate con ciudades históricas, playas soleadas, y deliciosa gastronomía en un país que combina tradición y modernidad en cada rincón.",
+      "photoUrl": "https://i.imgur.com/DumWIaB.png",
+      "rating": 8.9
+    },
+    {
+      "id": "41948555411641",
+      "title": "Colombia",
+      "description": "Sumérgete en la biodiversidad, café de renombre mundial, ciudades vibrantes, y una cultura cálida en este paraíso tropical sudamericano.",
+      "photoUrl": "https://i.imgur.com/CbVRgEJ.png",
+      "rating": 9.2
+    }
+  ],
+  "houses": [
+    {
+      "id": "2489841",
+      "country": "Peru",
+      "city": "Lima",
+      "streetAddress": "Jr. Bruselias 1254",
+      "price": "$10",
+      "capacity": "3",
+      "rating": "4",
+      "photoUrl": "https://images.adsttc.com/media/images/5451/9502/e58e/ce4c/0800/0029/newsletter/foto1.jpg?1414632680"
+    },
+    {
+      "id": "178216",
+      "country": "Brasil",
+      "city": "São Paulo",
+      "streetAddress": "Avenida Paulista, 1234, Bela Vista",
+      "price": "$12",
+      "capacity": "4",
+      "rating": "4",
+      "photoUrl": "https://locations-api-production.imgix.net/locations/image/f1953890-6867-11e8-94bf-1202be33576a/20180328_WeWork_Paulista_-_Exterior.jpg?auto=format%20compress&fit=crop&q=50&w=1000&h=563"
+    },
+    {
+      "id": "1741566",
+      "country": "España",
+      "city": "Madrid",
+      "streetAddress": "Calle Gran Vía, 28, 28013",
+      "price": "$14",
+      "capacity": "5",
+      "rating": "3.5",
+      "photoUrl": "https://1.bp.blogspot.com/-955fZVzICu0/WBTgLUpm51I/AAAAAAAARvw/n5tfFbDq02E4aTRKoVya4SKBBasUaUEfACLcB/s1600/0tel.jpg"
+    },
+    {
+      "id": "1165486",
+      "country": "Estados Unidos",
+      "city": "New York",
+      "streetAddress": "350 Fifth Avenue",
+      "price": "$11",
+      "capacity": "4",
+      "rating": "4",
+      "photoUrl": "https://www.optimalspaces.com/media/google_street_images/350-fifth-avenue-new-york-QhqOI6DQI9lILN1+QTxJHvjdLANVPH99Wbku3qa3gVkCrBDX5RGBx3ID+7OJ.jpg"
+    },
+    {
+      "id": "277895",
+      "country": "Argentina",
+      "city": "Buenos Aires",
+      "streetAddress": "Avenida 9 de Julio, 432",
+      "price": "$15",
+      "capacity": "4",
+      "rating": "3.5",
+      "photoUrl": "https://imgar.zonapropcdn.com/avisos/1/00/50/47/29/34/720x532/1834300959.jpg"
+    },
+    {
+      "id": "535435",
+      "country": "Portugal",
+      "city": "Lisboa",
+      "streetAddress": "Avenida da Liberdade, 125",
+      "price": "$13",
+      "capacity": "5",
+      "rating": "4.5",
+      "photoUrl": "https://a.travel-assets.com/findyours-php/viewfinder/images/res70/537000/537985-avenida-da-liberdade.jpg?impolicy=fcrop&w=360&h=224&q=medium"
+    },
+    {
+      "id": "95268",
+      "country": "Colombia",
+      "city": "Bogotá",
+      "streetAddress": "Carrera 7 #32,16",
+      "price": "$10",
+      "capacity": "3",
+      "rating": "4",
+      "photoUrl": "https://fastly.4sqi.net/img/general/600x600/10603345_RJ3srZIOlM-nFr1ATXEM6EQ34Iu4ad8sz2RIJqtvxGU.jpg"
+    }
+  ],
+  "Mensajes": [
+    {
+      "id": "1",
+      "nombre": "Piero García",
+      "description": "El auto está en buenas condiciones, inclusive hace 1 semana lo llevé al taller",
+      "photoFace": "https://static.vecteezy.com/system/resources/previews/002/702/880/non_2x/man-smiling-face-cartoon-free-vector.jpg"
+    },
+    {
+      "id": "2",
+      "nombre": "Gabriel Fernández",
+      "description": "Ya esta limpia toda su casa y ya saque a pasear al perro",
+      "photoFace": "https://static.vecteezy.com/system/resources/previews/001/968/800/non_2x/man-face-head-character-cartoon-blue-lines-free-vector.jpg"
+    },
+    {
+      "id": "3",
+      "nombre": "Sandra Gimenez",
+      "description": "Las plantas ya estan regadas",
+      "photoFace": "https://img.freepik.com/vector-premium/dibujos-animados-cara-mujer-joven_18591-44461.jpg"
+    }
+  ],
+  "MensajesTraveller": [
+    {
+      "id": "1",
+      "nombre": "Juan Perez",
+      "description": "Hola, Piero García aquí. Solo quería informarte que el auto está en excelentes condiciones. Hace solo una semana lo llevé al taller para una revisión completa. Puedes estar tranquilo durante tu viaje.",
+      "photoFace": "https://static.vecteezy.com/system/resources/previews/002/702/880/non_2x/man-smiling-face-cartoon-free-vector.jpg"
+    },
+    {
+      "id": "2",
+      "nombre": "Luis Rodríguez",
+      "description": "¡Hola! Tu casa está en perfecto estado. He limpiado y ordenado cada rincón, y también saqué a pasear al perro para que esté feliz y activo. No te preocupes, todo está bajo control.",
+      "photoFace": "https://static.vecteezy.com/system/resources/previews/001/968/800/non_2x/man-face-head-character-cartoon-blue-lines-free-vector.jpg"
+    },
+    {
+      "id": "3",
+      "nombre": "María González",
+      "description": "Saludos. Solo quiero informarte que tus plantas ya han sido regadas. Están en perfecto estado y bien cuidadas. No tienes de qué preocuparte en ese aspecto.",
+      "photoFace": "https://img.freepik.com/vector-premium/dibujos-animados-cara-mujer-joven_18591-44461.jpg"
+    },
+    {
+      "id": "4",
+      "nombre": "María Rodríguez",
+      "description": "Hola, soy María. Todo está en orden en tu hogar. Las mascotas están felices y las plantas bien cuidadas. ¡Disfruta de tu viaje!",
+      "photoFace": "https://i.imgur.com/ahjIjAJ.jpg"
+    },
+    {
+      "id": "5",
+      "nombre": "Lucía Mendoza",
+      "description": "Hola, Lucía aquí. Tu hogar está en perfecto estado. Las mascotas han sido alimentadas y las plantas están bien regadas. Cualquier cosa que necesites, aquí estaré.",
+      "photoFace": "https://i.imgur.com/B1Cn3or.png"
+    },
+    {
+      "id": "6",
+      "nombre": "Andrea Castillo",
+      "description": "¡Hola! Tu hogar está en excelentes condiciones. Las mascotas están bien cuidadas y las plantas lucen hermosas. No dudes en contactarme si necesitas algo.",
+      "photoFace": "https://i.imgur.com/ghdR7Vg.png"
+    },
+    {
+      "id": "7",
+      "nombre": "Paula López",
+      "description": "Hola, soy Paula. Quería decirte que todo está bien en tu hogar. Las mascotas están contentas y las plantas están cuidadas. Si tienes alguna pregunta, no dudes en preguntar.",
+      "photoFace": "https://i.imgur.com/ucEPQ5a.png"
+    }
+  ],
+  "keepers": [
+    {
+      "id": "1",
+      "name": "Juan Pérez",
+      "country": "Peru",
+      "city": "Lima",
+      "streetAddress": "Jr. Bruselias 1254",
+      "description": "¡Hola! Soy Juan. Con experiencia en el cuidado de hogares, puedo mantener tu casa segura y en perfectas condiciones. También soy un amante de las mascotas, así que no dudes en dejarme a cargo de tus amigos peludos mientras viajas.",
+      "photoUrl": "https://i.imgur.com/FVPCfSY.png",
+      "rating": 7.2
+    },
+    {
+      "id": "2",
+      "name": "María González",
+      "country": "United States",
+      "city": "Los Angeles",
+      "streetAddress": "456 Oak St",
+      "description": "Soy María, y mi pasión es el cuidado de mascotas. Puedo cuidar de tus animales con cariño y responsabilidad. Además, soy experta en mantenimiento del hogar, así que tu casa estará en buenas manos mientras no estás.",
+      "photoUrl": "https://i.imgur.com/HlqEjE0.png",
+      "rating": 8.5
+    },
+    {
+      "id": "3",
+      "name": "Luis Rodríguez",
+      "country": "United States",
+      "city": "New York",
+      "streetAddress": "789 Elm St",
+      "description": "¡Hola! Soy Luis y me dedico al bricolaje y jardinería. Si necesitas que tu hogar luzca mejor que nunca, puedo encargarme de eso. Además, soy un Keeper responsable para garantizar la seguridad de tu casa mientras viajas.",
+      "photoUrl": "https://i.imgur.com/TbKbh8d.png",
+      "rating": 9
+    },
+    {
+      "id": "4",
+      "name": "Ana Sánchez",
+      "country": "United States",
+      "city": "San Francisco",
+      "streetAddress": "101 Pine St",
+      "description": "Mi especialidad es la limpieza y la organización. Tu hogar estará impecable cuando vuelvas. También puedo cuidar de tus plantas y mascotas. ¡Conmigo, todo estará en orden!",
+      "photoUrl": "https://i.imgur.com/wzC6ilP.png",
+      "rating": 8.7
+    },
+    {
+      "id": "5",
+      "name": "Carlos López",
+      "country": "United States",
+      "city": "Chicago",
+      "streetAddress": "202 Maple St",
+      "description": "Me encanta la jardinería y mantener los espacios verdes. Tu jardín estará radiante cuando regreses a casa. Además, soy un apasionado del cuidado del hogar y las mascotas.",
+      "photoUrl": "https://i.imgur.com/B0qRvIR.png",
+      "rating": 8.2
+    },
+    {
+      "id": "6",
+      "name": "Elena Martínez",
+      "country": "United States",
+      "city": "Austin",
+      "streetAddress": "303 Cedar St",
+      "description": "Me dedico al cuidado de hogares como si fueran míos. Tu tranquilidad es mi prioridad. Puedo cuidar de tus mascotas y plantas mientras no estás en casa.",
+      "photoUrl": "https://i.imgur.com/ghdR7Vg.png",
+      "rating": 9.1
+    },
+    {
+      "id": "7",
+      "name": "Pedro Ramírez",
+      "country": "United States",
+      "city": "Seattle",
+      "streetAddress": "404 Oak St",
+      "description": "Soy un amante de los deportes y la vida activa. Tu hogar estará lleno de energía positiva. Además, puedo cuidar de tus mascotas y mantener tu hogar seguro.",
+      "photoUrl": "https://i.imgur.com/gXahjEI.png",
+      "rating": 7.9
+    },
+    {
+      "id": "8",
+      "name": "Sofía Torres",
+      "country": "United States",
+      "city": "Denver",
+      "streetAddress": "505 Pine St",
+      "description": "Me apasiona la cocina y el arte. Tu hogar estará lleno de sabor y creatividad. También soy responsable en el cuidado de tu hogar y mascotas.",
+      "photoUrl": "https://i.imgur.com/ucEPQ5a.png",
+      "rating": 8.4
+    },
+    {
+      "id": "9",
+      "name": "Javier García",
+      "country": "United States",
+      "city": "Portland",
+      "streetAddress": "606 Elm St",
+      "description": "Me dedico al arte y la música. Tu hogar será un lugar inspirador. Además, puedo cuidar de tus plantas, mascotas y mantener tu hogar en perfectas condiciones.",
+      "photoUrl": "https://i.imgur.com/Pgnn7yp.png",
+      "rating": 8
+    }
+  ],
+  "keeperRequest": [
+    {
+      "id": "1",
+      "name": "Juan Pérez",
+      "message": "Me encantaría cuidar tu casa mientras estás de viaje. Tengo experiencia en cuidado de propiedades.",
+      "photoUrl": "https://i.imgur.com/IsgTH0N.jpg",
+      "rating": 7.2
+    },
+    {
+      "id": "2",
+      "name": "Luis Ramírez",
+      "message": "Ofrezco cuidar tu casa ya que estare un tiempo por Nueva York. Soy una persona responsable y confiable.",
+      "photoUrl": "https://i.imgur.com/SAFs5x5.jpg",
+      "rating": 6.2
+    },
+    {
+      "id": "3",
+      "name": "María González",
+      "message": "Estoy dispuesto a cuidar tu hogar en Nueva York. Vivo cerca y estaré atenta a cualquier necesidad.",
+      "photoUrl": "https://i.imgur.com/ahjIjAJ.jpg",
+      "rating": 9.2
+    },
+    {
+      "id": "4",
+      "name": "Jorge Chavez",
+      "message": "Me encantaria que me dieras la oportunidad de cuidar tu casa para demostrar mi experiencia",
+      "photoUrl": "https://i.imgur.com/uh1uNcy.jpg",
+      "rating": 5.2
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+.phone-input-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.country-code {
+  margin-right: 5px;
+}

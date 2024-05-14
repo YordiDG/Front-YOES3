@@ -1,0 +1,65 @@
+<div style="height: 100vh;">
+  <mat-toolbar class="toolbar">
+    <img src="../../../../assets/homeguardians_logo.png" width="60px" alt="">
+    <div class="mat-spacer"></div>
+
+    <span class="example-spacer"></span>
+    <div fxShow="true" fxHide.lt-md="true">
+      <a class="button-menu" mat-button (click)="goToTraveler();">INICIO</a>
+      <a class="button-menu" mat-button (click)="goToFindKeeper();">BUSCAR KEEPER</a>
+      <a class="button-menu" mat-button (click)="goToMessenger();">MENSAJERIA</a>
+      <a class="button-menu" mat-button (click)="goToProfile();"><img src="https://i.postimg.cc/Fs9Z3g3V/usuario-1.png" style="width: 3em;" ></a>
+    </div>
+  </mat-toolbar>
+  <mat-card class="contenedor-principal" >
+    <mat-card-content class="contenedor">
+
+      <br><br>
+      <mat-label  class="letter1"><b>Viaja con tranquilidad</b></mat-label>
+      <br><br>
+      <mat-label  class="letter2"><b>Deja tu casa segura</b></mat-label>
+      <br><br>
+      <mat-label style="text-align: left">Encuentra al Keeper ideal</mat-label>
+      <mat-form-field >
+        <input matInput [(ngModel)]="title" type="text" placeholder="Ubicación" class="input" >
+      </mat-form-field> <button mat-button style="background-color: #14131B; color: white" (click)="goToFindKeeper()">BUSCAR UN KEEPER</button>
+
+
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card style="border-radius: 0">
+    <mat-card-content class="contenedor2">
+
+      <br><br>
+      <mat-label  style="font-size: 25px;text-align: center;color: #14131B"><b>Selecciona al mejor Keeper para tu hogar</b></mat-label>
+      <br><br>
+      <mat-label  style="font-size: 25px;text-align: center;color: #007bff"><b>Solicitantes de Keepers pendientes</b></mat-label>
+      <br><br>
+
+
+      <!--<mat-card>
+        <div class="card-container">
+          <div *ngFor="let keeperRequest of keeperRequest">
+            <mat-card class="keeperRequest-card keeperRequest-card-background">
+              <img mat-card-image [src]="keeperRequest.photoUrl" alt="{{ keeperRequest.name }}" class="keeperRequest-image">
+              <mat-card-content>
+                <div class="keeperRequest-header">
+                  <h2 class="keeperRequest-name">{{ keeperRequest.name }}</h2>
+                  <div class="keeperRequest-rating">
+                    <mat-icon class="keeperRequest-rating-icon">star</mat-icon>
+                    <span class="keeperRequest-rating-text">{{ keeperRequest.rating }}</span>
+                  </div>
+                </div>
+                <p class="keeperRequest-message">{{ keeperRequest.message }}</p>
+              </mat-card-content>
+            </mat-card>
+          </div>
+        </div>
+      </mat-card>-->
+
+      <br><br>
+    </mat-card-content>
+  </mat-card>
+</div>
+

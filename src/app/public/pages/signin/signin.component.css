@@ -1,0 +1,228 @@
+
+.structure {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  background-image: url("https://denomades.s3.us-west-2.amazonaws.com/blog/wp-content/uploads/2017/05/04170759/22457915769_8cac28ed2e_k.jpg");
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
+  overflow-y: auto;
+}
+
+.form {
+  width: 500px;
+  height: 80vh !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 20px;
+}
+
+.center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.user-options {
+  display: flex;
+  margin-top: 10px;
+}
+
+.user-options button {
+  padding: 8px;
+  margin: 0 5px;
+  font-size: 16px;
+  background-color: #f0f0f0;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  transition: background-color 0.3s ease;
+}
+
+.user-options button.active {
+  background-color: #1fcf0b;
+  color: #fff;
+
+}
+
+.logo {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 20px;
+}
+
+.login-text {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  width: 180%;
+}
+
+.login-form input {
+  width: 180%;
+  padding: 10px;
+  margin-left: -30%;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 18px;
+  color: black;
+  margin-bottom: 10px;
+  border: 2px solid #817d7d;
+  border-radius: 5px;
+  outline: none;
+  transition: background-color 0.3s ease;
+}
+
+
+.login-form input:focus {
+  background-color: #ffffff;
+  border: 4px solid #00a6dc;
+  border-radius: 10px;
+}
+
+.btns {
+  padding: 10px;
+  margin-top: 8%;
+  width: 180%;
+  margin-left: -30%;
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  background-color: #03035a;
+  color: #fff;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btns:hover {
+  background-color: #0d0da8;
+}
+
+
+.register-link {
+  color: #FF0000;
+  font-weight: bold;
+  font-size: 16px;
+
+}
+.register-link:hover {
+  color: #031568;
+  font-weight: bold;
+
+}
+.btnc:hover {
+  background-color: #ef4949;
+}
+
+@media only screen and (max-width: 600px) {
+  body {
+    font-size: 18px;
+  }
+
+  .header-logo, .footer-logo {
+    width: 50%;
+    height: auto;
+  }
+
+  .login-form {
+    width: 80%;
+    padding: 20px;
+  }
+}
+
+@media only screen and (min-width: 601px) {
+  body {
+    font-size: 16px;
+  }
+
+  .header-logo, .footer-logo {
+    width: 190px;
+    height: 61.5px;
+  }
+
+  .login-form {
+    width: 300px;
+    padding: 50px;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  body {
+    font-size: 14px;
+  }
+
+  .header-logo, .footer-logo {
+    width: 50%;
+    height: auto;
+  }
+
+  .login-form {
+    width: 80%;
+    padding: 20px;
+  }
+}
+
+@media only screen and (max-width: 375px) {
+  body {
+    font-size: 16px;
+  }
+
+  .header-logo, .footer-logo {
+    width: 60%;
+    height: auto;
+  }
+
+  .login-form {
+    width: 85%;
+    padding: 30px;
+  }
+}
+
+@media only screen and (max-width: 414px) {
+  body {
+    font-size: 18px;
+  }
+
+  .header-logo, .footer-logo {
+    width: 70%;
+    height: auto;
+  }
+
+  .login-form {
+    width: 90%;
+    padding: 40px;
+  }
+}
+
+@media only screen and (min-width: 415px) {
+  body {
+    font-size: 20px;
+  }
+
+  .header-logo, .footer-logo {
+    width: 190px;
+    height: auto;
+  }
+
+  .login-form {
+    width:300px;
+    padding:50px;
+  }
+}
+
+
+
+

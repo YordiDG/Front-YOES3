@@ -1,0 +1,28 @@
+h2.mat-dialog-title {
+  color: #007bff;
+}
+
+.mat-dialog-container {
+  height: 10% !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+mat-form-field.full-width {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+mat-dialog-actions {
+  display: flex;
+  justify-content: center;
+  margin: 10px 0;
+}
+
+button.action-button {
+  background-color: #007bff;
+  color: #fff;
+  margin: 0 10px;
+}

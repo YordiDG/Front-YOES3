@@ -1,0 +1,146 @@
+.structure {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  background-image: url("https://mobileinsight.com/wp-content/uploads/2021/01/The-Ultimate-Guide-To-In-Store-Product-Placement-scaled.jpg");
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
+  overflow-y: auto;
+  margin: 0;
+  padding: 0;
+}
+
+.structure::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+
+.form{
+  margin-top: 6%;
+  margin-bottom: 3%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  max-width: 500px;
+  margin-left: 40%;
+  border-radius: 19px;
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.user-info{
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  justify-content: center;
+  align-content: center;
+  max-width: 500px;
+}
+
+.user-options{
+  place-items: center;
+  display: flex;
+  margin: auto;
+  justify-content: center;
+  gap: 15px;
+}
+
+#btn1{
+  background-color: #ff0000;
+  border: 2px;
+  padding: 0;
+  flex-direction: column;
+  font-weight: 500;
+  color: black;
+  font-size: 18px;
+  box-shadow: none;
+}
+
+#btn2{
+  background-color: #ffff00;
+  border: none;
+  padding: 0;
+  flex-direction: column;
+  font-weight: 500;
+  font-size: 18px;
+  color: black;
+  box-shadow: none;
+
+}
+
+#btn1:hover{
+  background-color: #f46f6f;
+  color: black;
+}
+
+#btn2:hover{
+  background-color: #eaea69;
+  color: black;
+}
+
+#btn1.active{
+  background-color: #22dd0e;
+  color: white;
+  border: 4px solid black;
+  padding: 12px;
+}
+
+#btn2.active{
+  background-color: #22dd0e;
+  color: white;
+  border: 4px solid black;
+  padding: 12px;
+}
+
+.input{
+  display: flex;
+  min-width: 300px;
+  max-width: 100%;
+  border: none;
+  text-align: start;
+  justify-content: center;
+}
+
+.form section{
+  justify-content: center;
+  text-align: center;
+}
+
+button{
+  border-radius: 15px;
+}
+
+.phone-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.telephone-label {
+  position: absolute;
+  top: -24px;
+  left: 8px;
+  color: #6d0995;
+}
+
+.phone-prefix {
+  margin-right: 5px;
+}
+
+.phone-input {
+  margin-left: 1px;
+}
+
+.submit-button:hover {
+  background-color: #ff4747;
+}
+

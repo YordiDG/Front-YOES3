@@ -1,0 +1,33 @@
+<div class="container">
+  <mat-card style="background-color: darkblue">
+    <mat-card-title style="margin-right: auto;margin-left: auto;margin-top: 30%; color: #EFB810; font-size: 30%">Car Finance</mat-card-title>
+    <img src="./assets/log1.png" style="width: 5%;margin:auto" alt="">
+  </mat-card>
+
+  <mat-card>
+    <div class="login-form">
+      <img src="./assets/UserBlack.png" class="logo" alt="">
+      <p class="login-text"><b>Registro</b></p>
+      <div *ngIf="registerForm.get('phoneNumber')?.invalid && registerForm.get('phoneNumber')?.touched">
+        <form [formGroup]="registerForm" (ngSubmit)="register()">
+        <input formControlName="phoneNumber" type="tel" placeholder="Telephone" [class.invalid]="registerForm.get('phoneNumber')?.invalid && registerForm.get('phoneNumber')?.touched" required pattern="(\+51)?\s?9[0-9]{8}">
+        <span class="error-message">Campo obligatorio. El número debe comenzar con +51 y tener 9 dígitos.</span>
+
+          <!-- Otros campos de registro -->
+          <div class="phone-input-container">
+            <span class="country-code">+51</span>
+            <input formControlName="phoneNumber" type="tel" placeholder="Ingresa tu número de celular" required>
+          </div>
+          <button type="submit" (click)="redirectToContinueWithPhone()">Registrar</button>
+        </form>
+
+      </div>
+
+
+
+      <p> <b>¿Ya tienes una cuenta?</b></p>
+      <a routerLink="/login">Iniciar Sesión</a>
+    </div>
+  </mat-card>
+
+</div>

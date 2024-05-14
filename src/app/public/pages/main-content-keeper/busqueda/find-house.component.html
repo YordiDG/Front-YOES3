@@ -1,0 +1,133 @@
+<div class="body">
+  <mat-toolbar class="toolbar">
+    <img src="../../../../../assets/log1.png" width="70px" alt="" style="margin-left: 6%">
+
+    <div style="display: flex; align-items: center; width: 100%;">
+      <input matInput placeholder="Buscar Producto" [(ngModel)]="name" style="border-radius: 15px 0 0 15px; border: 4px solid #00a6dc; width: 70%; color: black; margin-left: 12%; padding-left: 30px;">
+      <div style="background-color: white; font-family: 'Montserrat', sans-serif; width: 90px; border-radius: 0 15px 15px 0; border: 4px solid #00a6dc; display: flex; align-items: center; padding: 5px;">
+        <mat-icon matPrefix style="font-size: 30px;text-align: justify;margin-right: 15px ; cursor: pointer" color="primary" (click)="onFilter()">search</mat-icon>
+        <mat-icon matSuffix style="font-size: 30px; cursor: pointer" color="warn" (click)="toReset()">clear</mat-icon>
+      </div>
+    </div>
+
+    <div fxShow="true" fxHide.lt-md="true" style="font-size: 20px">
+      <a class="buttonnav" mat-button style="font-size: 19px;" (click)="goToKeeper()">HOME</a>
+      <a class="buttonnav" mat-button style="font-size: 19px; " >SEARCH </a>
+      <a class="buttonnav" mat-button style="font-size: 19px; "  (click)="goToMessenger()">MESSAGE</a>
+      <button mat-button [matMenuTriggerFor]="categoriasMenu" style="font-size: 19px; " >CATEGORY🔻</button>
+      <!-- Menú de Categorías -->
+      <mat-menu #categoriasMenu="matMenu">
+        <button mat-menu-item style="font-size: 19px; "  (click)="('lacteos')">Lácteos</button>
+        <button mat-menu-item style="font-size: 19px; "  (click)="('carnes')">Carnes</button>
+        <button mat-menu-item style="font-size: 19px;"  (click)=" ('abarrotes')">Abarrotes</button>
+        <button mat-menu-item style="font-size: 19px; "  (click)=" ('frutas-y-verduras')">Frutas y Verduras</button>
+        <button mat-menu-item style="font-size: 19px; " (click)=" ('panaderia')">Panadería</button>
+        <button mat-menu-item style="font-size: 19px; " (click)=" ('belleza-personal')">Belleza Personal</button>
+        <button mat-menu-item style="font-size: 19px; " (click)=" ('sala-de-comida')">Sala de Comida</button>
+      </mat-menu>
+
+      <button mat-icon-button (click)="productosComprados()" aria-label="Add">
+        <img src="../../../../../assets/add.png" style="width: 40px; height: 40px;" alt="Add product">
+        <span class="contador">{{ contador }}</span>
+      </button>
+
+      <a mat-button (click)="goToProfile()"><img src="https://i.postimg.cc/Fs9Z3g3V/usuario-1.png" style="width: 3em;"></a>
+
+    </div>
+  </mat-toolbar>
+
+
+  <div class="examples-cards">
+    <div *ngFor="let producto of Productos">
+      <mat-card class="example-data">
+        <mat-card-content>
+          <img [src]="producto.image" alt="Image of the house" width="280px"><br>
+          <label style="font-size: 24px"><strong>{{producto.name}}</strong></label><br>
+          <label> {{producto.description}} </label><br>
+          <label style="font-size: 28px; font-weight: bold;">S/. {{producto.price}}</label><br>
+          <!-- Etiqueta de disponibilidad -->
+          <div style="width: 40%; font-size: 16px; margin: 10px; text-align: center; align-items: center; border-radius: 7px"
+               [ngStyle]="getEstiloProducto()">
+            {{ producto.disponibilidad === 'agotado' ? 'Agotado' : 'Disponible' }}
+          </div>
+
+          <!-- Botones dentro del mismo *ngIf que el detalle del producto -->
+          <div *ngIf="producto.mostrarDetalle">
+
+            <div class="botones-container">
+              <button (click)="verDetalle(producto)">
+                <mat-icon>visibility</mat-icon>
+                VIEW
+              </button>
+
+              <button mat-button (click)="agregarAlCarrito(producto)">
+                <mat-icon>add_shopping_cart</mat-icon>
+                ADD
+              </button>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>
+
+<div class="detalle-overlay" *ngIf="productoSeleccionado">
+  <div class="detalle-producto">
+    <!-- <button style="background-color: red; color: white; text-align: end" class="close-button" (click)="cerrarDetalle()">
+       <span aria-hidden="true">&times;</span>
+     </button>-->
+    <h2 style="background-color: #0cca98; text-align: center;align-items: center; border-radius: 10px; color: white; width: 50%; margin: 10px; padding: 10px">Detalle del producto</h2>
+    <div style="display: flex; align-items: center;">
+      <img [src]="productoSeleccionado.image" alt="Image of product" width="220px">
+      <div style="margin-left: 20px;">
+        <h2>{{ productoSeleccionado.name }}</h2>
+        <p style="font-size: 19px; font-family: 'Montserrat', sans-serif">{{ productoSeleccionado.description }}</p>
+        <p style="font-size: 19px;font-family: 'Montserrat', sans-serif"> {{ productoSeleccionado.category }}</p>
+        <p style="font-size: 19px;font-family: 'Montserrat', sans-serif" >{{ productoSeleccionado.cantidad_stock }}</p>
+        <p style="font-size: 22px; font-family: 'Montserrat', sans-serif; font-weight: bold;">S/. {{ productoSeleccionado.price }}</p>
+        <label>{{productoSeleccionado.valoracion}}</label>
+        <div class="button-container">
+          <button class="btnss" mat-button style="background-color: #046981; color: white; font-weight: bold;" (click)="agregarAlCarrito(productoSeleccionado)">
+            <mat-icon>add_shopping_cart</mat-icon>
+            ADD
+          </button>
+          <button class="btnss" mat-button style="background-color: #ff0000; color: white; font-weight: bold;" (click)="cerrarDetalle()">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="mensaje-limite" *ngIf="mostrarMensaje">
+  <p>¡Se ha alcanzado el límite de compras en este producto!</p>
+  <button (click)="cerrarMensaje()">Cerrar</button>
+</div>
+
+<!-- En tu HTML -->
+<div class="container">
+
+  <!-- Fondo oscuro -->
+  <div class="fondo-oscuro" *ngIf="mostrarFormularioCarrito" (click)="cerrarFormularioCarrito()"></div>
+
+  <!-- Formulario de lista de productos en el carrito -->
+  <div class="formulario-carrito" *ngIf="mostrarFormularioCarrito">
+    <h2>Productos Añadidos</h2>
+    <ul>
+      <div *ngFor="let producto of carrito; let i = index">
+        <span><strong>{{ producto.name }} </strong></span><br>
+        <span><strong>Precio: {{ producto.price }} </strong></span>
+
+        <button mat-icon-button class="edit-button" >
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button class="delete-button" (click)="removerDelCarrito(i)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+    </ul>
+    <hr >
+    <p style="font-size: 20px; font-weight: bold">Total: {{ totalCarrito }}</p>
+    <button mat-button class="cerrar-button" (click)="cerrarFormularioCarrito()"><strong>Cerrar</strong></button>
+  </div>
+</div>

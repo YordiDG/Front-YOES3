@@ -1,0 +1,26 @@
+<div class="container">
+
+  <mat-card style="background-color: darkblue" >
+    <mat-card-title style="margin-right: auto;margin-left: auto;margin-top: 30%; color: #EFB810; font-size: 300%">Car Finance</mat-card-title>
+    <img src="./assets/log1.png" style="width: 50%;margin:auto" alt="">
+  </mat-card>
+
+  <mat-card >
+    <div class="login-form">
+      <img src="assets/UserBlack.png" class="logo" alt="">
+      <p class="login-text"><b>Iniciar Sesión</b></p>
+
+      <form [formGroup]="formLogin">
+        <input type="email" placeholder="Email" formControlName="email" required>
+        <input type="password" placeholder="Password" formControlName="password" required>
+        <button type="submit" (click)="onLogin()">Login</button>
+      </form>
+      <p> <b> ¿No tienes una cuenta?</b></p>
+      <a href="#" (click)="goToRegister($event)">Regístrate</a>
+
+      <button mat-raised-button color="warn" (click)="goToPhoneNumberForm()">Continuar con Celular</button>
+    </div>
+  </mat-card>
+</div>
+
+<router-outlet></router-outlet>

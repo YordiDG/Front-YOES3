@@ -1,0 +1,74 @@
+<mat-toolbar class="toolbar">
+  <img src="../../../../assets/homeguardians_logo.png" width="60px">
+  <div class="menu-options">
+    <a class="button-menu" mat-button (click)="goToTraveler();">INICIO</a>
+    <a class="button-menu" mat-button (click)="goToFindKeeper();">BUSCAR KEEPER</a>
+    <a class="button-menu" mat-button (click)="goToMessenger();">MENSAJERIA</a>
+    <a class="button-menu" mat-button (click)="goToProfile()"><img src="https://i.postimg.cc/Fs9Z3g3V/usuario-1.png" style="width: 3em;" ></a>
+  </div>
+</mat-toolbar>
+
+<div class="form-filter">
+  <mat-card class="filter">
+    <mat-card-header>
+      <mat-card-title class="title">ENCUENTRA AL MEJOR KEEPER PARA TU HOGAR</mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="subtitle">
+      <div class="form-fields">
+        <!-- País -->
+        <div class="form-field">
+          <mat-form-field>
+            <input matInput placeholder="País" [(ngModel)]="country" />
+          </mat-form-field>
+        </div>
+
+        <!-- Ciudad -->
+        <div class="form-field">
+          <mat-form-field>
+            <input matInput placeholder="Departamento" [(ngModel)]="city" />
+          </mat-form-field>
+        </div>
+
+        <!-- Dirección -->
+        <div class="form-field">
+          <mat-form-field>
+            <input matInput placeholder="Dirección" [(ngModel)]="streetAddress" />
+          </mat-form-field>
+        </div>
+
+        <!-- Estrellas -->
+        <div class="form-field">
+          <mat-form-field>
+            <input matInput type="number" placeholder="Estrellas" [(ngModel)]="rating" />
+          </mat-form-field>
+        </div>
+
+        <br>
+        <button mat-button style="color: black; background-color: #7cb9e8" class="button" (click)="onFilter()">Filtrar</button>
+        <button mat-button style="color: black; background-color: #7cb9e8" class="button" (click)="toReset()">Cancelar</button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<div class="examples-cards">
+
+  <!--<mat-card *ngFor="let keeper of keepers" class="keeper-card">
+    <div class="keeper-right">
+      <span class="keeper-name">{{ keeper.city }}</span>
+      <img mat-card-image [src]="keeper.photoUrl" alt="{{ keeper.name }}" class="keeper-image">
+      <span class="keeper-rating">{{ keeper.rating }} <mat-icon>star</mat-icon></span>
+    </div>
+    <div class="keeper-left">
+      <mat-card-content class="keeper-description">
+        <p>{{ keeper.description }}</p>
+        <div class="keeper-location">{{ keeper.country }} - {{ keeper.city }} - {{ keeper.streetAddress }}</div>
+        <div class="contact-button">
+          <button mat-button class="custom-contact-button" (click)="solicitarKeeper(keeper.name)">Solicitar Keeper</button>
+        </div>
+      </mat-card-content>
+
+    </div>
+  </mat-card>-->
+</div>
+

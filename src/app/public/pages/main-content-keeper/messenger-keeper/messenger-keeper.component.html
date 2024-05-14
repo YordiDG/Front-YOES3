@@ -1,0 +1,65 @@
+
+  <mat-toolbar class="toolbar">
+    <img src="../../../../../assets/log1.png" width="70px" style="margin-left: 8%">
+    <div style="display: flex; align-items: center; width: 100%;">
+      <input matInput placeholder="Buscar Producto" [(ngModel)]="name" style="border-radius: 15px 0 0 15px; border: 4px solid #00a6dc; width: 70%; color: black; margin-left: 12%; padding-left: 30px;" required>
+      <div style="background-color: white; font-family: 'Montserrat', sans-serif; width: 90px; border-radius: 0 15px 15px 0; border: 4px solid #00a6dc; display: flex; align-items: center; padding: 5px;">
+        <mat-icon matPrefix style="font-size: 30px;text-align: justify;margin-right: 15px ; cursor: pointer" color="primary" (click)="onFilter()">search</mat-icon>
+        <mat-icon matSuffix style="font-size: 30px; cursor: pointer" color="warn" (click)="toReset()">clear</mat-icon>
+      </div>
+    </div>
+    <a class="buttonnav" mat-button style="font-size: 19px; " (click)="goToLogin()">INICIO</a>
+    <a class="buttonnav" mat-button style="font-size: 19px;" (click)="goToKeeper()">TIENDA</a>
+    <a class="buttonnav" mat-button style="font-size: 15px; border-radius: 0; border: none; cursor: pointer; background-color: transparent " (click)="goToMessenger()">
+      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-bell" style="margin-top: -6%;" width="38" height="38" viewBox="0 0 24 24" stroke-width="1" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+        <path d="M10 5a2 2 0 1 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3h-16a4 4 0 0 0 2 -3v-3a7 7 0 0 1 4 -6" />
+        <path d="M9 17v1a3 3 0 0 0 6 0v-1" />
+      </svg>
+    </a>
+    <button mat-icon-button (click)="productosComprados()" aria-label="Add">
+      <img src="../../../../../assets/add.png" style="width: 40px; height: 40px;" alt="Add product">
+      <span class="contador">{{ contador }}</span>
+    </button>
+    <div style="position: relative;">
+      <a mat-button (click)="showUserDialog()" style="border-radius: 0; border: none; background-color: transparent; position: relative;">
+        <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" style="width: 4em; margin-top: -15px; margin-left: 22px">
+      </a>
+      <div class="user-dialog-overlay" *ngIf="showDialog" (click)="hideUserDialog()"></div>
+      <div class="user-dialog" *ngIf="showDialog">
+        <div class="user-dialog-container">
+          <ul class="sin-puntos">
+            <button mat-button class="cerrar-btn" style="text-align: end; justify-items: end; justify-content: end; color: red;margin-top: 3%; margin-left: 70%; " (click)="cerrarFormulario()">
+              <strong><mat-icon style="font-size: 30px; font-weight: bold">clear</mat-icon></strong>
+            </button>
+            <li><a routerLink="/sign-in" (click)="selectOption('Inicio de Sesión')"><mat-icon style="margin-left: 20%">account_circle</mat-icon> Inicio de Sesión</a></li>
+            <li><a routerLink="/register" (click)="selectOption('Registrarse')"><mat-icon style="margin-left: 20%">person_add</mat-icon> Registrarse</a></li>
+            <li><a routerLink="/profile-client"  (click)="selectOption('Mi Perfil')"><mat-icon style="margin-left: 15%">account_box</mat-icon> Mi Perfil</a></li>
+            <li><a href="#" (click)="selectOption('Cerrar Sesión')"><mat-icon style="margin-left: 20%">exit_to_app</mat-icon> Cerrar Sesión</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </mat-toolbar>
+
+
+<div class="messenger-environment" style="margin-top: 12%;">
+  <mat-card>
+
+    <<mat-card-content >
+      <h2 style="margin-left: 44%; color: darkgrey">No hay Notificaciones Disponibles</h2>
+      <img style="margin-left: 50%" src="assets/no.webp" width="120px">
+      <div class="card-container">
+        <div *ngFor="let mensajeria of mensaje">
+          <div class="mensajeria-container">
+            <img src="{{ mensajeria.photoFace }}" alt="{{ mensajeria.nombre }}" class="mensajeria-photo">
+            <div class="mensajeria-content">
+              <h2 class="mensajeria-title">{{ mensajeria.nombre }}</h2>
+              <p class="mensajeria-description">{{ mensajeria.description }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

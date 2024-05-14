@@ -1,0 +1,270 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+
+.font-col{
+  box-shadow: #14131B;
+  height: 12%;
+}
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #2642fb;
+  box-shadow: #14131B;
+}
+.toolbar a{
+  background-color: #f8e602;
+  box-shadow: #14131B;
+  color: #000000;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.toolbar a:hover{
+  background-color: #f1eb7d;
+}
+.degradado-radial {
+  width: 200px; /* Ancho del contenedor */
+  height: 200px; /* Altura del contenedor */
+
+}
+.structure {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background-image: url("https://cuenti.to/app/images/4172038021-1.jpg?nocache=1499327134");
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: auto;
+}
+
+.form{
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  max-width: 500px;
+  justify-content: center;
+}
+
+.user-info{
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  justify-content: center;
+  align-content: center;
+  max-width: 500px;
+}
+
+.user-options{
+  place-items: center;
+  display: flex;
+  margin: auto;
+  justify-content: center;
+  gap: 15px;
+}
+
+#btn{
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  flex-direction: column;
+  font-weight: bold;
+  color: black;
+  box-shadow: none;
+}
+
+#btn:hover{
+  background-color: transparent;
+}
+
+#btn.active{
+  color:#7cb9e8;
+}
+.input{
+  display: flex;
+  min-width: 300px;
+  max-width: 100%;
+  border: none;
+  text-align: start;
+  justify-content: center;
+}
+
+.form section{
+  justify-content: center;
+  text-align: center;
+}
+
+button{
+  border-radius: 15px;
+}
+
+.menu-options{
+  display: flex;
+  gap: 10px;
+}
+.contenedor-principal{
+  display: flex;
+  padding-bottom: 30px;
+  padding-top: 30px;
+  background-image: url("https://i.imgur.com/QYFonXY.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 0;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+<!-- Estilos generales -->
+html, body {
+  scroll-behavior: smooth;
+  background-color: rgb(1, 21, 48);
+}
+
+/* Estilos para la barra de navegación */
+.header {
+  display: flex;
+  padding: 20px 0px 20px 0px;
+  background-color: #011530;
+}
+
+.logo {
+  margin-left: 0;
+  width: 60px;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-list {
+  display: flex;
+  gap: 25px;
+}
+
+.nav-item a {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.nav-item a:hover,
+.nav-item a.active {
+  color: #D6A049;
+}
+
+ul {
+  list-style: none;
+}
+
+/* Estilos para la sección "Home" */
+/*  background-image: radial-gradient(circle closest-corner at center, #00918E 40%, #0C7B76);*/
+
+
+#home {
+  height: 80vh;
+  background-image: url('https://blog.naturlider.com/wp-content/uploads/2020/03/AdobeStock_309195144-post-dia-mundial-naturaleza.jpeg');
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.try-now {
+  padding: 10px 20px;
+  background-color: #BE8E40;
+  border-radius: 20px;
+  color: white;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.about-image {
+  width: 250px;
+  height: 250px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 50%;
+  margin-right: 2rem;
+}
+
+.about-text {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 10px;
+  flex: 1;
+}
+
+.about-text p {
+  color: black;
+  font-size: 1.6rem;
+}
+
+
+.footer {
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  text-align: justify;
+  background-color: black;
+}
+
+.footer-column {
+  flex-basis: 17%;
+  margin: 20px 10px;
+}
+
+.footer-title {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #ffff00;
+}
+
+.footer-title:hover {
+  color: white;
+}
+
+.footer-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-list li {
+  margin-bottom: 18px;
+  font-size: 19px;
+}
+
+.footer-list li a {
+  color: lawngreen;
+  text-decoration: none;
+}
+
+.footer-list li a:hover {
+  color: white;
+}
+
+.footer-logo img {
+  width: 100px;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.footer-download a,
+.footer-social a {
+  margin-right: 10px;
+  color: #333;
+  text-decoration: none;
+}
+
+.footer-download a:hover,
+.footer-social a:hover {
+  color: white;
+}
+
+.footer-social a i {
+  font-size: 20px;
+  margin-top: -20%;
+}

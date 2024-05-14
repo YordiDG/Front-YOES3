@@ -1,0 +1,109 @@
+.toolbar {
+  display: flex;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #000000;
+  color: #ffffff;
+  font-family: 'Montserrat', sans-serif;
+  border-bottom: 2px solid #6EC6FF;
+  height: 100px;
+}
+
+.toolbar a {
+  width: 150px;
+  margin: 10px;
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  position: relative;
+  border-radius: 10px;
+
+}
+
+.toolbar .buttonnav:hover {
+  color: white;
+  background-color: #00a6dc;
+  border: 3px solid #ffffff;
+}
+.contador {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  display: inline-block;
+  width: 27px;
+  height: 27px;
+  border-radius: 50%;
+  background-color: #f10404;
+  color: white;
+  text-align: center;
+  line-height: 27px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/**/
+
+.user-dialog-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  z-index: 1;
+}
+
+.user-dialog-container ul {
+  list-style-type: none;
+  margin-top: 70px;
+  margin-left: 78%;
+  width: 20%;
+  height: 40%;
+  background-color: rgb(255, 255, 255);
+  padding: 0;
+}
+
+.user-dialog-container ul li {
+  margin-bottom: 10px;
+}
+
+.user-dialog-container ul li a {
+  color: #000000;
+  text-decoration: none;
+  font-size: 18px;
+  margin-left: 3%;
+  font-weight: bold;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.user-dialog-container ul li a:hover {
+  text-decoration: underline;
+  color: #00a6dc;
+}
+/**/
+
+.mat-spacer{
+  flex: 1.1 auto;
+
+  box-shadow: #14131B;
+}
+
+.mensajeria-container {
+  display: flex;
+  align-items: center;
+}
+
+.mensajeria-photo {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 10px;
+}

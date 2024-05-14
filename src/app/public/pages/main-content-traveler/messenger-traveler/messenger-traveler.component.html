@@ -1,0 +1,30 @@
+<mat-toolbar class="toolbar">
+  <img src="../../../../assets/homeguardians_logo.png" width="60px">
+  <div class="menu-options">
+    <a class="button-menu" mat-button (click)="goToTraveler();">INICIO</a>
+    <a class="button-menu" mat-button (click)="goToFindKeeper();">BUSCAR KEEPER</a>
+    <a class="button-menu" mat-button (click)="goToMessenger();">MENSAJERIA</a>
+    <a class="button-menu" mat-button (click)="goToProfile();"><img src="https://i.postimg.cc/Fs9Z3g3V/usuario-1.png" style="width: 3em;" ></a>
+  </div>
+</mat-toolbar>
+<div class="messenger-environment">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title class="title">Chats Disponibles</mat-card-title>
+    </mat-card-header>
+
+    <!--<mat-card-content>
+      <div class="card-container">
+        <div *ngFor="let mensajeria of mensaje">
+          <div class="mensajeria-container">
+            <img src="{{ mensajeria.photoFace }}" alt="{{ mensajeria.nombre }}" class="mensajeria-photo">
+            <div class="mensajeria-content">
+              <h2 class="mensajeria-title">{{ mensajeria.nombre }}</h2>
+              <p class="mensajeria-description">{{ mensajeria.description }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-card-content>-->
+  </mat-card>
+</div>

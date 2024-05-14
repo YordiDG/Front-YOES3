@@ -1,0 +1,30 @@
+<div class="structure">
+  <mat-card class="form">
+    <mat-card-content>
+      <div class="center">
+        <mat-label style="color: #020233; font-size: 24px;"><strong>Select the type of user to log in</strong></mat-label>
+        <div class="user-options">
+          <button mat-button id="btn1" [class.active]="selectedUserType === 'customer'" (click)="selectUserType('customer')">Customer</button>
+          <button mat-button id="btn2" [class.active]="selectedUserType === 'admin'" (click)="selectUserType('admin')">Administrator</button>
+        </div>
+      </div>
+
+      <div class="login-form">
+        <img src="assets/UserBlack.png" class="logo" alt="">
+        <p class="login-text"><b>Iniciar Sesión</b></p>
+
+        <form [formGroup]="formLogin">
+          <input type="email" placeholder="Email" formControlName="email" required>
+          <input type="password" placeholder="Password" formControlName="password" required>
+          <button class="btns" type="submit" (click)="onLogin()">LOGIN</button>
+        </form>
+        <p style="width: 160%; margin-top: 1%">
+          <b>¿No tienes una cuenta? </b>
+          <a href="#" (click)="goToRegister($event)" class="register-link"><strong> Regístrate</strong></a>
+        </p>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <router-outlet></router-outlet>
+</div>
