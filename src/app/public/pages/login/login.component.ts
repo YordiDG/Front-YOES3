@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 
 @Component({
@@ -6,15 +6,72 @@ import {Router} from "@angular/router";
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit{
   correo_electronico: any;
   contrasena: any;
+  currentSlide: number = 0;
+
+  slides = [
+    { title: 'Minimarket Yoes', imageUrl: 'assets/post1.jpg' },
+    { title: 'Minimarket Yoes', imageUrl: 'assets/poster8.jpg'},
+    { title: 'Minimarket Yoes', imageUrl: 'assets/poster10.jpg'},
+    { title: 'Minimarket Yoes',  imageUrl: 'assets/post2.jpg' },
+    { title: 'Minimarket Yoes', imageUrl: 'assets/poster7.jpg'},
+    { title: 'Minimarket Yoes', imageUrl: 'assets/poster11.jpg'},
+    { title: 'Minimarket Yoes', imageUrl: 'assets/post3.jpg'},
+    { title: 'Minimarket Yoes', imageUrl: 'assets/post6.jpg'},
+    { title: 'Minimarket Yoes', imageUrl: 'assets/poster12.jpg'},
+    { title: 'Minimarket Yoes', imageUrl: 'assets/post4.jpg' },
+    { title: 'Minimarket Yoes', imageUrl: 'assets/post5.jpg'},
+    { title: 'Minimarket Yoes', imageUrl: 'assets/poster9.jpg'},
+
+
+  ];
+
   selectedUserType: 'login' | 'client' | 'admin' = 'login';
 
   constructor(private router: Router){}
   goToRegister(){
     this.router.navigateByUrl('/register-keeper');
   }
+
+  ngOnInit() {
+    this.autoNextSlide();
+  }
+
+  /*******************************/
+  nextSlide() {
+    if (this.currentSlide < this.slides.length - 2) {
+      this.currentSlide += 1;
+    } else {
+      this.currentSlide = 0;
+    }
+  }
+
+  prevSlide() {
+    if (this.currentSlide > 0) {
+      this.currentSlide -= 1;
+    } else {
+      this.currentSlide = this.slides.length - 2;
+    }
+  }
+
+  goToSlide(index: number) {
+    this.currentSlide = index;
+  }
+
+  get visibleSlides() {
+    return this.slides.slice(this.currentSlide, this.currentSlide + 2);
+  }
+
+
+  autoNextSlide() {
+    setInterval(() => {
+      this.nextSlide();
+    }, 3000);
+  }
+
+  /**********************************/
 
   goToKeeper(){
     this.router.navigateByUrl('/home-keeper');

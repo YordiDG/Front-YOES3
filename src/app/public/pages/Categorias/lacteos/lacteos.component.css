@@ -312,6 +312,25 @@ h1 {
   background-color: #dccfcf;
 }
 
+.link-pago {
+  display: block;
+  background-color: red;
+  padding: 12px;
+  width: calc(100% - 24px); /* Resta el padding de los lados */
+  margin: 12px; /* Agrega margen superior e inferior */
+  text-align: center;
+  border-radius: 15px;
+  cursor: pointer;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: background-color 0.3s ease;
+  text-decoration: none;
+}
+
+.link-pago:hover {
+  background-color: darkred;
+}
 /***************/
 
 .menu-btn {

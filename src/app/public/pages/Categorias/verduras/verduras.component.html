@@ -202,6 +202,7 @@
       </div>
       <hr>
       <p style="font-size: 20px; font-weight: bold; padding: 10px;">Total: {{ totalCarrito | number:'.2-2' }}</p>
+      <button [disabled]="totalCarrito === 0" [routerLink]="['/card']" class="link-pago">Ir a Pagar</button>
     </div>
   </div>
 </div>

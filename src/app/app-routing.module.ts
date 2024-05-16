@@ -22,6 +22,7 @@ import {LacteosComponent} from "./public/pages/Categorias/lacteos/lacteos.compon
 import {PanisteriaComponent} from "./public/pages/Categorias/panisteria/panisteria.component";
 import {AbarrotesComponent} from "./public/pages/Categorias/abarrotes/abarrotes.component";
 import {ComidasComponent} from "./public/pages/Categorias/comidas/comidas.component";
+import {AddDataTableComponent} from "./public/pages/add-data-table/add-data-table.component";
 
 
 const routes: Routes = [
@@ -42,6 +43,7 @@ const routes: Routes = [
 
   {path: 'find-house', component: FindHouseComponent},
   {path: 'messenger-client', component: MessengerKeeperComponent},
+  {path: 'card', component: AddDataTableComponent},
   {path: 'profile-client', component: ProfileKeeperComponent},
   {path: 'home-admin', component: TravelerComponent},
   {path: 'find-client', component: FindKeeperComponent},

@@ -1,71 +1,168 @@
-<mat-toolbar class="toolbar font-col">
-  <img src="../../../../assets/log.png" style=" margin-left: 6%" width="150px" alt="">
-  <div class="menu-options">
-    <a mat-button  [routerLink]="'/'">START</a>
-    <a mat-button  [routerLink]="'/home-client'">STORE</a>
-    <a mat-button  [routerLink]="'/'">US</a>
-    <a mat-button  [routerLink]="'/home-client'">SERVICES</a>
-    <a mat-button  [routerLink]="'/sign-in'">SIGN-IN</a>
-    <a mat-button  [routerLink]="'/register'">SIGN-UP</a>
-
-    <mat-divider [vertical] ="true" [inset]="true"></mat-divider>
-
-  </div>
-</mat-toolbar>
-
-<router-outlet></router-outlet>
-<section class="home" id="home">
-
-</section>
-
-<footer >
-<div class="footer">
-  <div class="footer-column">
-    <h4 class="footer-title">MINIMARKET'S YOES</h4>
-    <ul class="footer-list">
-      <li><a href="#" >About Us</a></li>
-      <li><a href="#" >Become A Minimarket's YOES</a></li>
-      <li><a href="#" >In News</a></li>
-      <li><a href="#" >Contact us</a></li>
-      <li><a href="#" >Green Minimarket's YOES</a></li>
-      <li><a href="#" >Privacy Policy</a></li>
-      <li><a href="#" >Frequent questions</a></li>
-    </ul>
-  </div>
-  <div class="footer-column">
-    <h4 class="footer-title">AFILIATE</h4>
-    <ul class="footer-list">
-      <li><a href="#">Términos y condiciones</a></li>
-      <li><a href="#">Política de privacidad</a></li>
-      <li><a href="#">Política de devoluciones</a></li>
-    </ul>
-  </div>
-  <div class="footer-column">
-    <h5 class="footer-title"><strong>HELP</strong></h5>
-    <ul class="footer-list">
-      <li><a href="#" >FAQs</a></li>
-      <li><a href="#" >Contact Us</a></li>
-      <li><a href="#" >Minimarket's Wallet FAQs</a></li>
-      <li><a href="#" >Minimarket's Wallet T&Cs</a></li>
-      <li><a href="#" >Vendor Connect</a></li>
-    </ul>
-  </div>
-  <div class="footer-column">
-    <h4 class="footer-title">SOCIAL NETWORKS</h4>
-    <div class="footer-logo">
-      <img src="assets/minimarket-logo.jpg" style="margin-left: 15%" alt="Logo de YOES">
+<div id="home">
+  <div class="toolbar-container">
+    <div>
+      <img src="assets/Recurso%206.png" height="50vh">
     </div>
-    <div class="footer-download">
-      <a href="#"><img src="assets/download-on-the-app-store-apple-logo-svgrepo-com.svg" style="width: 130px"></a>
-      <a href="#"><img class="footImg2" src="assets/download-on-the-app-store-apple-logo-svgrepo-com.svg" style="width: 130px" alt=""></a>
+    <ul style="list-style-type: none; margin: 40px 0 0 0; padding: 0;">
+      <a href="#home-init">
+        <li class="toolbar-item">HOME</li>
+      </a>
+      <a href="#minimarket-section">
+        <li class="toolbar-item">ABOUT US</li>
+      </a>
+      <a href="">
+        <li class="toolbar-item">SHOP</li>
+      </a>
+      <a href="">
+        <li class="toolbar-item">CONTACT US</li>
+      </a>
+      <a href="">
+        <li class="toolbar-item">ABOUT US</li>
+      </a>
+      <a routerLink="/sign-in">
+        <li class="toolbar-item" style="border: 3px solid white; border-radius: 10px;"><strong>SIGN-UP</strong></li>
+      </a>
+    </ul>
+  </div>
+  <div  id="home-init" class="carousel-container">
+    <div class="left">
+      <button mat-icon-button class="prev" (click)="prevSlide()">
+        <mat-icon><strong>keyboard_arrow_left</strong></mat-icon>
+      </button>
     </div>
-    <div class="footer-social">
-         <a href="/#"><img src="assets/red.webp" style="cursor: pointer; width: 70%"></a>
+    <div *ngFor="let slide of visibleSlides; let i = index" class="slide">
+      <mat-card class="card">
+        <div class="image-container">
+          <img [src]="slide.imageUrl" [alt]="slide.title">
+        </div>
+      </mat-card>
+    </div>
+    <div class="right">
+      <button mat-icon-button class="next" (click)="nextSlide()">
+        <mat-icon><strong>keyboard_arrow_right</strong></mat-icon>
+      </button>
+    </div>
+    <div class="dots">
+          <span *ngFor="let slide of slides.slice(0, 4); let i = index" class="dot" [class.active]="currentSlide === i"
+                (click)="goToSlide(i)"></span>
     </div>
   </div>
 </div>
 
-  <div style="text-align: center; font-size: 18px; background-color: black; color: white; padding: 20px; margin-top: -4%">
+<section id="minimarket-section" class="grid-container">
+  <div class="column">
+    <div class="minimarket-description" style="background-color: white">
+      <h1 style="color:#0eaaa2; " class=" font-bold text-3xl md:text-4xl text-center md:text-start">What is Minimarket <br><br>YOES?</h1>
+      <p class="text-center " style="color:#0a716c;">Minimarket YOES connects you with reliable <br> vendors for your every need, whether it's  <br> fruits, groceries, or household essentials.</p>
+    </div>
+  </div>
+  <div class="column" style="border: none;">
+    <img src="./assets/lap3.png" style=" width: 100%" alt="Minimarket YOES" class="hidden lg:block w-72 ">
+  </div>
+</section>
+
+<section class="list-container" style="margin-bottom: 20px; display: flex; justify-content: space-between; font-family: 'Montserrat', sans-serif;">
+  <div style="width: 30%;">
+    <ul class="custom-list" style="display: flex; margin-left: 25%; flex-direction: column; gap: 45px;">
+      <li style="list-style-type: none; font-size: 20px; color:#0eaaa2; text-align: center; position: relative;">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-asterisk" width="40" height="40" viewBox="0 0 24 24" stroke-width="2" stroke="#009988" fill="none" stroke-linecap="round" stroke-linejoin="round" style=" margin-left: -18%; position: absolute; top: -30px; left: 50%; transform: translateX(-50%);">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+          <path d="M12 12l8 -4.5" />
+          <path d="M12 12v9" />
+          <path d="M12 12l-8 -4.5" />
+          <path d="M12 12l8 4.5" />
+          <path d="M12 3v9" />
+          <path d="M12 12l-8 4.5" />
+        </svg> <br>
+        Seamless way to find <br> and purchase products.
+      </li>
+    </ul>
+  </div>
+  <div style="width: 30%;">
+    <ul class="custom-list" style="display: flex; margin-left: 25%; flex-direction: column; gap: 45px;">
+      <li style="list-style-type: none; font-size: 20px; color:#0eaaa2; text-align: center; position: relative;">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-asterisk" width="40" height="40" viewBox="0 0 24 24" stroke-width="2" stroke="#009988" fill="none" stroke-linecap="round" stroke-linejoin="round" style="margin-left: -18%; position: absolute; top: -30px; left: 50%; transform: translateX(-50%);">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+          <path d="M12 12l8 -4.5" />
+          <path d="M12 12v9" />
+          <path d="M12 12l-8 -4.5" />
+          <path d="M12 12l8 4.5" />
+          <path d="M12 3v9" />
+          <path d="M12 12l-8 4.5" />
+        </svg> <br>
+        Wide range of items <br> to choose from.
+      </li>
+    </ul>
+  </div>
+  <div style="width: 30%;">
+    <ul class="custom-list" style="display: flex; flex-direction: column; gap: 45px;">
+      <li style="list-style-type: none; font-size: 20px; color:#0eaaa2; text-align: center; position: relative;">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-asterisk" width="40" height="40" viewBox="0 0 24 24" stroke-width="2" stroke="#009988" fill="none" stroke-linecap="round" stroke-linejoin="round" style=" margin-left: -18%; position: absolute; top: -30px; left: 50%; transform: translateX(-50%);">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+          <path d="M12 12l8 -4.5" />
+          <path d="M12 12v9" />
+          <path d="M12 12l-8 -4.5" />
+          <path d="M12 12l8 4.5" />
+          <path d="M12 3v9" />
+          <path d="M12 12l-8 4.5" />
+        </svg> <br>
+        Convenient ordering, <br> managing, and reviewing.
+      </li>
+    </ul>
+  </div>
+</section>
+
+
+<footer>
+  <div class="footer">
+    <div class="footer-column">
+      <h4 class="footer-title">MINIMARKET'S YOES</h4>
+      <ul class="footer-list">
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Become A Minimarket's YOES</a></li>
+        <li><a href="#">In News</a></li>
+        <li><a href="#">Contact us</a></li>
+        <li><a href="#">Green Minimarket's YOES</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Frequent questions</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h4 class="footer-title">AFILIATE</h4>
+      <ul class="footer-list">
+        <li><a href="#">Términos y condiciones</a></li>
+        <li><a href="#">Política de privacidad</a></li>
+        <li><a href="#">Política de devoluciones</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h5 class="footer-title"><strong>HELP</strong></h5>
+      <ul class="footer-list">
+        <li><a href="#">FAQs</a></li>
+        <li><a href="#">Contact Us</a></li>
+        <li><a href="#">Minimarket's Wallet FAQs</a></li>
+        <li><a href="#">Minimarket's Wallet T&Cs</a></li>
+        <li><a href="#">Vendor Connect</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h4 class="footer-title">SOCIAL NETWORKS</h4>
+      <div class="footer-logo">
+        <img src="assets/minimarket-logo.jpg" style="margin-left: 15%" alt="Logo de YOES">
+      </div>
+      <div class="footer-download">
+        <a href="#"><img src="assets/download-on-the-app-store-apple-logo-svgrepo-com.svg" style="width: 130px"></a>
+        <a href="#"><img class="footImg2" src="assets/download-on-the-app-store-apple-logo-svgrepo-com.svg"
+                         style="width: 130px" alt=""></a>
+      </div>
+      <div class="footer-social">
+        <a href="/#"><img src="assets/red.webp" style="cursor: pointer; width: 70%"></a>
+      </div>
+    </div>
+  </div>
+
+  <div
+    style="text-align: center; font-size: 18px; background-color: black; color: white; padding: 20px; margin-top: -4%">
     <p>@Todos los Derechos Reservados YOES - 2024</p>
   </div>
 

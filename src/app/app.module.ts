@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import {AppComponent} from './app.component';
 import {LoginComponent} from './public/pages/login/login.component';
+
 import {FindHouseComponent} from "./public/pages/main-content-keeper/busqueda/find-house.component";
 import {MessengerKeeperComponent} from "./public/pages/main-content-keeper/messenger-keeper/messenger-keeper.component";
 import {ProfileKeeperComponent} from "./public/pages/main-content-keeper/profile-keeper/profile-keeper.component";
@@ -55,6 +56,10 @@ import { FrutasComponent } from './public/pages/Categorias/frutas/frutas.compone
 import { PanisteriaComponent } from './public/pages/Categorias/panisteria/panisteria.component';
 import { AbarrotesComponent } from './public/pages/Categorias/abarrotes/abarrotes.component';
 import { ComidasComponent } from './public/pages/Categorias/comidas/comidas.component';
+import {MatCheckboxModule} from "@angular/material/checkbox";
+import {MatButtonToggleModule} from "@angular/material/button-toggle";
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {AddDataTableComponent} from "./public/pages/add-data-table/add-data-table.component";
 
 @NgModule({
   declarations: [
@@ -84,7 +89,8 @@ import { ComidasComponent } from './public/pages/Categorias/comidas/comidas.comp
     FrutasComponent,
     PanisteriaComponent,
     AbarrotesComponent,
-    ComidasComponent
+    ComidasComponent,
+    AddDataTableComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -113,6 +119,12 @@ import { ComidasComponent } from './public/pages/Categorias/comidas/comidas.comp
     MatTooltipModule,
     MatSelectModule,
     MatRadioModule,
+    ///////
+    MatButtonToggleModule,
+    MatCheckboxModule,
+    MatTableModule,
+    MatDatepickerModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

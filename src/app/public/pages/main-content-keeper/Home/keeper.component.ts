@@ -12,7 +12,7 @@ interface Carrito {
   cantidad: number;
   name: string;
   price: number;
-  image: String;
+  image: string;
   total : number;
 }
 
@@ -42,9 +42,13 @@ export class KeeperComponent implements OnInit {
   searching: boolean = false;
   productosFiltrados: Producto[] = [];
   categoriaSeleccionada: string = '';
+  cantidadProductosAnadidos: number = 0;
+
   showDialog: boolean = false;
   isMenuOpen: boolean = false;
   producto: boolean = false;
+
+  mostrarMensajeBusqueda: boolean = true;
 
   currentSlide: number = 0;
 
@@ -121,6 +125,10 @@ export class KeeperComponent implements OnInit {
     this.showDialog = true;
   }
 
+  mostrarCantidadProductosAnadidos() {
+    this.cantidadProductosAnadidos = this.carrito.length;
+  }
+
   hideUserDialog(): void {
     this.showDialog = false;
   }
@@ -157,10 +165,45 @@ export class KeeperComponent implements OnInit {
     this.productosFiltrados = this.Productos.filter(producto => producto.category.toLowerCase() === categoria.toLowerCase());
   }
   /*-----------*/
+  mostrarMensajes(mensaje: string){
 
-  cantidadAnadida(productId: number): number {
-    return this.carrito.filter(item => item.id === productId).reduce((total, item) => total + item.cantidad, 0);
   }
+  agregarAlCarrito(producto: Producto) {
+    const productoEnCarrito = this.carrito.find(item => item.id === producto.id);
+
+    if (productoEnCarrito) {
+      if (productoEnCarrito.cantidad < producto.cantidad_stock) {
+        // Si hay suficiente stock, incrementar la cantidad en el carrito
+        productoEnCarrito.cantidad++;
+        productoEnCarrito.total += producto.price;
+        this.totalCarrito += producto.price;
+        this.incrementarContador();
+      } else {
+        // Si el stock está agotado, mostrar un mensaje y bloquear el producto
+        this.mostrarMensajes('La cantidad en stock de este producto se ha agotado');
+        // Aquí podrías deshabilitar el botón de agregar al carrito para este producto
+      }
+    } else {
+      if ((this.totalCarrito + producto.price) <= 700) {
+        // Si hay espacio en el carrito y el total del carrito no excede $700, agregar el producto al carrito
+        if (producto.cantidad_stock > 0) {
+          this.carrito.push({...producto, cantidad: 1, total: producto.price});
+          this.totalCarrito += producto.price;
+          this.incrementarContador();
+        } else {
+
+          this.mostrarMensajes('Este producto está agotado');
+
+        }
+      } else {
+        // Si agregar este producto excede el límite de $700, mostrar un mensaje
+        this.mostrarMensajes('El total del carrito excede el límite de $700');
+      }
+    }
+  }
+
+
+
 
   incrementarContador() {
     this.contador++;
@@ -169,32 +212,9 @@ export class KeeperComponent implements OnInit {
     });
   }
 
-
-  isTarjetaActiva(producto: any): boolean {
-    return this.productoSeleccionado === producto;
+  cantidadAnadida(productId: number): number {
+    return this.carrito.filter(item => item.id === productId).reduce((total, item) => total + item.cantidad, 0);
   }
-
-  agregarAlCarrito(producto: Producto) {
-    const productoEnCarrito = this.carrito.find(item => item.id === producto.id);
-    if (productoEnCarrito) {
-      if (productoEnCarrito.cantidad < 5) {
-        productoEnCarrito.cantidad++;
-        this.totalCarrito += producto.price;
-        this.incrementarContador();
-      } else {
-        this.mostrarMensaje;
-      }
-    } else {
-      if ((this.totalCarrito + producto.price) <= 700) {
-        this.carrito.push({...producto, cantidad: 1, total:0});
-        this.totalCarrito += producto.price;
-        this.incrementarContador();
-      } else {
-        this.mostrarMensaje;
-      }
-    }
-  }
-
 
   verDetalle(producto: any) {
     this.productoSeleccionado = producto;
@@ -222,14 +242,15 @@ export class KeeperComponent implements OnInit {
   }
 
   toReset() {
-     this.name = '';
-    if (!this.searching) {
-      this.productoService.getAll().subscribe((response: any) => {
-        this.Productos = response;
-      });
-      this.verDetalle(this.producto);
+    if (this.Productos.length === 0) {
+      location.reload();
+    } else {
+
+      this.name = '';
+      this.onFilter();
     }
   }
+
   abrirCerrarFormularioCarrito() {
     this.mostrarFormularioCarrito = !this.mostrarFormularioCarrito;
   }

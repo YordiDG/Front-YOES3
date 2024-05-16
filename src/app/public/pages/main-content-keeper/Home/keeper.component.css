@@ -9,7 +9,7 @@
   z-index: 1000;
   justify-content: space-between;
   align-items: center;
-  background-color: #000000;
+  background-color: #06504e;
   color: #ffffff;
   font-family: 'Montserrat', sans-serif;
   border-bottom: 2px solid #6EC6FF;
@@ -228,7 +228,8 @@ button.purple-button:focus {
 /**/
 
 .general{
-  background-image: radial-gradient(circle closest-corner at center, #00918E 40%, #0C7B76);
+  /*background-image: radial-gradient(circle closest-corner at center, #00918E 40%, #0C7B76);*/
+  background-color: #00918E ;
  margin-top: 6%;
 }
 
@@ -276,6 +277,7 @@ button.purple-button:focus {
 .botones-container {
   display: flex;
   align-items: center;
+
 }
 
 .disabled {
@@ -302,8 +304,8 @@ button.purple-button:focus {
 }
 
 .example-data button:hover {
-  background-color: #ffffff;
-  color: #0b67c7;
+  background-color: #0C7B76;
+  color: #fdfdff;
 }
 
 .detalle-overlay {
@@ -430,6 +432,26 @@ button.purple-button:focus {
 
 .cerrar-button:hover{
   background-color: #dccfcf;
+}
+
+.link-pago {
+  display: block;
+  background-color: red;
+  padding: 12px;
+  width: calc(100% - 24px); /* Resta el padding de los lados */
+  margin: 12px; /* Agrega margen superior e inferior */
+  text-align: center;
+  border-radius: 15px;
+  cursor: pointer;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: background-color 0.3s ease;
+  text-decoration: none;
+}
+
+.link-pago:hover {
+  background-color: darkred;
 }
 
 /***************/
