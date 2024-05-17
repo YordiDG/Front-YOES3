@@ -1,11 +1,12 @@
-<div class="container">
-
-  <mat-card style="background-color: darkblue" >
-    <mat-card-title style="margin-right: auto;margin-left: auto;margin-top: 30%; color: #EFB810; font-size: 300%">Car Finance</mat-card-title>
-    <img src="./assets/log1.png" style="width: 50%;margin:auto" alt="">
+<!--<div class="container">
+  <mat-card style="background-color: darkblue">
+    <mat-card-title style="margin-right: auto;margin-left: auto;margin-top: 30%; color: #EFB810; font-size: 300%">Car
+      Finance
+    </mat-card-title>
+    <img src="./assets/mejor.png" style="width: 50%;margin:auto" alt="">
   </mat-card>
 
-  <mat-card >
+  <mat-card>
     <div class="login-form">
       <img src="assets/UserBlack.png" class="logo" alt="">
       <p class="login-text"><b>Iniciar Sesión</b></p>
@@ -15,12 +16,129 @@
         <input type="password" placeholder="Password" formControlName="password" required>
         <button type="submit" (click)="onLogin()">Login</button>
       </form>
-      <p> <b> ¿No tienes una cuenta?</b></p>
-      <a href="#" (click)="goToRegister($event)">Regístrate</a>
-
-      <button mat-raised-button color="warn" (click)="goToPhoneNumberForm()">Continuar con Celular</button>
+      <p><b> ¿No tienes una cuenta?</b></p>
+      <a href="/register" (click)="goToRegister($event)">Regístrate</a>
     </div>
   </mat-card>
 </div>
 
-<router-outlet></router-outlet>
+<router-outlet></router-outlet>-->
+
+<body>
+<div style="margin-top: 10%" class="wrapper">
+  <div class="tabs">
+    <button class="navTab" [class.active]="activeTab === 'login'" (click)="switchTab('login')">Login</button>
+    <button class="navTab" [class.active]="activeTab === 'register'" (click)="switchTab('register')">Register</button>
+  </div>
+  <div class="contentWrapper">
+    <div class="content" id="login" [class.active]="activeTab === 'login'">
+      <form [formGroup]="formLogin">
+        <div class="formGroup">
+          <img src="assets/Recurso%2017.png" width="45%" style="margin-left: 30%;">
+          <mat-form-field appearance="fill" style="width: 100%; margin-top: 8%">
+            <mat-label>Email</mat-label>
+            <input matInput type="email" placeholder="Email" formControlName="email" required>
+            <mat-icon matSuffix>email</mat-icon>
+          </mat-form-field>
+          <mat-form-field appearance="fill" style="width: 100%">
+            <mat-label>Password</mat-label>
+            <input matInput type="password" placeholder="Password" formControlName="password" required>
+            <mat-icon matSuffix>lock</mat-icon>
+          </mat-form-field>
+          <a href="#" id="passwordReset">Forgot password?</a>
+          <mat-checkbox color="primary" style="font-size: 15px">
+            Keep me Signed in
+          </mat-checkbox>
+          <button class="btn" (click)="onLogin(); handleLoginExitoso()">Login</button>
+        </div>
+      </form>
+
+      <div *ngIf="loginExitoso && !formLogin.valid" class="errores-message">
+        Usuario y Contraseña no coiciden!
+      </div>
+    </div>
+    <div class="content" id="register" [class.active]="activeTab === 'register'">
+      <form [formGroup]="registerForm" (ngSubmit)="register()">
+        <input formControlName="firstName" type="text" placeholder="FirstName"
+               [class.invalid]="registerForm.get('firstName')?.invalid && registerForm.get('firstName')?.touched"
+               required>
+        <div *ngIf="registerForm.get('firstName')?.invalid && registerForm.get('firstName')?.touched">
+          <span class="error-message">Campo obligatorio</span>
+        </div>
+
+        <input formControlName="lastName" type="text" placeholder="LastName"
+               [class.invalid]="registerForm.get('lastName')?.invalid && registerForm.get('lastName')?.touched"
+               required>
+        <div *ngIf="registerForm.get('lastName')?.invalid && registerForm.get('lastName')?.touched">
+          <span class="error-message">Campo obligatorio</span>
+        </div>
+
+        <input formControlName="job" type="text" placeholder="Job"
+               [class.invalid]="registerForm.get('job')?.invalid && registerForm.get('job')?.touched" required>
+        <div *ngIf="registerForm.get('job')?.invalid && registerForm.get('job')?.touched">
+          <span class="error-message">Campo obligatorio</span>
+        </div>
+
+        <input formControlName="dni" type="text" placeholder="DNI"
+               [class.invalid]="registerForm.get('dni')?.invalid && registerForm.get('dni')?.touched" required>
+        <div *ngIf="registerForm.get('dni')?.invalid && registerForm.get('dni')?.touched">
+          <span class="error-message">Campo obligatorio</span>
+        </div>
+
+        <input formControlName="salary" type="number" placeholder="Salary"
+               [class.invalid]="registerForm.get('salary')?.invalid && registerForm.get('salary')?.touched" required>
+        <div *ngIf="registerForm.get('salary')?.invalid && registerForm.get('salary')?.touched">
+          <span class="error-message">Campo obligatorio</span>
+        </div>
+
+        <input formControlName="email" type="text" placeholder="Email"
+               [class.invalid]="registerForm.get('email')?.invalid && registerForm.get('email')?.touched" required>
+        <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched">
+          <span class="error-message">Campo obligatorio</span>
+        </div>
+
+        <input formControlName="password" type="password" placeholder="Password"
+               [class.invalid]="registerForm.get('password')?.invalid && registerForm.get('password')?.touched"
+               required>
+        <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
+          <span class="error-message">Campo obligatorio</span>
+        </div>
+
+        <div class="phone-input">
+          <input formControlName="phoneNumber" type="tel" placeholder="Telephone"
+                 [class.invalid]="registerForm.get('phoneNumber')?.invalid && registerForm.get('phoneNumber')?.touched"
+                 maxlength="9" pattern="[0-9]*"
+                 required>
+        </div>
+        <div *ngIf="registerForm.get('phoneNumber')?.invalid && registerForm.get('phoneNumber')?.touched">
+          <span class="error-message">Campo obligatorio</span>
+        </div>
+        <div>
+          <label for="role">Seleccionar Rol:</label>
+          <select formControlName="role" id="role" required>
+            <option value="">Seleccione un rol</option>
+            <option value="cliente">Cliente</option>
+            <option value="administrador">Administrador</option>
+          </select>
+          <div *ngIf="registerForm.get('role')?.invalid && registerForm.get('role')?.touched">
+            <span class="error-message">Por favor, seleccione un rol</span>
+          </div>
+        </div>
+        <button type="submit" (click)="register(); handleRegistroExitoso()">Registrar</button>
+
+      </form>
+      <div *ngIf="registroExitoso && registerForm.valid" class="registro-exitoso">
+        ¡Registro exitoso!
+      </div>
+
+      <div *ngIf="registroExitoso && !registerForm.valid" class="errores-message">
+        Datos incorrectos. Por favor, complete todos los campos correctamente.
+      </div>
+
+    </div>
+  </div>
+</div>
+</body>
+
+
+

@@ -26,6 +26,10 @@ export class UserService{
     })
   }
 
+  authenticate(email: string, password: string): Observable<Users> {
+    return this.http.get<Users>(`${this.basePath}/new/${encodeURIComponent(email)}/${encodeURIComponent(password)}`);
+  }
+
   createUser(item: any): Observable<Users>{
     return this.http
       .post<Users>(this.resourcePath(), JSON.stringify(item), this.httpOptions)

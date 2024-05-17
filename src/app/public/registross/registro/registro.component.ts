@@ -34,10 +34,9 @@ export class RegistroComponent implements OnInit{
   }
 
   register() {
-
     this.userService.createUser(this.registerForm.value).subscribe(
       (val:any)=>{
-        this.router.navigate(['login'])
+        this.router.navigate(['sign-in'])
         console.log("Registro exitoso")
 
       })

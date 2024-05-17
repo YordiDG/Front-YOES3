@@ -41,9 +41,6 @@ import {MatGridListModule} from "@angular/material/grid-list";
 import {MatDividerModule} from "@angular/material/divider";
 import {MatMenuModule} from "@angular/material/menu";
 import {MatSnackBar, MatSnackBarModule} from "@angular/material/snack-bar";
-import { LogeoComponent } from './public/registross/logeo/logeo.component';
-import { RegistroComponent } from './public/registross/registro/registro.component';
-import { TelephoneComponent } from './public/registross/telephone/telephone.component';
 import {MatTooltipModule} from "@angular/material/tooltip";
 import { DialogLogComponent } from './public/dialog-log/dialog-log.component';
 import {MatSelectModule} from "@angular/material/select";
@@ -60,6 +57,9 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {AddDataTableComponent} from "./public/pages/add-data-table/add-data-table.component";
+import {LogeoComponent} from "./public/registross/logeo/logeo.component";
+import {RegistroComponent} from "./public/registross/registro/registro.component";
+import {TelephoneComponent} from "./public/registross/telephone/telephone.component";
 
 @NgModule({
   declarations: [
@@ -76,11 +76,8 @@ import {AddDataTableComponent} from "./public/pages/add-data-table/add-data-tabl
     SigninComponent,
     RegisterClientComponent,
     RegisterAdminComponent,
-    LogeoComponent,
-    RegistroComponent,
     FindKeeperComponent,
     TravelerComponent,
-    TelephoneComponent,
     DialogLogComponent,
     CarrucelComponent,
     LacteosComponent,
@@ -91,6 +88,9 @@ import {AddDataTableComponent} from "./public/pages/add-data-table/add-data-tabl
     AbarrotesComponent,
     ComidasComponent,
     AddDataTableComponent,
+    LogeoComponent,
+    RegistroComponent,
+    TelephoneComponent
   ],
   imports: [
     AppRoutingModule,
@@ -124,6 +124,7 @@ import {AddDataTableComponent} from "./public/pages/add-data-table/add-data-tabl
     MatCheckboxModule,
     MatTableModule,
     MatDatepickerModule,
+
 
   ],
   providers: [],

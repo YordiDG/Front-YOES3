@@ -23,12 +23,15 @@ import {PanisteriaComponent} from "./public/pages/Categorias/panisteria/panister
 import {AbarrotesComponent} from "./public/pages/Categorias/abarrotes/abarrotes.component";
 import {ComidasComponent} from "./public/pages/Categorias/comidas/comidas.component";
 import {AddDataTableComponent} from "./public/pages/add-data-table/add-data-table.component";
+import {RegistroComponent} from "./public/registross/registro/registro.component";
+import {LogeoComponent} from "./public/registross/logeo/logeo.component";
 
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
 
-  {path: 'register', component: RegisterClientComponent},
+  {path: 'register', component: RegistroComponent},
+  {path: 'register-client', component: RegisterClientComponent},
   {path: 'telephone', component: TelephoneComponent},
   {path: 'register-admin', component: RegisterAdminComponent},
   {path: 'home-client', component: KeeperComponent},
@@ -49,7 +52,7 @@ const routes: Routes = [
   {path: 'find-client', component: FindKeeperComponent},
   {path: 'messenger-traveler', component: MessengerTravelerComponent},
   {path: 'profile-traveler', component: ProfileTravelerComponent},
-  { path: 'sign-in', component : SigninComponent  },
+  { path: 'sign-in', component : LogeoComponent  },
   {path: '', redirectTo: 'login', pathMatch: 'full'},
   {path: '**', component:PageNotFoundComponent},
 
