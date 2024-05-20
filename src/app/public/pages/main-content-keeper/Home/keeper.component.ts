@@ -1,11 +1,11 @@
 import {Component, HostListener, OnInit} from '@angular/core';
 import {Router, Routes} from "@angular/router";
 import { ProductoService } from "../../../services/producto.service";
+import { LoginService } from "../../../services/login.service";
 import {Producto} from "../../../models/producto.service";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import {MatDialog} from "@angular/material/dialog";
 import {DialogLogComponent} from "../../../dialog-log/dialog-log.component";
-
 
 interface Carrito {
   id: number;
@@ -63,7 +63,7 @@ export class KeeperComponent implements OnInit {
   ];
 
 
-  constructor(private router: Router, private productoService: ProductoService, private dialog: MatDialog,private snackBar: MatSnackBar) {
+  constructor(private router: Router, private loginService: LoginService,private productoService: ProductoService, private dialog: MatDialog,private snackBar: MatSnackBar) {
     this.name = '';
     this.price = 0;
     this.description = '';
@@ -89,10 +89,6 @@ export class KeeperComponent implements OnInit {
     return producto.cantidad_stock > 0;
   }
   /*Productos de carrucel*/
-
-  verProductosEnCategoria(categoria: string): void {
-    this.router.navigate(['/' + categoria.toLowerCase()]);
-  }
 
   nextSlide() {
     if (this.currentSlide < this.slides.length - 4) {
@@ -123,10 +119,6 @@ export class KeeperComponent implements OnInit {
 
   showUserDialog(): void {
     this.showDialog = true;
-  }
-
-  mostrarCantidadProductosAnadidos() {
-    this.cantidadProductosAnadidos = this.carrito.length;
   }
 
   hideUserDialog(): void {
@@ -160,50 +152,39 @@ export class KeeperComponent implements OnInit {
     );
   }
 
-  filtrarProductos(categoria: string) {
-    this.categoriaSeleccionada = categoria;
-    this.productosFiltrados = this.Productos.filter(producto => producto.category.toLowerCase() === categoria.toLowerCase());
-  }
   /*-----------*/
   mostrarMensajes(mensaje: string){
 
   }
+
   agregarAlCarrito(producto: Producto) {
     const productoEnCarrito = this.carrito.find(item => item.id === producto.id);
 
     if (productoEnCarrito) {
       if (productoEnCarrito.cantidad < producto.cantidad_stock) {
-        // Si hay suficiente stock, incrementar la cantidad en el carrito
         productoEnCarrito.cantidad++;
         productoEnCarrito.total += producto.price;
         this.totalCarrito += producto.price;
+        this.loginService.actualizarTotal(this.totalCarrito);  // Actualiza el total en el servicio
         this.incrementarContador();
       } else {
-        // Si el stock está agotado, mostrar un mensaje y bloquear el producto
         this.mostrarMensajes('La cantidad en stock de este producto se ha agotado');
-        // Aquí podrías deshabilitar el botón de agregar al carrito para este producto
       }
     } else {
       if ((this.totalCarrito + producto.price) <= 700) {
-        // Si hay espacio en el carrito y el total del carrito no excede $700, agregar el producto al carrito
         if (producto.cantidad_stock > 0) {
           this.carrito.push({...producto, cantidad: 1, total: producto.price});
           this.totalCarrito += producto.price;
+          this.loginService.actualizarTotal(this.totalCarrito);  // Actualiza el total en el servicio
           this.incrementarContador();
         } else {
-
           this.mostrarMensajes('Este producto está agotado');
-
         }
       } else {
-        // Si agregar este producto excede el límite de $700, mostrar un mensaje
         this.mostrarMensajes('El total del carrito excede el límite de $700');
       }
     }
   }
-
-
-
 
   incrementarContador() {
     this.contador++;
@@ -221,13 +202,11 @@ export class KeeperComponent implements OnInit {
   }
 
   productosComprados() {
-     if(this.contador == 0){
-       alert("No hay ningun producto añadido en el carrito");
-
-     }else{
-       const producto: Producto[] = [];
-       this.abrirCerrarFormularioCarrito();
-     }
+    if (this.contador === 0) {
+      alert("No hay ningun producto añadido en el carrito");
+    } else {
+      this.abrirCerrarFormularioCarrito();
+    }
   }
 
 
@@ -264,10 +243,6 @@ export class KeeperComponent implements OnInit {
     this.hideUserDialog();
   }
 
-
-  abrirFormularioCarrito() {
-    this.mostrarFormularioCarrito = true;
-  }
   removerDelCarrito(index: number) {
     const producto = this.carrito[index];
     this.totalCarrito -= producto.price * producto.cantidad;
@@ -287,42 +262,14 @@ export class KeeperComponent implements OnInit {
     this.mostrarFormularioCarrito = false;
   }
 
-  mostrarProducto(producto: any): boolean {
-    return this.Productos.length === 0 || this.Productos.includes(producto);
-  }
-
-  openUserDialog(): void {
-    const dialogRef = this.dialog.open(DialogLogComponent, {
-      width: '300px'
-    });
-  }
-
   toggleMenu(): void {
     this.isMenuOpen = !this.isMenuOpen;
   }
 
-
-  signOut() {
-    localStorage.removeItem('currentUser');
-    localStorage.removeItem('accessToken');
-    this.router.navigate(['']).then();
-    console.log("Signed Out");
-  }
-
   protected readonly Producto = Producto;
-
-  goToKeeper(){
-    this.router.navigateByUrl('/home-client');
-  }
 
   goToMessenger(){
     this.router.navigateByUrl('/messenger-client');
-  }
-  goToProfile(){
-    this.router.navigateByUrl('/profile-client');
-  }
-  goToFindHouse(){
-    this.router.navigateByUrl('/find-house');
   }
   goToLogin(){
     this.router.navigateByUrl('/login');

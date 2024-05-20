@@ -11,6 +11,20 @@ import {environment} from "../../../environments/environment.development";
 })
 export class UserService{
 
+  userData: any = {};
+
+  user: Users = {
+    id: 0,
+    firstName: '',
+    lastName: '',
+    job:'',
+    dni:'',
+    salary:0,
+    email: '',
+    password: '',
+    phoneNumber: '',
+    role: ''
+  };
   basePath=environment.serverRegister;
   url: string= `/new`
 
@@ -36,9 +50,23 @@ export class UserService{
       .pipe(retry(2), catchError(this.handleError))
   }
 
-  getAllUsers(){
-    return this.http.get(this.resourcePath())
-      .pipe(retry(2), catchError(this.handleError))
+  getUserData(): Observable<Users> {
+    return this.http.get<Users>('http://localhost:8080/api/minimarket/usuarios/All-Users');
+  }
+
+  saveUserData(data: any) {
+    this.userData = data;
+  }
+
+  getUserDatas(): Users {
+    const userData = localStorage.getItem('currentUser');
+    return userData ? JSON.parse(userData) : null;
+  }
+
+
+  updateUserProfile(user: Users): Observable<any> {
+    const url = `http://localhost:8080/api/minimarket/usuarios/${user.id}/update`;
+    return this.http.put(url, user);
   }
 
   async login(email: string, password: string) {

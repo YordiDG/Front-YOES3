@@ -7,14 +7,6 @@ import {MessengerKeeperComponent} from "./public/pages/main-content-keeper/messe
 import {ProfileKeeperComponent} from "./public/pages/main-content-keeper/profile-keeper/profile-keeper.component";
 import {PageNotFoundComponent} from "./public/pages/page-not-found/page-not-found.component";
 import {KeeperComponent} from "./public/pages/main-content-keeper/Home/keeper.component";
-import {TravelerComponent} from "./public/pages/main-content-traveler/traveler/traveler.component";
-import {FindKeeperComponent} from "./public/pages/main-content-traveler/find-keeper/find-keeper.component";
-import {MessengerTravelerComponent} from "./public/pages/main-content-traveler/messenger-traveler/messenger-traveler.component";
-import {ProfileTravelerComponent} from "./public/pages/main-content-traveler/profile-traveler/profile-traveler.component";
-import {SigninComponent} from "./public/pages/signin/signin.component";
-import {RegisterClientComponent} from "./public/pages/register-user/register-client/register-client.component";
-import {RegisterAdminComponent} from "./public/pages/register-user/register-admin/register-admin.component";
-import {TelephoneComponent} from "./public/registross/telephone/telephone.component";
 import {CarnesComponent} from "./public/pages/Categorias/carnes/carnes.component";
 import {VerdurasComponent} from "./public/pages/Categorias/verduras/verduras.component";
 import {FrutasComponent} from "./public/pages/Categorias/frutas/frutas.component";
@@ -23,19 +15,13 @@ import {PanisteriaComponent} from "./public/pages/Categorias/panisteria/panister
 import {AbarrotesComponent} from "./public/pages/Categorias/abarrotes/abarrotes.component";
 import {ComidasComponent} from "./public/pages/Categorias/comidas/comidas.component";
 import {AddDataTableComponent} from "./public/pages/add-data-table/add-data-table.component";
-import {RegistroComponent} from "./public/registross/registro/registro.component";
 import {LogeoComponent} from "./public/registross/logeo/logeo.component";
+import {DialogLogComponent} from "./public/dialog-log/dialog-log.component";
 
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
-
-  {path: 'register', component: RegistroComponent},
-  {path: 'register-client', component: RegisterClientComponent},
-  {path: 'telephone', component: TelephoneComponent},
-  {path: 'register-admin', component: RegisterAdminComponent},
   {path: 'home-client', component: KeeperComponent},
-
   {path: 'verduras', component: VerdurasComponent},
   {path: 'carnes', component: CarnesComponent},
   {path: 'frutas', component: FrutasComponent},
@@ -48,10 +34,6 @@ const routes: Routes = [
   {path: 'messenger-client', component: MessengerKeeperComponent},
   {path: 'card', component: AddDataTableComponent},
   {path: 'profile-client', component: ProfileKeeperComponent},
-  {path: 'home-admin', component: TravelerComponent},
-  {path: 'find-client', component: FindKeeperComponent},
-  {path: 'messenger-traveler', component: MessengerTravelerComponent},
-  {path: 'profile-traveler', component: ProfileTravelerComponent},
   { path: 'sign-in', component : LogeoComponent  },
   {path: '', redirectTo: 'login', pathMatch: 'full'},
   {path: '**', component:PageNotFoundComponent},

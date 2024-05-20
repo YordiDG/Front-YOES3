@@ -3,10 +3,8 @@ import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 
 import { ChangeDetectorRef} from "@angular/core";
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE, NativeDateAdapter} from '@angular/material/core';
-/*import * as _moment from 'moment';
-import {Finance} from "financejs";*/
-import { Decimal } from 'decimal.js';
 import {ActivatedRoute} from "@angular/router";
+import {LoginService} from "../../services/login.service";
 
 
 export interface PeriodicElement {
@@ -18,27 +16,26 @@ export interface PeriodicElement {
 const ELEMENT_DATA: PeriodicElement[] = [
   {title: 'TEA (%)', porct: false, value: '0'},
   {title: 'TEM (%)', porct: false, value: '0'},
-  // {title: 'Seguro Vehicular Mensual (%)', porct: true, value: '0'},
   {title: 'Cuota Inicial', porct: true, value: '0'},
   {title: 'Cuota Final', porct: true, value: '0'},
   {title: 'Monto Del Préstamo', porct: true, value: '0'},
   {title: 'Importe Para Cuotas', porct: true, value: '0'},
-  {title: 'Saldo Capitalizado', porct: true, value: '15594.57'},
+  {title: 'Saldo Capitalizado', porct: true, value: '296.58'},
   {title: 'R (Cuotas Mensuales)', porct: true, value: '0'},
   {title: 'Valor Actual Saldo Final', porct: true, value: '0'},
   {title: 'Valor Cuota Extra', porct: true, value: '0'},
 
 ];
 
+const ELEMENT_DATA_GASTOS_PERIODICOS: PeriodicElement[] = [
+  {title: 'Seguro de Desgravamen (%)', porct: false, value: '0.04'},
+];
 
 const ELEMENT_DATA_TOTALES: PeriodicElement[] = [
   {title: 'Intereses', porct: true, value: '0'},
   {title: 'Amortización del capital', porct: true, value: '0'},
   {title: 'Seguro de desgravamen', porct: true, value: '0'},
-  {title: 'Seguro Vehicular', porct: true, value: '0'},
-  {title: 'GPS', porct: true, value: '0'},
   {title: 'Portes', porct: true, value: '0'},
-  {title: 'Gastos Administrativos', porct: true, value: '0'},
 ];
 
 const ELEMENT_DATA_INDICADORES_RENTABILIDAD: PeriodicElement[] = [
@@ -46,11 +43,6 @@ const ELEMENT_DATA_INDICADORES_RENTABILIDAD: PeriodicElement[] = [
   {title: 'TIR de la operacion', porct: false, value: '0'},
   {title: 'TCEA de la operacion', porct: false, value: '0'},
   {title: 'VAN operacion', porct: true, value: '0'},
-];
-
-const ELEMENT_DATA_GASTOS_PERIODICOS: PeriodicElement[] = [
-  {title: 'Seguro Vehicular Mensual (%)', porct: false, value: '0'},
-  {title: 'Seguro de Desgravamen (%)', porct: false, value: '0.05'},
 ];
 
 
@@ -74,51 +66,56 @@ const ELEMENT_DATA_GASTOS_PERIODICOS: PeriodicElement[] = [
   ],
 })
 export class AddDataTableComponent implements OnInit{
-  //private finance = new Finance();
 
+  totalCarrito: number = 0;
   form: FormGroup = new FormGroup({ });
   form2: FormGroup = new FormGroup({ });
+  paymentPlanForm=FormGroup;
+  constructor(private fb: FormBuilder,private loginService: LoginService, private cdr: ChangeDetectorRef, private route: ActivatedRoute) {
+    this.form = this.fb.group({
+      precioTotal: [''],
 
-  constructor(private fb: FormBuilder, private cdr: ChangeDetectorRef, private route: ActivatedRoute) {
-
-
-
+    });
   }
 
   ngOnInit() {
+
+    this.loginService.totalCarrito$.subscribe(total => {
+      this.totalCarrito = total;
+      this.form.controls['totalCarrito'].setValue(total);
+    });
     this.form = this.fb.group({
-      ingresoMensual: [1500, Validators.required],//input
-      precioVehicular: [35000, Validators.required],//input
-      cuotaInicial: [20, Validators.required],
-      cuotaFinal: [50, Validators.required],
+      ingresoMensual: [1000, Validators.required],//input
+      precioVehicular: [700, Validators.required],//input
+      cuotaInicial: [15, Validators.required],
+      cuotaFinal: [14, Validators.required],
       tipoTasaInteres: ['nominal', Validators.required],
       tna: [15, Validators.required],//input
       seguroDegravamen: [0.05, Validators.required],
-      seguroVehicularAnual: [4.72, Validators.required],
-      //fechaContrato: [ new FormControl(_moment([2017, 0, 1])), Validators.required],//input
+      seguroVehicularAnual: [1, Validators.required],
       plazo: ['24', Validators.required],//input
       plazoGraciaTotal: [2, Validators.required],//input
       plazoGraciaParcial: [1, Validators.required],//input
-      tasaDescuentoCOK: [50, Validators.required],//input
+      tasaDescuentoCOK: [13, Validators.required],//input
       periodoCapitalizacion: ['Diaria', Validators.required],
       frecuenciaPago: ['30', Validators.required],
       nDiasAnio: new FormControl({ value: 360, disabled :true}),
-      costesNotariales: [100, Validators.required],
+      costesNotariales: [ 0, Validators.required],
       tipoPagoCostesNotariales: ['prestamo', Validators.required],
-      costesRegistrales: [75, Validators.required],
+      costesRegistrales: [1, Validators.required],
       tipoPagoCostesRegistrales: ['prestamo', Validators.required],
-      tasacion: [10, Validators.required],
+      tasacion: [1 , Validators.required],
       tipoPagoTasacion: ['prestamo', Validators.required],
-      comisionEstudio: [10, Validators.required],
+      comisionEstudio: [1 , Validators.required],
       tipoPagoComisionEstudio: ['prestamo', Validators.required],
-      comisionActivacion: [10, Validators.required],
+      comisionActivacion: [1 , Validators.required],
       tipoPagoComisionActivacion: ['prestamo', Validators.required],
     });
 
     this.form2 = this.fb.group({
-      gps: [20, Validators.required],
+      gps: [1, Validators.required],
       portes: [3.5, Validators.required],
-      gastosAdministrativos: [3.5, Validators.required],
+      gastosAdministrativos: [1.5, Validators.required],
     });
 
 
@@ -132,12 +129,7 @@ export class AddDataTableComponent implements OnInit{
     //this.dataSource[6].value = this.calculateSaldoCapitalizado().toString();
     this.dataSource[7].value = this.calculateRCuotasMensuales().toString();
 
-
-
     this.dataSourceIndicadoresRentabilidad[0].value = this.calculateTasaDescuento().toString();
-
-    this.dataSourceGastosPeriodicos[0].value = ((parseFloat( this.form.get('seguroVehicularAnual')?.value) * 30)/360).toFixed(4);
-
 
     this.form.valueChanges.subscribe(()=>{
       this.dataSource[0].value = this.calculateTEA().toString();
@@ -163,7 +155,11 @@ export class AddDataTableComponent implements OnInit{
     })
   }
 
-  name = 'Willy Valentin';
+  name = 'Yordi Gonzales';
+
+  resetForm(): void {
+    this.form.reset();
+  }
 
   displayedColumns: string[] = ['title', 'value'];
   dataSource = ELEMENT_DATA;
@@ -195,7 +191,16 @@ export class AddDataTableComponent implements OnInit{
     'Flujo'
   ];
   //fechaContrato = new FormControl(_moment([2023, 0, 31]));
-  first_time = true;
+
+
+  formatDate(date: Date): string {
+    const day = date.getDate().toString().padStart(2, '0');
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const year = date.getFullYear();
+
+    return `${day}/${month}/${year}`;
+  }
+
 
   CalcularTabla(){
     //this.calculateSaldoCapitalizado()
@@ -213,7 +218,7 @@ export class AddDataTableComponent implements OnInit{
       'N°': -1,
       'TEA': -1,
       'i\' = TEP = TEM': -1,
-      //'Fecha': this.fechaContrato.value?.format('DD/MM/YYYY'),
+      'Fecha': this.formatDate(new Date()),
       'P.G': -1,
       'Saldo Inicial Cuota Final': -1,
       'Interes Cuota Final': -1,
@@ -265,16 +270,15 @@ export class AddDataTableComponent implements OnInit{
           }
         }
 
-        else if(j == 3) {
+        else if (j == 3) {
+          const fechaActual = new Date(); // Obtener la fecha actual
+          let fechaIterada = new Date(fechaActual); // Crear una copia de la fecha actual
 
-          //const fechaContratoValue = this.fechaContrato.value;
+          fechaIterada.setDate(fechaActual.getDate() + i - 1); // Aumentar la fecha por cada día del bucle
 
-          /*if (fechaContratoValue !== null && fechaContratoValue !== undefined) {
-            const fechaContratoMoment = _moment(fechaContratoValue);
-            const fechaSumada = fechaContratoMoment.add(i, 'months');
-            rowObject['Fecha'] = (fechaSumada.format('DD/MM/YYYY'));
-          }*/
+          rowObject['Fecha'] = this.formatDate(fechaIterada);
         }
+
 
         else if(j == 4) {
           const plazoGraciaTotalValue = parseInt(this.form.get('plazoGraciaTotal')?.value)
@@ -335,8 +339,8 @@ export class AddDataTableComponent implements OnInit{
 
 
         else if(j == 9) {
-            const res = (parseFloat(rowObject['Saldo Inicial Cuota Final']) - parseFloat(rowObject['Interes Cuota Final']) + parseFloat(rowObject['Amortización Cuota Final']))
-            rowObject['Saldo Final Cuota Final'] = (res)
+          const res = (parseFloat(rowObject['Saldo Inicial Cuota Final']) - parseFloat(rowObject['Interes Cuota Final']) + parseFloat(rowObject['Amortización Cuota Final']))
+          rowObject['Saldo Final Cuota Final'] = (res)
         }
 
         //bad code
@@ -376,7 +380,7 @@ export class AddDataTableComponent implements OnInit{
               }
               else {
 
-                  rowObject['Cuota'] =  parseFloat(this.dataSource[7].value) * -1;
+                rowObject['Cuota'] =  parseFloat(this.dataSource[7].value) * -1;
 
 
 
@@ -409,7 +413,6 @@ export class AddDataTableComponent implements OnInit{
         else if(j == 16) {
           const gps = parseFloat(this.form2.get('gps')?.value) * -1;
 
-          rowObject['GPS'] = gps
         }
 
         else if(j == 17) {
@@ -430,31 +433,45 @@ export class AddDataTableComponent implements OnInit{
               const intereses = parseFloat(rowObject['Intereses']).toFixed(2);
               const seguroDegravamen = parseFloat(rowObject['Seguro Degravamen']).toFixed(2);
               const seguroDegravamenCuotaFinal = parseFloat(rowObject['Seguro Degravamen Cuota Final']).toFixed(2);
-              const seguroVehicular = parseFloat(rowObject['Seguro Vehicular']).toFixed(2);
-              const gps = parseFloat(rowObject['GPS']).toFixed(2);
               const portes = parseFloat(rowObject['Portes']).toFixed(2);
               const gastosAdministrativos = parseFloat(rowObject['Gastos Administrativos']).toFixed(2);
 
-              rowObject['Amortización'] =   parseFloat(cuota) - parseFloat(intereses) - parseFloat(seguroDegravamen) - parseFloat(seguroDegravamenCuotaFinal) - parseFloat(seguroVehicular) - parseFloat(gps) - parseFloat(portes) - parseFloat(gastosAdministrativos)
+              rowObject['Amortización'] =   parseFloat(cuota) - parseFloat(intereses) - parseFloat(seguroDegravamen) - parseFloat(seguroDegravamenCuotaFinal)  - parseFloat(portes) - parseFloat(gastosAdministrativos)
             }
           }
-              else{
-                rowObject['Amortización'] = 0;
-              }
+          else{
+            rowObject['Amortización'] = 0;
+          }
         }
 
 
         //bad code
         else if (j == 19){
 
-            if(rowObject['P.G'] == 'T'){
-                rowObject['Saldo Final Para Cuota'] = (parseFloat(rowObject['Saldo Inicial Para Cuota']) - parseFloat(rowObject['Intereses']))
-            }
-            else{
-              const saldoInicialParaCuota = (parseFloat(rowObject['Saldo Inicial Para Cuota'])).toFixed(2);
-              const amortizacion = (parseFloat(rowObject['Amortización'])).toFixed(2);
-              rowObject['Saldo Final Para Cuota'] = (parseFloat(saldoInicialParaCuota) + parseFloat(amortizacion))
-            }
+          // if(this.tableData[i]['P.G'] == 'T'){
+          //   if(!this.first_time){
+          //     this.tableData[i]['Saldo Final Para Cuota'] = (parseFloat(this.tableData[i]['Saldo Inicial Para Cuota']) - parseFloat(this.tableData[i]['Intereses'])).toFixed(5)
+          //   } else  {
+          //     rowObject['Saldo Final Para Cuota'] = (parseFloat(rowObject['Saldo Inicial Para Cuota']) - parseFloat(rowObject['Intereses'])).toFixed(5)
+          //   }
+          // }
+          // else{
+          //   if(!this.first_time){
+          //     this.tableData[i]['Saldo Final Para Cuota'] = (parseFloat(this.tableData[i]['Saldo Inicial Para Cuota']) + parseFloat(this.tableData[i]['Amortización'])).toFixed(5)
+          //   } else{
+          //     rowObject['Saldo Final Para Cuota'] = (parseFloat(rowObject['Saldo Inicial Para Cuota']) + parseFloat(rowObject['Amortización'])).toFixed(5)
+          //   }
+          // }
+
+
+          if(rowObject['P.G'] == 'T'){
+            rowObject['Saldo Final Para Cuota'] = (parseFloat(rowObject['Saldo Inicial Para Cuota']) - parseFloat(rowObject['Intereses']))
+          }
+          else{
+            const saldoInicialParaCuota = (parseFloat(rowObject['Saldo Inicial Para Cuota'])).toFixed(2);
+            const amortizacion = (parseFloat(rowObject['Amortización'])).toFixed(2);
+            rowObject['Saldo Final Para Cuota'] = (parseFloat(saldoInicialParaCuota) + parseFloat(amortizacion))
+          }
 
 
 
@@ -514,8 +531,8 @@ export class AddDataTableComponent implements OnInit{
       775.96, 775.96, 775.96, 775.96, 775.96, 775.96, 775.96, 775.96, 775.96, 775.96,
       775.96, 775.96, 775.96, 775.96, 775.96, 775.96, 17500.00];
 
-   // const tir = this.calculateIRR(flujos);
-   // console.log(`La TIR encontrada es: ${tir.toFixed(6)}`);
+    // const tir = this.calculateIRR(flujos);
+    // console.log(`La TIR encontrada es: ${tir.toFixed(6)}`);
 
   }
 
@@ -539,13 +556,13 @@ export class AddDataTableComponent implements OnInit{
 
   calculateTEM(){
     if(this.dataSource[0].value == null ||
-       this.dataSource[0].value == '') { return 0 }
+      this.dataSource[0].value == '') { return 0 }
     return (((1+(parseFloat(this.dataSource[0].value)/100) )**(30/360)-1)*100).toFixed(7)
   }
 
   calculateSeguroVehicularAnual(){
     if(this.form.get('seguroVehicularAnual')?.value == null ||
-       this.form.get('seguroVehicularAnual')?.value == '') { return 0 }
+      this.form.get('seguroVehicularAnual')?.value == '') { return 0 }
     let seguroVA = parseFloat(this.form.get('seguroVehicularAnual')?.value);
     seguroVA = seguroVA/100;
     return Number((((seguroVA*30)/360)*100).toFixed(3))
@@ -567,9 +584,9 @@ export class AddDataTableComponent implements OnInit{
       this.form.get('precioVehicular')?.value == '' ||
       this.form.get('cuotaFinal')?.value == null ||
       this.form.get('cuotaFinal')?.value == '' ) { return 0 }
-  let precioVehicular = parseFloat(this.form.get('precioVehicular')?.value);
-  let cuotaFinal = parseFloat(this.form.get('cuotaFinal')?.value);
-  return (precioVehicular * (cuotaFinal/100)).toFixed(3)
+    let precioVehicular = parseFloat(this.form.get('precioVehicular')?.value);
+    let cuotaFinal = parseFloat(this.form.get('cuotaFinal')?.value);
+    return (precioVehicular * (cuotaFinal/100)).toFixed(3)
   }
 
   calculateMontoPrestamo(){
@@ -597,8 +614,6 @@ export class AddDataTableComponent implements OnInit{
     }
     return (res).toFixed(3)
   }
-
-
 
   calculateTasaDescuento(){
     if(this.form.get('tasaDescuentoCOK')?.value == null ||

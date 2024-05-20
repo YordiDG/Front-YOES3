@@ -7,6 +7,7 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 import {DialogLogComponent} from "../../../dialog-log/dialog-log.component";
 
 
+
 interface Carrito {
   id: number;
   cantidad: number;

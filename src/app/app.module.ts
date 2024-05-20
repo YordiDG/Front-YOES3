@@ -17,14 +17,6 @@ import {KeeperComponent} from './public/pages/main-content-keeper/Home/keeper.co
 
 import { UpdateProfileComponent } from './public/pages/update-profile/update-profile.component';
 
-import { FindKeeperComponent } from './public/pages/main-content-traveler/find-keeper/find-keeper.component';
-import { MessengerTravelerComponent } from './public/pages/main-content-traveler/messenger-traveler/messenger-traveler.component';
-import { ProfileTravelerComponent } from './public/pages/main-content-traveler/profile-traveler/profile-traveler.component';
-import { TravelerComponent } from './public/pages/main-content-traveler/traveler/traveler.component';
-import { SigninComponent } from './public/pages/signin/signin.component';
-import { RegisterClientComponent } from './public/pages/register-user/register-client/register-client.component';
-import { RegisterAdminComponent } from './public/pages/register-user/register-admin/register-admin.component';
-import {RouterModule} from "@angular/router";
 import {HttpClientModule} from "@angular/common/http";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatTableModule} from "@angular/material/table";
@@ -42,7 +34,7 @@ import {MatDividerModule} from "@angular/material/divider";
 import {MatMenuModule} from "@angular/material/menu";
 import {MatSnackBar, MatSnackBarModule} from "@angular/material/snack-bar";
 import {MatTooltipModule} from "@angular/material/tooltip";
-import { DialogLogComponent } from './public/dialog-log/dialog-log.component';
+
 import {MatSelectModule} from "@angular/material/select";
 import {MatRadioModule} from "@angular/material/radio";
 import { CarrucelComponent } from './public/carrucel/carrucel.component';
@@ -58,8 +50,7 @@ import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {AddDataTableComponent} from "./public/pages/add-data-table/add-data-table.component";
 import {LogeoComponent} from "./public/registross/logeo/logeo.component";
-import {RegistroComponent} from "./public/registross/registro/registro.component";
-import {TelephoneComponent} from "./public/registross/telephone/telephone.component";
+import {DialogLogComponent} from "./public/dialog-log/dialog-log.component";
 
 @NgModule({
   declarations: [
@@ -71,14 +62,6 @@ import {TelephoneComponent} from "./public/registross/telephone/telephone.compon
     PageNotFoundComponent,
     KeeperComponent,
     UpdateProfileComponent,
-    MessengerTravelerComponent,
-    ProfileTravelerComponent,
-    SigninComponent,
-    RegisterClientComponent,
-    RegisterAdminComponent,
-    FindKeeperComponent,
-    TravelerComponent,
-    DialogLogComponent,
     CarrucelComponent,
     LacteosComponent,
     CarnesComponent,
@@ -89,13 +72,11 @@ import {TelephoneComponent} from "./public/registross/telephone/telephone.compon
     ComidasComponent,
     AddDataTableComponent,
     LogeoComponent,
-    RegistroComponent,
-    TelephoneComponent
+    DialogLogComponent
   ],
   imports: [
     AppRoutingModule,
     BrowserModule,
-    RouterModule,
     BrowserAnimationsModule,
     HttpClientModule,
     FormsModule,
@@ -127,7 +108,9 @@ import {TelephoneComponent} from "./public/registross/telephone/telephone.compon
 
 
   ],
-  providers: [],
+  providers: [
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

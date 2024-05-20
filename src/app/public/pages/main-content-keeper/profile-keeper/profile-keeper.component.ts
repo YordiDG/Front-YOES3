@@ -14,10 +14,9 @@ import {MatSnackBar} from "@angular/material/snack-bar";
   styleUrls: ['./profile-keeper.component.css']
 })
 export class ProfileKeeperComponent {
-  name: string;
+  firstname: string;
   lastName: string;
-  birthdate: Date;
-  phone: string;
+  phoneNumber: string;
   email: string;
 
   mostrarFormularioCarrito: boolean = false;
@@ -44,10 +43,9 @@ export class ProfileKeeperComponent {
     this.cantidad_stock = 0;
     this.valoracion = '';
 
-    this.name = 'Alejandro';
+    this.firstname = 'Alejandro';
     this.lastName = 'Soto';
-    this.birthdate = new Date(2002, 1, 28);
-    this.phone = '959458748';
+    this.phoneNumber = '959458748';
     this.email = 'ale12@gmail.com';
   }
 
@@ -90,9 +88,6 @@ export class ProfileKeeperComponent {
   /*----------------*/
 
 
-  getFormattedBirthdate(): string {
-    return formatDate(this.birthdate, 'dd-MM-yyyy', 'en-US');
-  }
 
   goToKeeper() {
     this.router.navigateByUrl('/home-client');
@@ -109,18 +104,17 @@ export class ProfileKeeperComponent {
   }
 
   openUpdateDialog(): void {
-    const formattedBirthdate = this.getFormattedBirthdate();
+
     const dialogRef = this.dialog.open(UpdateProfileComponent, {
       width: '500px',
-      data: { name: this.name, lastName: this.lastName, birthdate: this.birthdate, phone: this.phone, email: this.email }
+      data: { name: this.firstname, lastName: this.lastName, phone: this.phoneNumber, email: this.email }
     });
 
     dialogRef.afterClosed().subscribe((result: any) => {
       if (result) {
-        this.name = result.name;
+        this.firstname = result.name;
         this.lastName = result.lastName;
-        this.birthdate = result.birthdate;
-        this.phone = result.phone;
+        this.phoneNumber = result.phone;
         this.email = result.email;
       }
     });

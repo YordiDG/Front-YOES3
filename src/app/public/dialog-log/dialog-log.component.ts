@@ -11,7 +11,7 @@ import {Plan} from "./model/plan";
 export class DialogLogComponent {
 
   data_form: FormGroup = new FormGroup({
-    salary: new FormControl('', [Validators.required, Validators.min(1500)]),
+    salary: new FormControl('', [Validators.required, Validators.min(500)]),
     car_price: new FormControl('', [Validators.required]),
     rate: new FormControl('Efectiva', [Validators.required]),
     coin: new FormControl('Soles'),

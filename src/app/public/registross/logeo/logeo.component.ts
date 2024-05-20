@@ -58,7 +58,7 @@ export class LogeoComponent  implements OnInit {
   onLogin() {
     if (this.formLogin.valid) {
       this._userService.login(this.formLogin.get("email")?.value, this.formLogin.get("password")?.value)
-      this.router.navigate(['client-home'])
+      this.router.navigate(['home-client'])
       this.loginExitoso = true;}
   }
 
