@@ -59,12 +59,21 @@
 .input-item {
   display: flex;
   flex-direction: column;
+
 }
 
 .input-item > * {
   margin-bottom: 2px;
 }
 
+.input-item button{
+  background-color: #00a388;
+  height: 55px;
+}
+
+.input-item mat-form-field{
+  width: 100%;
+}
 .data-table-container {
   display: flex;
 }

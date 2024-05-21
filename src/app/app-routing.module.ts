@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {RouterModule, Routes} from "@angular/router";
 import {LoginComponent} from "./public/pages/login/login.component";
-import {FindHouseComponent} from "./public/pages/main-content-keeper/busqueda/find-house.component";
 import {MessengerKeeperComponent} from "./public/pages/main-content-keeper/messenger-keeper/messenger-keeper.component";
 import {ProfileKeeperComponent} from "./public/pages/main-content-keeper/profile-keeper/profile-keeper.component";
 import {PageNotFoundComponent} from "./public/pages/page-not-found/page-not-found.component";
@@ -29,8 +28,6 @@ const routes: Routes = [
   {path: 'lacteos', component: LacteosComponent},
   {path: 'panisteria', component: PanisteriaComponent},
   {path: 'comida', component: ComidasComponent},
-
-  {path: 'find-house', component: FindHouseComponent},
   {path: 'messenger-client', component: MessengerKeeperComponent},
   {path: 'card', component: AddDataTableComponent},
   {path: 'profile-client', component: ProfileKeeperComponent},

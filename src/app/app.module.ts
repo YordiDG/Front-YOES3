@@ -3,8 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import {AppComponent} from './app.component';
 import {LoginComponent} from './public/pages/login/login.component';
-
-import {FindHouseComponent} from "./public/pages/main-content-keeper/busqueda/find-house.component";
 import {MessengerKeeperComponent} from "./public/pages/main-content-keeper/messenger-keeper/messenger-keeper.component";
 import {ProfileKeeperComponent} from "./public/pages/main-content-keeper/profile-keeper/profile-keeper.component";
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -14,9 +12,7 @@ import {AppRoutingModule} from "./app-routing.module";
 
 import {PageNotFoundComponent} from './public/pages/page-not-found/page-not-found.component';
 import {KeeperComponent} from './public/pages/main-content-keeper/Home/keeper.component';
-
 import { UpdateProfileComponent } from './public/pages/update-profile/update-profile.component';
-
 import {HttpClientModule} from "@angular/common/http";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatTableModule} from "@angular/material/table";
@@ -56,7 +52,6 @@ import {DialogLogComponent} from "./public/dialog-log/dialog-log.component";
   declarations: [
     AppComponent,
     LoginComponent,
-    FindHouseComponent,
     MessengerKeeperComponent,
     ProfileKeeperComponent,
     PageNotFoundComponent,

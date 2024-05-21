@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { Router } from "@angular/router";
 import { UpdateProfileComponent } from "../../update-profile/update-profile.component";
 import { MatDialog } from "@angular/material/dialog";
@@ -7,17 +7,15 @@ import {Producto} from "../../../models/producto.service";
 import {ProductoService} from "../../../services/producto.service";
 import {MensajeriaService} from "../../../services/mensajeria.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {LoginService} from "../../../services/login.service";
 
 @Component({
   selector: 'app-profile-keeper',
   templateUrl: './profile-keeper.component.html',
   styleUrls: ['./profile-keeper.component.css']
 })
-export class ProfileKeeperComponent {
-  firstname: string;
-  lastName: string;
-  phoneNumber: string;
-  email: string;
+export class ProfileKeeperComponent implements OnInit{
+  usuarioActual: any;
 
   mostrarFormularioCarrito: boolean = false;
   contador: number = 0;
@@ -34,8 +32,7 @@ export class ProfileKeeperComponent {
   searching: boolean = false;
   showDialog: boolean = false;
 
-  constructor(private router: Router, private productoService: ProductoService,private mensajeriaservice:MensajeriaService, private dialog: MatDialog,private snackBar: MatSnackBar) {
-
+  constructor(private router: Router,private loginService: LoginService, private productoService: ProductoService,private mensajeriaservice:MensajeriaService, private dialog: MatDialog,private snackBar: MatSnackBar) {
     this.price = 0;
     this.description = '';
     this.category = '';
@@ -43,12 +40,11 @@ export class ProfileKeeperComponent {
     this.cantidad_stock = 0;
     this.valoracion = '';
 
-    this.firstname = 'Alejandro';
-    this.lastName = 'Soto';
-    this.phoneNumber = '959458748';
-    this.email = 'ale12@gmail.com';
   }
 
+  ngOnInit() {
+    this.usuarioActual = this.loginService.getCurrentUser();
+  }
 
 
   productosComprados() {
@@ -107,15 +103,15 @@ export class ProfileKeeperComponent {
 
     const dialogRef = this.dialog.open(UpdateProfileComponent, {
       width: '500px',
-      data: { name: this.firstname, lastName: this.lastName, phone: this.phoneNumber, email: this.email }
+      data: { firstname: this.usuarioActual.firstname, lastName: this.usuarioActual.lastName, phone: this.usuarioActual.phoneNumber, email: this.usuarioActual.email }
     });
 
     dialogRef.afterClosed().subscribe((result: any) => {
       if (result) {
-        this.firstname = result.name;
-        this.lastName = result.lastName;
-        this.phoneNumber = result.phone;
-        this.email = result.email;
+        this.usuarioActual.firstname = result.firstname;
+        this.usuarioActual.lastName = result.lastName;
+        this.usuarioActual.phoneNumber = result.phone;
+        this.usuarioActual.email = result.email;
       }
     });
   }

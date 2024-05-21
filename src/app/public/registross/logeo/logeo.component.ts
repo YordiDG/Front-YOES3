@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/
 import {UserService} from "../../services/user.service";
 import {MatCardModule} from "@angular/material/card";
 import {Router, RouterLink} from "@angular/router";
+import {LoginService} from "../../services/login.service";
 
 @Component({
   selector: 'app-logeo',
@@ -23,7 +24,7 @@ export class LogeoComponent  implements OnInit {
   formLogin: FormGroup
 
 
-  constructor(private router: Router, private formBuilder: FormBuilder,
+  constructor(private router: Router,private loginService: LoginService, private formBuilder: FormBuilder,
               private _userService: UserService, private userService:UserService) {
 
     this.formLogin = this.formBuilder.group({
@@ -56,10 +57,17 @@ export class LogeoComponent  implements OnInit {
 
 
   onLogin() {
-    if (this.formLogin.valid) {
-      this._userService.login(this.formLogin.get("email")?.value, this.formLogin.get("password")?.value)
-      this.router.navigate(['home-client'])
-      this.loginExitoso = true;}
+    this._userService.createUser(this.registerForm.value).subscribe(
+      (response: any) => {
+        if (this.formLogin.valid) {
+          this._userService.login(this.formLogin.get("email")?.value, this.formLogin.get("password")?.value)
+          this.router.navigate(['home-client'])
+          this.loginExitoso = true;
+
+
+          this.loginService.setCurrentUser(response);
+        }
+      })
   }
 
   handleRegistroExitoso() {
@@ -80,13 +88,25 @@ export class LogeoComponent  implements OnInit {
 
   register() {
     this._userService.createUser(this.registerForm.value).subscribe(
-      (val:any)=>{
-        this.router.navigate(['sign-in'])
-        console.log("Registro exitoso")
+      (response: any) => {
+        // Si el usuario se registra correctamente, response contendrá los datos del usuario registrado
+        console.log("Registro exitoso:", response);
         this.registroExitoso = true;
-      })
 
+        // Guardar los datos del usuario registrado utilizando el servicio de login
+        this.loginService.setCurrentUser(response);
+
+        // Redirigir al usuario a la página de inicio de sesión
+        this.router.navigate(['sign-in']);
+      },
+      (error: any) => {
+        // Manejar cualquier error que ocurra durante el registro
+        console.error("Error durante el registro:", error);
+      }
+    );
   }
+
+
   goToRegister(event: Event) {
     event.preventDefault(); // Evita el comportamiento predeterminado del enlace
     this.router.navigate(['/register']);

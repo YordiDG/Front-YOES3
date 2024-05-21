@@ -1,10 +1,15 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
+
 
 import { ChangeDetectorRef} from "@angular/core";
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE, NativeDateAdapter} from '@angular/material/core';
 import {ActivatedRoute} from "@angular/router";
 import {LoginService} from "../../services/login.service";
+import {Subscription} from "rxjs";
+import {Users} from "../../models/Users";
 
 
 export interface PeriodicElement {
@@ -34,7 +39,6 @@ const ELEMENT_DATA_GASTOS_PERIODICOS: PeriodicElement[] = [
 const ELEMENT_DATA_TOTALES: PeriodicElement[] = [
   {title: 'Intereses', porct: true, value: '0'},
   {title: 'Amortización del capital', porct: true, value: '0'},
-  {title: 'Seguro de desgravamen', porct: true, value: '0'},
   {title: 'Portes', porct: true, value: '0'},
 ];
 
@@ -67,23 +71,32 @@ const ELEMENT_DATA_INDICADORES_RENTABILIDAD: PeriodicElement[] = [
 })
 export class AddDataTableComponent implements OnInit{
 
+  @ViewChild('content') content!: ElementRef;
+
+  usuarioActual: any;
   totalCarrito: number = 0;
   form: FormGroup = new FormGroup({ });
   form2: FormGroup = new FormGroup({ });
   paymentPlanForm=FormGroup;
+
+
   constructor(private fb: FormBuilder,private loginService: LoginService, private cdr: ChangeDetectorRef, private route: ActivatedRoute) {
     this.form = this.fb.group({
       precioTotal: [''],
 
     });
+
   }
 
   ngOnInit() {
-
+    this.usuarioActual = this.loginService.getCurrentUser();
     this.loginService.totalCarrito$.subscribe(total => {
       this.totalCarrito = total;
       this.form.controls['totalCarrito'].setValue(total);
+      this.form.controls['totalCarrito'].setValue(total);
     });
+
+
     this.form = this.fb.group({
       ingresoMensual: [1000, Validators.required],//input
       precioVehicular: [700, Validators.required],//input
@@ -161,6 +174,23 @@ export class AddDataTableComponent implements OnInit{
     this.form.reset();
   }
 
+  guardarComoPDF() {
+    const pdf = new jsPDF('p', 'pt', 'a4');
+    const content = this.content.nativeElement;
+
+    html2canvas(content).then(canvas => {
+      const imgData = canvas.toDataURL('image/png');
+      const imgWidth = 210; // Ancho de la página PDF
+      const imgHeight = canvas.height * imgWidth / canvas.width;
+
+      pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
+      pdf.save("cuotas-yoes.pdf");
+    });
+  }
+
+
+
+
   displayedColumns: string[] = ['title', 'value'];
   dataSource = ELEMENT_DATA;
   dataSourceTotales = ELEMENT_DATA_TOTALES;
@@ -176,15 +206,11 @@ export class AddDataTableComponent implements OnInit{
     'Saldo Inicial Cuota Final',
     'Interes Cuota Final',
     'Amortización Cuota Final',
-    'Seguro Degravamen Cuota Final',
     'Saldo Final Cuota Final',
     'Saldo Inicial Para Cuota',
     'Intereses',
     'Cuota',
     'Gastos Administrativos',
-    'Seguro Degravamen',
-    'Seguro Vehicular',
-    'GPS',
     'Portes',
     'Amortización',
     'Saldo Final Para Cuota',
@@ -230,7 +256,7 @@ export class AddDataTableComponent implements OnInit{
       'Cuota': -1,
       'Amortización': -1,
       'Seguro Degravamen': -1,
-      'GPS': -1,
+      'GPS': 0,
       'Portes': -1,
       'Gastos Administrativos': -1,
       'Seguro Vehicular': -1,

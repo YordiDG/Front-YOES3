@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Users} from "../models/Users";
-import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
+import {HttpClient, HttpErrorResponse, HttpHeaders, HttpParams} from "@angular/common/http";
 import {catchError, Observable, retry, throwError} from "rxjs";
 import {Router} from "@angular/router";
 import {environment} from "../../../environments/environment.development";
@@ -50,9 +50,16 @@ export class UserService{
       .pipe(retry(2), catchError(this.handleError))
   }
 
-  getUserData(): Observable<Users> {
-    return this.http.get<Users>('http://localhost:8080/api/minimarket/usuarios/All-Users');
+  getUserByEmailAndPassword(email: string, password: string): Observable<Users> {
+    // Define los parámetros de la solicitud HTTP
+    const params = new HttpParams()
+      .set('email', email)
+      .set('password', password);
+
+    return this.http.get<Users>('http://localhost:8080/api/minimarket/usuarios/All-Users', { params });
   }
+
+
 
   saveUserData(data: any) {
     this.userData = data;

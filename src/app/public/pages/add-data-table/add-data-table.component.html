@@ -1,28 +1,29 @@
-<div class="name-view">
-  <!--<fa-icon style="font-size: 28px" [icon]="faUser"></fa-icon>-->
-  <h1 style="padding-left: 10px; font-weight: bold"> Bienvenido, {{ name }}</h1>
+
+<div class="name-view" style="margin-left: 0.7%">
+  <mat-icon style="font-size: 28px">person</mat-icon>
+  <h1 style="padding-left: 10px; font-weight: bold" formControlName="name"> Bienvenido, {{ usuarioActual.firstName }} {{ usuarioActual.lastName }}</h1>
 </div>
 <div class="add-data-table">
   <div class="example-container">
-    <div class="input-item total-carrito" style="background-color: #f4ad29; padding: 12px; width: 30%; font-family: 'Montserrat', sans-serif; font-weight: bold">
+    <div class="input-item total-carrito" style="margin-left: 0.9%;border: 3px solid #00a388;;background-color: #ffffff;border-radius: 15px; padding: 9px; width: 30%; font-family: 'Montserrat', sans-serif; font-weight: bold">
       <h1 formControlName="totalCarrito">Total del carrito: <strong style="font-size: 24px">{{ totalCarrito| number:'.2-2'  }}</strong></h1>
     </div>
-    <form [formGroup]="form">
+    <form [formGroup]="form" style="margin-top: 2%; background-color: #ffffff; padding: 12px">
       <div style="display: flex;flex-wrap: wrap; justify-content: space-between">
         <div class="data-input">
           <div class="input-item">
-            <button mat-raised-button
+            <button style="background-color: #00a388;" mat-raised-button
                     matTooltip="Se ingresa el total a pagar por los productos">
-              <mat-label style="color: #001D86">Ingrese Total Carrito </mat-label>
+              <mat-label style=" color: #ffffff">Ingrese Total Carrito </mat-label>
             </button>
-            <mat-form-field style="border-radius: 5px;">
-              <input matInput placeholder="Ingrese dato" formControlName="precioVehicular">
+            <mat-form-field style="border-radius: 5px; ">
+              <input matInput placeholder="Ingrese dato"  formControlName="totalCarrito">
             </mat-form-field>
           </div>
           <div class="input-item">
             <button mat-raised-button
                     matTooltip="Es indispensable que tengas un ingreso mensual bruto mínimo de S/ 1,000.">
-              <mat-label style="color: #001D86">Ingreso Mensual (S/.)</mat-label>
+              <mat-label style="color: #ffffff">Ingreso Mensual (S/.)</mat-label>
             </button>
             <mat-form-field style="border-radius: 5px;">
               <input matInput placeholder="Ingrese dato" formControlName="ingresoMensual">
@@ -32,7 +33,7 @@
           <div class="input-item">
             <button mat-raised-button
                     matTooltip="Es el porcentaje de la cuota inicial a pagar para acceder al crédito vehicular">
-              <mat-label style="color: #001D86">Cuota Inicial (%)</mat-label>
+              <mat-label style="color: #ffffff">Cuota Inicial (%)</mat-label>
             </button>
             <mat-form-field style="border-radius: 5px;">
               <input matInput placeholder="Ingrese dato" formControlName="cuotaInicial">
@@ -42,7 +43,7 @@
           <div class="input-item">
             <button mat-raised-button
                     matTooltip="Es el valor de la última cuota será el 40% o 50% del precio del auto según el plan.">
-              <mat-label style="color: #001D86">Cuota Final (%)</mat-label>
+              <mat-label style="color: #ffffff">Cuota Final (%)</mat-label>
             </button>
             <mat-form-field style="border-radius: 5px;">
               <input matInput placeholder="Ingrese dato" formControlName="cuotaFinal">
@@ -52,7 +53,7 @@
           <div class="input-item">
             <button mat-raised-button
                     matTooltip="La Tasa Nominal Anual o Efectiva se usa para calcular los pagos de interés de un préstamo o crédito.">
-              <mat-select style="color: #001D86" formControlName="tipoTasaInteres">
+              <mat-select style="color: #ffffff" formControlName="tipoTasaInteres">
                 <mat-option value="nominal"><strong>TNA (%)</strong></mat-option>
                 <mat-option value="efectiva"><strong>TEA (%)</strong></mat-option>
               </mat-select>
@@ -65,7 +66,7 @@
           <div class="input-item">
             <button mat-raised-button
                     matTooltip="Cubre y garantiza en caso de muerte o invalidez total y permanente del asegurado.">
-              <mat-label style="color: #001D86">Seguro Degravamen</mat-label>
+              <mat-label style="color: #ffffff">Seguro Degravamen</mat-label>
             </button>
             <mat-form-field style="border-radius: 5px;">
               <input matInput placeholder="Ingrese dato" formControlName="seguroDegravamen">
@@ -75,7 +76,7 @@
           <div class="input-item">
             <button mat-raised-button
                     matTooltip="Es el plazo en meses para poder cancelar el monto del préstamo.">
-              <mat-label style="color: #001D86">Plazo (Meses)</mat-label>
+              <mat-label style="color: #ffffff">Plazo (Meses)</mat-label>
             </button>
             <mat-form-field>
               <mat-select formControlName="plazo">
@@ -88,7 +89,7 @@
           <div class="input-item">
             <button mat-raised-button
                     matTooltip="Durante este plazo usted no abonará nada, ni capital ni intereses de su cuota.">
-              <mat-label style="color: #001D86">Plazo de Gracia Total (Meses)</mat-label>
+              <mat-label style="color: #ffffff">Plazo de Gracia Total (Meses)</mat-label>
             </button>
             <mat-form-field style="border-radius: 5px;">
               <input matInput placeholder="Ingrese dato" formControlName="plazoGraciaTotal">
@@ -98,7 +99,7 @@
           <div class="input-item">
             <button mat-raised-button
                     matTooltip="Durante este plazo solo se abonará la porción de intereses de la cuota.">
-              <mat-label style="color: #001D86">Plazo de Gracia Parcial (Meses)</mat-label>
+              <mat-label style="color: #ffffff">Plazo de Gracia Parcial (Meses)</mat-label>
             </button>
             <mat-form-field style="border-radius: 5px;">
               <input matInput placeholder="Ingrese dato" formControlName="plazoGraciaParcial">
@@ -108,7 +109,7 @@
           <div class="input-item">
             <button mat-raised-button
                     matTooltip="Es la tasa de interés que sirve para calcular el valor que tienen hoy una serie de ingresos que serán recibidos más adelante.">
-              <mat-label style="color: #001D86">Tasa de Descuento (COK)</mat-label>
+              <mat-label style="color: #ffffff">Tasa de Descuento (COK)</mat-label>
             </button>
             <mat-form-field style="border-radius: 5px;">
               <input matInput placeholder="Ingrese dato" formControlName="tasaDescuentoCOK">
@@ -118,7 +119,7 @@
           <div class="input-item">
             <button mat-raised-button
                     matTooltip="Se refiere al tiempo que hay entre dos fechas sucesivas en que los intereses se agregan al capital, pueden ser diarias, mensuales, quincenales, etc.">
-              <mat-label style="color: #001D86">Periodo de capitalización</mat-label>
+              <mat-label style="color: #ffffff">Periodo de capitalización</mat-label>
             </button>
             <mat-form-field style="border-radius: 5px;">
               <input matInput placeholder="Ingrese dato" formControlName="periodoCapitalizacion">
@@ -128,7 +129,7 @@
           <div class="input-item">
             <button mat-raised-button
                     matTooltip="Es la regularidad con la que se realizaran los pagos del préstamo.">
-              <mat-label style="color: #001D86">Frecuencia de pago</mat-label>
+              <mat-label style="color: #ffffff">Frecuencia de pago</mat-label>
             </button>
             <mat-form-field style="border-radius: 5px;">
               <input matInput placeholder="Ingrese dato" formControlName="frecuenciaPago">
@@ -138,7 +139,7 @@
           <div class="input-item">
             <button mat-raised-button
                     matTooltip="Es el número de días del año a tomar en cuenta para poder realizar los cálculos, siempre será 360.">
-              <mat-label style="color: #001D86">N° de días por año</mat-label>
+              <mat-label style="color: #ffffff">N° de días por año</mat-label>
             </button>
             <mat-form-field style="border-radius: 5px;">
               <input matInput placeholder="Ingrese dato" formControlName="nDiasAnio" [readonly]="true">
@@ -146,7 +147,10 @@
           </div>
 
           <div class="input-item">
-            <mat-label style="color: #001D86">Fecha Contrato</mat-label>
+            <button mat-raised-button
+                    matTooltip="Es el número de días del año a tomar en cuenta para poder realizar los cálculos, siempre será 360.">
+              <mat-label style="color: #ffffff">Fecha de Contrato</mat-label>
+            </button>
             <mat-form-field style="border-radius: 5px;">
               <input matInput [matDatepicker]="dp"><!--[formControl]="fechaContrato"-->
               <mat-datepicker-toggle matIconSuffix [for]="dp"></mat-datepicker-toggle>
@@ -157,134 +161,152 @@
         </div>
       </div>
 
-      <button mat-raised-button color="primary" style="width: 50%; justify-content: center" (click)="CalcularTabla()">
-        Calcular
-      </button>
-      <button
-        type="button"
-        (click)="resetForm()"
-        mat-raised-button
-        color="primary"
-        class="px-6 py-2 font-bold text-lg hover:bg-transparent hover:text-primary-500 transition-all duration-300"
-      >
-        Limpiar
-      </button>
+      <div class="btnCal">
+        <button mat-raised-button style=" color: white; font-size: 21px; background-color: #d5760b; width: 30%; justify-content: center" (click)="CalcularTabla()">
+          Calcular
+        </button>
+        <button
+          type="button"
+          (click)="resetForm()"
+          mat-raised-button
+          style="width: 30%;color: white; font-size: 21px;background-color: #09a4b8; margin-left: 4%; justify-content: center"
+          class="px-6 py-2 font-bold text-lg hover:bg-transparent hover:text-primary-500 transition-all duration-300"
+        >
+          Limpiar
+        </button>
+      </div>
     </form>
 
   </div>
+  <div>
+    <div style="margin-left: 70%">
+      <button  (click)="guardarComoPDF()" style=" background-color: white; border: none"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-device-floppy" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#009988" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+        <path d="M6 4h10l4 4v10a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2" />
+        <path d="M12 14m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+        <path d="M14 4l0 4l-6 0l0 -4" />
+      </svg></button>
 
-  <div class="data-table-container">
-    <br><br>
-    <div class="data-table-column">
-      <h2 style="margin: 0px 0 0px 0 !important"> Método Francés </h2>
-      <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-
-        <ng-container matColumnDef="title">
-          <mat-cell *matCellDef="let element"> {{ element.title }}</mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="value">
-          <mat-cell *matCellDef="let element" class="center-text">
-            {{ element.porct ? 'S/.' + element.value : element.value + '%' }}
-          </mat-cell>
-        </ng-container>
-
-        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-      </mat-table>
-
-
-      <br>
-      <h2 style="margin: 0px 0 0px 0 !important"> Indicadores de rentabilidad </h2>
-      <mat-table [dataSource]="dataSourceIndicadoresRentabilidad" class="mat-elevation-z8">
-
-
-        <ng-container matColumnDef="title">
-          <mat-cell *matCellDef="let element"> {{ element.title }}</mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="value">
-          <mat-cell *matCellDef="let element" class="center-text">
-            {{ element.porct ? 'S/.' + element.value : element.value + '%' }}
-          </mat-cell>
-        </ng-container>
-
-        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-      </mat-table>
-      <br>
+      <button style=" margin-left: 5%; background-color: white; border: none" routerLink="/home-client"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-logout" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#009988" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+        <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />
+        <path d="M9 12h12l-3 -3" />
+        <path d="M18 15l3 -3" />
+      </svg></button>
 
     </div>
+    <div #content class="data-table-container" style="border: 2px solid #0a716c; padding: 5px">
+      <br><br>
+      <div class="data-table-column"  >
+        <h2 style="color: #0b6055; margin: 0px 0 0px 0 !important"> Método Francés </h2>
+        <mat-table [dataSource]="dataSource" style="border: 2px solid #0b6055;" class="mat-elevation-z8">
 
-    <div class="data-table-column">
-      <h2 style="margin: 0px 0 0px 0 !important"> Totales </h2>
-      <mat-table [dataSource]="dataSourceTotales" class="mat-elevation-z8">
-        <ng-container matColumnDef="title">
-          <mat-cell *matCellDef="let element"> {{ element.title }}</mat-cell>
-        </ng-container>
+          <ng-container matColumnDef="title" >
+            <mat-cell *matCellDef="let element"> {{ element.title }}</mat-cell>
+          </ng-container>
 
-        <ng-container matColumnDef="value">
-          <mat-cell *matCellDef="let element" class="center-text">
-            {{ 'S/.' + element.value }}
-          </mat-cell>
-        </ng-container>
+          <ng-container matColumnDef="value">
+            <mat-cell *matCellDef="let element" class="center-text">
+              {{ element.porct ? 'S/.' + element.value : element.value + '%' }}
+            </mat-cell>
+          </ng-container>
 
-        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-      </mat-table>
-      <br>
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
 
-      <h2 style="margin: 0px 0 0px 0 !important"> Gastos Periodicos (Mensuales) </h2>
-      <br>
-      <form [formGroup]="form2">
-        <div class="data-input-gastos-periodicos">
-          <div class="input-item" style="margin-left: 13px;">
-            <mat-form-field style="border-radius: 5px;">
-              <input matInput placeholder="Ingrese dato" formControlName="gps">
-            </mat-form-field>
+
+        <br>
+        <h2 style="color: #0b6055;margin: 0px 0 0px 0 !important"> Indicadores de rentabilidad </h2>
+        <mat-table style="border: 2px solid #0b6055;" [dataSource]="dataSourceIndicadoresRentabilidad" class="mat-elevation-z8">
+
+
+          <ng-container matColumnDef="title">
+            <mat-cell *matCellDef="let element"> {{ element.title }}</mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="value">
+            <mat-cell *matCellDef="let element" class="center-text">
+              {{ element.porct ? 'S/.' + element.value : element.value + '%' }}
+            </mat-cell>
+          </ng-container>
+
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+        <br>
+
+      </div>
+
+      <div class="data-table-column">
+        <h2 style="color: #0b6055;margin: 0px 0 0px 0 !important"> Totales </h2>
+        <mat-table style="border: 2px solid #0b6055;" [dataSource]="dataSourceTotales" class="mat-elevation-z8">
+          <ng-container matColumnDef="title">
+            <mat-cell *matCellDef="let element"> {{ element.title }}</mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="value">
+            <mat-cell *matCellDef="let element" class="center-text">
+              {{ 'S/.' + element.value }}
+            </mat-cell>
+          </ng-container>
+
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+        <br>
+
+        <h2 style="margin: 0px 0 0px 0 !important"> Gastos Periodicos (Mensuales) </h2>
+        <br>
+        <form style="border: 2px solid #0b6055;" [formGroup]="form2">
+          <div class="data-input-gastos-periodicos">
+            <div class="input-item" style=" margin-top:10px; margin-left: 13px">
+              <mat-label style="color: #0b6055; text-align: left">Portes</mat-label>
+              <mat-form-field style="border-radius: 5px;">
+                <input matInput placeholder="Ingrese dato" formControlName="portes">
+              </mat-form-field>
+            </div>
+            <div class="input-item" style="margin-left: 13px">
+              <mat-label style="color: #0b6055; text-align: left">Gastos de Administración</mat-label>
+              <mat-form-field style="border-radius: 5px;">
+                <input matInput placeholder="Ingrese dato" formControlName="gastosAdministrativos">
+              </mat-form-field>
+            </div>
+
           </div>
-
-          <div class="input-item" style="margin-left: 13px">
-            <mat-label style="color: #001D86; text-align: left">Portes</mat-label>
-            <mat-form-field style="border-radius: 5px;">
-              <input matInput placeholder="Ingrese dato" formControlName="portes">
-            </mat-form-field>
-          </div>
-
-        </div>
-      </form>
-
-
+        </form>
+      </div>
     </div>
-
   </div>
 </div>
 
 <br>
-<section class="table-data mat-elevation-z8" tabindex="0">
 
-  <table mat-table [dataSource]="tableData" class="mat-table tabla-data-inside">
+<section #content class="table-data mat-elevation-z8" tabindex="0">
 
-    <!-- Iterar sobre las columnas -->
-    <ng-container *ngFor="let col of displayedColumnsTable; let iteracion = index" [matColumnDef]="col">
-      <th style="min-width: 190px !important; border: 1px solid black;text-align: center; background-color: #ffe49c "
-          mat-header-cell *matHeaderCellDef>
-        {{ col }}
-      </th>
-      <!-- Iterar sobre las filas -->
-      <td
-        style="min-width: 190px !important; border: 1px solid black;text-align: center; background-color: {{iteracion === 0 ? '#c4e4b4' : '' }} ; color: {{element[col] < 0 ? '#FF0000' : ''}}"
-        mat-cell *matCellDef="let element">
+    <table mat-table [dataSource]="tableData" class="mat-table tabla-data-inside">
 
-        {{
-          element[col] === -1 ? '' : (iteracion === 1 || iteracion === 2) ? (parseFloat(element[col]).toFixed(2) + '%') : (iteracion === 4 || iteracion === 3 || iteracion === 0) ? (element[col]) : (Math.abs(+element[col])).toLocaleString('en-US', {
-            minimumFractionDigits: 2,
-            maximumFractionDigits: 2
-          })
-        }}
-      </td>
-    </ng-container>
+      <!-- Iterar sobre las columnas -->
+      <ng-container *ngFor="let col of displayedColumnsTable; let iteracion = index" [matColumnDef]="col">
+        <th style="min-width: 150px !important; font-size: 16px ;border: 2px solid #14a896; text-align: center; background-color: rgb(121,234,226) "
+            mat-header-cell *matHeaderCellDef>
+          {{ col }}
+        </th>
+        <!-- Iterar sobre las filas -->
+        <td
+          style="min-width: 190px !important; border: 1px solid #14a896;text-align: center; background-color: {{iteracion === 0 ? '#c4e4b4' : '' }} ; color: {{element[col] < 0 ? '#FF0000' : ''}}"
+          mat-cell *matCellDef="let element">
 
-    <!-- Renderizar las filas -->
-    <tr mat-header-row *matHeaderRowDef="displayedColumnsTable; sticky: true"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumnsTable"></tr>
-  </table>
-</section>
+          {{
+            element[col] === -1 ? '' : (iteracion === 1 || iteracion === 2) ? (parseFloat(element[col]).toFixed(2) + '%') : (iteracion === 4 || iteracion === 3 || iteracion === 0) ? (element[col]) : (Math.abs(+element[col])).toLocaleString('en-US', {
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 2
+            })
+          }}
+        </td>
+      </ng-container>
+
+      <!-- Renderizar las filas -->
+      <tr mat-header-row *matHeaderRowDef="displayedColumnsTable; sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumnsTable"></tr>
+    </table>
+  </section>
+
 

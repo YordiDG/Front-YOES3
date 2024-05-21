@@ -72,6 +72,10 @@ export class ComidasComponent implements OnInit {
     this.obtenerCategorias();
   }
 
+  isDisponible(producto: Producto): boolean {
+    return producto.cantidad_stock > 0;
+  }
+
   /**/
 
   showUserDialog(): void {

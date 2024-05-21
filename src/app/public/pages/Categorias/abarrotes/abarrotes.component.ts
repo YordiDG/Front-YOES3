@@ -78,6 +78,10 @@ export class AbarrotesComponent implements OnInit {
     this.obtenerCategorias();
     this.updateVisibleSlides();
   }
+
+  isDisponible(producto: Producto): boolean {
+    return producto.cantidad_stock > 0;
+  }
   /*Productos de carrucel*/
 
   updateVisibleSlides() {

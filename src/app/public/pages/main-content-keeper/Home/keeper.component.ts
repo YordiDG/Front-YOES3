@@ -171,17 +171,17 @@ export class KeeperComponent implements OnInit {
         this.mostrarMensajes('La cantidad en stock de este producto se ha agotado');
       }
     } else {
-      if ((this.totalCarrito + producto.price) <= 700) {
+      if ((this.totalCarrito + producto.price) <= 900) {
         if (producto.cantidad_stock > 0) {
           this.carrito.push({...producto, cantidad: 1, total: producto.price});
           this.totalCarrito += producto.price;
-          this.loginService.actualizarTotal(this.totalCarrito);  // Actualiza el total en el servicio
+          this.loginService.actualizarTotal(this.totalCarrito);
           this.incrementarContador();
         } else {
           this.mostrarMensajes('Este producto está agotado');
         }
       } else {
-        this.mostrarMensajes('El total del carrito excede el límite de $700');
+        this.mostrarMensajes('El total del carrito excede el límite de S/. 900');
       }
     }
   }
@@ -203,7 +203,12 @@ export class KeeperComponent implements OnInit {
 
   productosComprados() {
     if (this.contador === 0) {
-      alert("No hay ningun producto añadido en el carrito");
+      this.snackBar.open('No hay ningún producto añadido en el carrito 🚗', 'Cerrar', {
+        duration: 3000,
+        horizontalPosition: 'center',
+        verticalPosition: 'top',
+        panelClass: ['custom-snackbar']
+      });
     } else {
       this.abrirCerrarFormularioCarrito();
     }
