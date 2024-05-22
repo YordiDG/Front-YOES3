@@ -26,8 +26,16 @@ export class UserService {
   basePath = environment.serverRegister;
   url: string = `/All-Users`;
 
+  basePath2 = environment.serverRegister2;
+  urls: string = `/register`;
+
+
   private resourcePath(): string {
     return `${this.basePath}${this.url}`;
+  }
+
+  private resourcePath2(): string {
+    return `${this.basePath2}${this.urls}`;
   }
 
   constructor(private http: HttpClient, private router: Router) {
@@ -72,7 +80,7 @@ export class UserService {
 
   createUser(item: any): Observable<Users> {
     return this.http
-      .post<Users>(this.resourcePath(), JSON.stringify(item), this.httpOptions)
+      .post<Users>(this.resourcePath2(), JSON.stringify(item), this.httpOptions)
       .pipe(retry(2), catchError(this.handleError))
   }
 
