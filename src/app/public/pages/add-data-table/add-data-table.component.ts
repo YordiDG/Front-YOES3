@@ -134,7 +134,6 @@ export class AddDataTableComponent implements OnInit{
 
     this.dataSource[0].value = this.calculateTEA().toString();
     this.dataSource[1].value = this.calculateTEM().toString();
-    // this.dataSource[2].value = this.calculateSeguroVehicularAnual().toString();
     this.dataSource[2].value = this.calculateCuotaInicial().toString();
     this.dataSource[3].value = this.calculateCuotaFinal().toString();
     this.dataSource[4].value = this.calculateMontoPrestamo().toString();
@@ -168,7 +167,38 @@ export class AddDataTableComponent implements OnInit{
     })
   }
 
-  name = 'Yordi Gonzales';
+
+  displayedColumns: string[] = ['title', 'value'];
+  dataSource = ELEMENT_DATA;
+  dataSourceTotales = ELEMENT_DATA_TOTALES;
+  dataSourceIndicadoresRentabilidad = ELEMENT_DATA_INDICADORES_RENTABILIDAD;
+  dataSourceGastosPeriodicos = ELEMENT_DATA_GASTOS_PERIODICOS;
+  tableData : any [] = [];
+  displayedColumnsTable: string[] = [
+    'N°',
+    'TEA',
+    'i\' = TEP = TEM',
+    'Fecha',
+    'P.G',
+    'Saldo Inicial Cuota Final',
+    'Interes Cuota Final',
+    'Amortización Cuota Final',
+    'Seguro Degravamen Cuota Final',
+    'Saldo Final Cuota Final',
+    'Saldo Inicial Para Cuota',
+    'Intereses',
+    'Cuota',
+    'Gastos Administrativos',
+    'Seguro Degravamen',
+    'Seguro Vehicular',
+    'GPS',
+    'Portes',
+    'Amortización',
+    'Saldo Final Para Cuota',
+    'Flujo'
+  ];
+  //fechaContrato = new FormControl(_moment([2023, 0, 31]));
+
 
   resetForm(): void {
     this.form.reset();
@@ -187,37 +217,6 @@ export class AddDataTableComponent implements OnInit{
       pdf.save("cuotas-yoes.pdf");
     });
   }
-
-
-
-
-  displayedColumns: string[] = ['title', 'value'];
-  dataSource = ELEMENT_DATA;
-  dataSourceTotales = ELEMENT_DATA_TOTALES;
-  dataSourceIndicadoresRentabilidad = ELEMENT_DATA_INDICADORES_RENTABILIDAD;
-  dataSourceGastosPeriodicos = ELEMENT_DATA_GASTOS_PERIODICOS;
-  tableData : any [] = [];
-  displayedColumnsTable: string[] = [
-    'N°',
-    'TEA',
-    'i\' = TEP = TEM',
-    'Fecha',
-    'P.G',
-    'Saldo Inicial Cuota Final',
-    'Interes Cuota Final',
-    'Amortización Cuota Final',
-    'Saldo Final Cuota Final',
-    'Saldo Inicial Para Cuota',
-    'Intereses',
-    'Cuota',
-    'Gastos Administrativos',
-    'Portes',
-    'Amortización',
-    'Saldo Final Para Cuota',
-    'Flujo'
-  ];
-  //fechaContrato = new FormControl(_moment([2023, 0, 31]));
-
 
   formatDate(date: Date): string {
     const day = date.getDate().toString().padStart(2, '0');
@@ -256,7 +255,7 @@ export class AddDataTableComponent implements OnInit{
       'Cuota': -1,
       'Amortización': -1,
       'Seguro Degravamen': -1,
-      'GPS': 0,
+      'GPS': -1,
       'Portes': -1,
       'Gastos Administrativos': -1,
       'Seguro Vehicular': -1,
@@ -640,6 +639,8 @@ export class AddDataTableComponent implements OnInit{
     }
     return (res).toFixed(3)
   }
+
+
 
   calculateTasaDescuento(){
     if(this.form.get('tasaDescuentoCOK')?.value == null ||

@@ -1,53 +1,84 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Users} from "../models/Users";
 import {HttpClient, HttpErrorResponse, HttpHeaders, HttpParams} from "@angular/common/http";
-import {catchError, Observable, retry, throwError} from "rxjs";
+import {catchError, map, Observable, retry, throwError} from "rxjs";
 import {Router} from "@angular/router";
 import {environment} from "../../../environments/environment.development";
-
 
 @Injectable({
   providedIn: 'root'
 })
-export class UserService{
-
+export class UserService {
   userData: any = {};
 
   user: Users = {
     id: 0,
     firstName: '',
     lastName: '',
-    job:'',
-    dni:'',
-    salary:0,
+    job: '',
+    dni: '',
+    salary: 0,
     email: '',
     password: '',
     phoneNumber: '',
     role: ''
   };
-  basePath=environment.serverRegister;
-  url: string= `/new`
+  basePath = environment.serverRegister;
+  url: string = `/All-Users`;
 
-  private resourcePath():string{
-    return `${this.basePath}${this.url}`
+  private resourcePath(): string {
+    return `${this.basePath}${this.url}`;
   }
 
-  constructor(private http:HttpClient,
-              private router:Router) {}
+  constructor(private http: HttpClient, private router: Router) {
+  }
+
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
     })
+  };
+
+  login(email: string, password: string): Observable<Users | null> {
+    const url = this.resourcePath();
+
+    return this.http.get<Users[]>(url, this.httpOptions).pipe(
+      catchError(this.handleError)
+    ).pipe(
+      map(users => {
+        const user = users.find(u => u.email === email && u.password === password);
+        if (user) {
+          this.userData = user;  // Guardar datos del usuario si es necesario
+          this.router.navigate(["home-client"]);
+          return user;
+        } else {
+          return null;
+        }
+      })
+    );
   }
 
-  authenticate(email: string, password: string): Observable<Users> {
-    return this.http.get<Users>(`${this.basePath}/new/${encodeURIComponent(email)}/${encodeURIComponent(password)}`);
+  handleError(error: any) {
+    if (error instanceof HttpErrorResponse) {
+      // Errores del lado del cliente o red
+      console.error(`An error occurred ${error.status}, body was: ${error.message}`);
+    } else {
+      // Errores del lado del servidor
+      console.error(`An error occurred ${error.status}, body was: ${error.message}`);
+    }
+    return throwError('Something happened with request, try again later...');
   }
 
-  createUser(item: any): Observable<Users>{
+
+  createUser(item: any): Observable<Users> {
     return this.http
       .post<Users>(this.resourcePath(), JSON.stringify(item), this.httpOptions)
       .pipe(retry(2), catchError(this.handleError))
+  }
+
+
+  authenticate(email: string, password: string): Observable<Users> {
+    return this.http.get<Users>(`${this.basePath}/new/${encodeURIComponent(email)}/${encodeURIComponent(password)}`);
   }
 
   getUserByEmailAndPassword(email: string, password: string): Observable<Users> {
@@ -56,10 +87,8 @@ export class UserService{
       .set('email', email)
       .set('password', password);
 
-    return this.http.get<Users>('http://localhost:8080/api/minimarket/usuarios/All-Users', { params });
+    return this.http.get<Users>('https://backend-yoes-final.onrender.com/api/minimarket/usuarios/All-Users', {params});
   }
-
-
 
   saveUserData(data: any) {
     this.userData = data;
@@ -70,49 +99,9 @@ export class UserService{
     return userData ? JSON.parse(userData) : null;
   }
 
-
   updateUserProfile(user: Users): Observable<any> {
     const url = `http://localhost:8080/api/minimarket/usuarios/${user.id}/update`;
     return this.http.put(url, user);
   }
 
-  async login(email: string, password: string) {
-    const url = `http://localhost:8080/api/minimarket/usuarios/login`;
-
-    try {
-      const response = await fetch(url, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ email, password })
-      });
-
-      if (!response.ok) {
-        console.error(`Error en la solicitud: ${response.status}`);
-        return null;
-      }
-
-      const data = await response.json();
-      console.log('Usuario autenticado:', data);
-      // Redirigir al usuario a la página principal de la aplicación
-      this.router.navigate(["home-client"]);
-      return data;
-    } catch (error) {
-      console.error('Error durante la solicitud:', error);
-      return null;
-    }
-  }
-
-
-
-
-  handleError( error: HttpErrorResponse){
-    if(error.error instanceof ErrorEvent){
-      console.log(`An error occurred ${error.status}, body was: ${error.error}`);
-    } else {
-      console.log(`An error occurred ${error.status}, body was: ${error.error}`);
-    }
-    return throwError('Something happened with request, try again later...')
-  }
 }

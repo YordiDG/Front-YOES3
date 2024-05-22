@@ -19,32 +19,32 @@ export class ProductoService extends BaseService<Producto>{
   public cartUpdated$: Subject<boolean> = new Subject();
 
   getCategory(): Observable<any[]> {
-    return this.http.get<any[]>('http://localhost:8080/api/minimarket/categorias/all-category');
+    return this.http.get<any[]>('https://backend-yoes-final.onrender.com/api/minimarket/categorias/all-category');
   }
 
   createCategory(obj: any): Observable<any> {
-    return this.http.post<any>('http://localhost:8080/api/minimarket/categorias/new-category', obj);
+    return this.http.post<any>('https://backend-yoes-final.onrender.com/api/minimarket/categorias/new-category', obj);
   }
 
   getProductsByCategory(category: string): Observable<any[]> {
-    return this.http.get<any[]>('http://localhost:8080/api/v1/product/all-product');
+    return this.http.get<any[]>('https://backend-yoes-final.onrender.com/api/v1/product/all-product');
   }
 
   getProducts(): Observable<any[]> {
-    return this.http.get<any[]>('http://localhost:8080/api/v1/product/all-product');
+    return this.http.get<any[]>('https://backend-yoes-final.onrender.com/api/v1/product/all-product');
   }
 
   getProductById(productId: number): Observable<any[]> {
-    return this.http.get<any[]>(`http://localhost:8080/api/v1/product/${productId}`);
+    return this.http.get<any[]>(`https://backend-yoes-final.onrender.com/api/v1/product/${productId}`);
   }
 
   // Modifica el método para que envíe una solicitud PUT
   updateProduct(id: number, obj: any): Observable<any> {
-    return this.http.put<any>(`http://localhost:8080/api/v1/product/${id}/update`, obj);
+    return this.http.put<any>(`https://backend-yoes-final.onrender.com/api/v1/product/${id}/update`, obj);
   }
 
   deleteProduct(id: any): Observable<any[]> {
-    return this.http.get<any[]>(`http://localhost:8080/api/v1/product/${id}/delete`);
+    return this.http.get<any[]>(`https://backend-yoes-final.onrender.com/api/v1/product/${id}/delete`);
   }
 
   /*  addToCart(obj: any): Observable<any> {

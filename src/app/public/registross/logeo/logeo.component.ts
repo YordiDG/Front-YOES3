@@ -57,18 +57,25 @@ export class LogeoComponent  implements OnInit {
 
 
   onLogin() {
-    this._userService.createUser(this.registerForm.value).subscribe(
-      (response: any) => {
-        if (this.formLogin.valid) {
-          this._userService.login(this.formLogin.get("email")?.value, this.formLogin.get("password")?.value)
-          this.router.navigate(['home-client'])
-          this.loginExitoso = true;
-
-
-          this.loginService.setCurrentUser(response);
+    if (this.formLogin.valid) {
+      this._userService.login(this.formLogin.get("email")?.value, this.formLogin.get("password")?.value).subscribe(
+        (response: any) => {
+          if (response) {
+            this.router.navigate(['home-client']);
+            this.loginExitoso = true;
+            this.loginService.setCurrentUser(response);
+          } else {
+            this.loginError = true;
+          }
+        },
+        (error: any) => {
+          console.error("Error durante el inicio de sesión:", error);
+          this.loginError = true;
         }
-      })
+      );
+    }
   }
+
 
   handleRegistroExitoso() {
     this.registroExitoso = true;
