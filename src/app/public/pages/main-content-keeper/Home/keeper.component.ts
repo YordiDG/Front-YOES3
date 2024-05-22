@@ -53,13 +53,13 @@ export class KeeperComponent implements OnInit {
   currentSlide: number = 0;
 
   slides = [
-    { title: 'Verduras', description: 'Brócoli, rabanito, zanahoria', imageUrl: 'https://media.discordapp.net/attachments/1239050988195942465/1239447880758988880/138792896_dcaaded0-20e7-4f47-adb5-91c1d5e35705-removebg-preview.png?ex=6642f54a&is=6641a3ca&hm=74c606fcf9d9c96e7d1f8de35f1f9e557e8001c3f8d30d0fda7bba51897821cb&=&format=webp&quality=lossless&width=388&height=388', category: 'verduras' },
-    { title: 'Carnes', description: 'Cerdo, pescado, pollo,res', imageUrl: 'https://media.discordapp.net/attachments/1239050988195942465/1239056622769410049/93505921_Meat_in_its_raw_state_-16-removebg-preview.png?ex=664188e7&is=66403767&hm=1c31fb515a2336e812980268dc8d1ff4c2956ebf8e34e40a98e88ba777f401d0&=&format=webp&quality=lossless&width=388&height=388', category: 'carnes' },
-    { title: 'Frutas', description: 'Uva, plátano, manzana', imageUrl: 'https://media.discordapp.net/attachments/1239050988195942465/1239056623167606875/81678404_Mix_fruits_-7-removebg-preview.png?ex=664188e7&is=66403767&hm=fe96f65c6bbf272ccb620fd521bc4cf912ca79c78cc647fcc641be48ebc6e36f&=&format=webp&quality=lossless&width=388&height=388', category: 'frutas'},
-    { title: 'Abarrotes', description: 'Arroz, azúcar, aceite', imageUrl: 'https://media.discordapp.net/attachments/1239050988195942465/1239056621808648293/pixelcut-export-removebg-preview.png?ex=664188e7&is=66403767&hm=fa52f33e1b0d55e0aa9c5de336734788cd43770bebc787c31aebac0a2d54d430&=&format=webp&quality=lossless&width=358&height=358', category: 'abarrotes' },
-    { title: 'Lácteos', description: 'Queso, yogurt,leche', imageUrl: 'https://media.discordapp.net/attachments/1239050988195942465/1239056623616659476/productos-lacteos-mesa-madera.png?ex=6642da67&is=664188e7&hm=889c2418eaf1f2ec1a1df9d9ff8e764273cc026e7ecfc4fd490fa42486e7783a&=&format=webp&quality=lossless&width=306&height=311', category: 'lacteos'},
-    { title: 'Panisteria', description: 'Pan, queques, tortas', imageUrl: 'https://media.discordapp.net/attachments/1239050988195942465/1239056622496645130/91630062_Delicious_uzbek_pastries_-11-removebg-preview.png?ex=6642da67&is=664188e7&hm=a1e1aa86febd160627e57ab6dc27b1111f07b06c9537cb825e81bee247fab56c&=&format=webp&quality=lossless&width=388&height=388', category: 'panisteria' },
-    { title: 'Comidas', description: 'Arroz con pollo, Aji de gallina,...', imageUrl: 'https://media.discordapp.net/attachments/1239050988195942465/1239451426606809119/ceviche-peruano-removebg-preview.png?ex=6642f897&is=6641a717&hm=56da533ca832eaa06a33453f7761100c2de3388360fc5c35230b22ca920a080f&=&format=webp&quality=lossless&width=419&height=326', category: 'comida' },
+    { title: 'Verduras', description: 'Brócoli, rabanito, zanahoria', imageUrl: 'assets/8.webp', category: 'verduras' },
+    { title: 'Carnes', description: 'Cerdo, pescado, pollo,res', imageUrl: 'assets/4.webp', category: 'carnes' },
+    { title: 'Frutas', description: 'Uva, plátano, manzana', imageUrl: 'assets/6.webp', category: 'frutas'},
+    { title: 'Abarrotes', description: 'Arroz, azúcar, aceite', imageUrl: 'assets/2.webp', category: 'abarrotes' },
+    { title: 'Lácteos', description: 'Queso, yogurt,leche', imageUrl: 'assets/5.webp', category: 'lacteos'},
+    { title: 'Panisteria', description: 'Pan, queques, tortas', imageUrl: 'assets/3.webp', category: 'panisteria' },
+    { title: 'Comidas', description: 'Arroz con pollo, Aji de gallina,...', imageUrl: 'assets/7.webp', category: 'comida' },
   ];
 
 
