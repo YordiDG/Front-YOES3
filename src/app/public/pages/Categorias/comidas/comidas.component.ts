@@ -4,7 +4,7 @@ import {ProductoService} from "../../../services/producto.service";
 import {Producto} from "../../../models/producto.service";
 import {MatDialog} from "@angular/material/dialog";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {DialogLogComponent} from "../../../dialog-log/dialog-log.component";
+
 
 
 interface Carrito {
@@ -39,8 +39,6 @@ export class ComidasComponent implements OnInit {
   mostrarMensaje: boolean = false;
   mostrarFormularioCarrito: boolean = false;
   searching: boolean = false;
-  productosFiltrados: Producto[] = [];
-  categoriaSeleccionada: string = '';
   showDialog: boolean = false;
   isMenuOpen: boolean = false;
   producto: boolean = false;
@@ -113,10 +111,6 @@ export class ComidasComponent implements OnInit {
     );
   }
 
-  filtrarProductos(categoria: string) {
-    this.categoriaSeleccionada = categoria;
-    this.productosFiltrados = this.Productos.filter(producto => producto.category.toLowerCase() === categoria.toLowerCase());
-  }
   /*-----------*/
 
   cantidadAnadida(productId: number): number {
@@ -128,11 +122,6 @@ export class ComidasComponent implements OnInit {
     this.snackBar.open('Producto añadido', 'Cerrar', {
       duration: 2000,
     });
-  }
-
-
-  isTarjetaActiva(producto: any): boolean {
-    return this.productoSeleccionado === producto;
   }
 
   agregarAlCarrito(producto: Producto) {
@@ -204,10 +193,6 @@ export class ComidasComponent implements OnInit {
     this.hideUserDialog();
   }
 
-
-  abrirFormularioCarrito() {
-    this.mostrarFormularioCarrito = true;
-  }
   removerDelCarrito(index: number) {
     const producto = this.carrito[index];
     this.totalCarrito -= producto.price * producto.cantidad;
@@ -227,26 +212,8 @@ export class ComidasComponent implements OnInit {
     this.mostrarFormularioCarrito = false;
   }
 
-  mostrarProducto(producto: any): boolean {
-    return this.Productos.length === 0 || this.Productos.includes(producto);
-  }
-
-  openUserDialog(): void {
-    const dialogRef = this.dialog.open(DialogLogComponent, {
-      width: '300px'
-    });
-  }
-
   toggleMenu(): void {
     this.isMenuOpen = !this.isMenuOpen;
-  }
-
-
-  signOut() {
-    localStorage.removeItem('currentUser');
-    localStorage.removeItem('accessToken');
-    this.router.navigate(['']).then();
-    console.log("Signed Out");
   }
 
   protected readonly Producto = Producto;
@@ -258,12 +225,7 @@ export class ComidasComponent implements OnInit {
   goToMessenger(){
     this.router.navigateByUrl('/messenger-client');
   }
-  goToProfile(){
-    this.router.navigateByUrl('/profile-client');
-  }
-  goToFindHouse(){
-    this.router.navigateByUrl('/find-house');
-  }
+
   goToLogin(){
     this.router.navigateByUrl('/login');
   }

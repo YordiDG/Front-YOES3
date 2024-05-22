@@ -557,13 +557,6 @@ export class AddDataTableComponent implements OnInit{
 
   }
 
-  CalcularValorCelda(row: number, col: number): number {
-    // Aquí puedes poner la lógica para calcular el valor de cada celda
-    // basándote en las celdas superiores o cualquier fórmula que desees.
-    // Por ejemplo, puedes sumar los índices de la fila y la columna.
-    return row + col;
-  }
-
   calculateTEA() {
     if(this.form.get('tna')?.value == null ||
       this.form.get('tna')?.value == '') { return 0 }
@@ -581,13 +574,6 @@ export class AddDataTableComponent implements OnInit{
     return (((1+(parseFloat(this.dataSource[0].value)/100) )**(30/360)-1)*100).toFixed(7)
   }
 
-  calculateSeguroVehicularAnual(){
-    if(this.form.get('seguroVehicularAnual')?.value == null ||
-      this.form.get('seguroVehicularAnual')?.value == '') { return 0 }
-    let seguroVA = parseFloat(this.form.get('seguroVehicularAnual')?.value);
-    seguroVA = seguroVA/100;
-    return Number((((seguroVA*30)/360)*100).toFixed(3))
-  }
 
   calculateCuotaInicial(){
     if(this.form.get('precioVehicular')?.value == null ||
@@ -636,8 +622,6 @@ export class AddDataTableComponent implements OnInit{
     return (res).toFixed(3)
   }
 
-
-
   calculateTasaDescuento(){
     if(this.form.get('tasaDescuentoCOK')?.value == null ||
       this.form.get('tasaDescuentoCOK')?.value == '') { return 0 }
@@ -652,16 +636,6 @@ export class AddDataTableComponent implements OnInit{
     const plazo = parseFloat(this.form.get('plazo')?.value);
 
     return (montoPrestamo - (cuotaFinal/((1+tem)**(plazo + 1)))).toFixed(3)
-  }
-
-  calculateSaldoCapitalizado(){
-    let cont = 0;
-    for (let i = 0; i < this.tableData.length; i++) {
-      if(this.tableData[i]['P.G'] != 'S'){
-        cont++;
-      }
-    }
-    return this.tableData[cont]['Saldo Inicial Para Cuota']
   }
 
   calculateRCuotasMensuales(){
@@ -762,29 +736,6 @@ export class AddDataTableComponent implements OnInit{
     return  suma.toFixed(3);
   }
 
-  calculateIRR(cashFlows: number[], guess: number = 0.1, tolerance: number = 0.000001, maxIterations: number = 1000): number {
-    let lowerBound = -1 + tolerance;
-    let upperBound = 1;
-    let irr = guess;
-
-    for (let i = 0; i < maxIterations; i++) {
-      const npv = this.calculateNPV(cashFlows, irr);
-      if (Math.abs(npv) <= tolerance) {
-        return irr;
-      }
-
-      const npvLower = this.calculateNPV(cashFlows, lowerBound);
-      if (npvLower * npv > 0) {
-        lowerBound = irr;
-      } else {
-        upperBound = irr;
-      }
-
-      irr = (lowerBound + upperBound) / 2;
-    }
-
-    throw new Error('No se encontró la TIR con el número máximo de iteraciones');
-  }
 
   calculateNPV(cashFlows: number[], rate: number): number {
     return cashFlows.reduce((acc, val, i) => acc + (val / Math.pow(1 + rate, i)), 0);

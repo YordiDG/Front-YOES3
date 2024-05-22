@@ -113,12 +113,6 @@ export class LogeoComponent  implements OnInit {
     );
   }
 
-
-  goToRegister(event: Event) {
-    event.preventDefault(); // Evita el comportamiento predeterminado del enlace
-    this.router.navigate(['/register']);
-  }
-
 }
 
 

@@ -15,7 +15,6 @@ import {AbarrotesComponent} from "./public/pages/Categorias/abarrotes/abarrotes.
 import {ComidasComponent} from "./public/pages/Categorias/comidas/comidas.component";
 import {AddDataTableComponent} from "./public/pages/add-data-table/add-data-table.component";
 import {LogeoComponent} from "./public/registross/logeo/logeo.component";
-import {DialogLogComponent} from "./public/dialog-log/dialog-log.component";
 
 
 const routes: Routes = [

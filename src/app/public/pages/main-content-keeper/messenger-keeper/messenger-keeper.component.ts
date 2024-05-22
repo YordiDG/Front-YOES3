@@ -112,12 +112,6 @@ export class MessengerKeeperComponent implements OnInit{
   goToKeeper(){
     this.router.navigateByUrl('/home-client');
   }
-  goToFindHouse(){
-    this.router.navigateByUrl('/find-house');
-  }
-  goToProfile(){
-    this.router.navigateByUrl('/profile-client');
-  }
   goToLogin(){
     this.router.navigateByUrl('/login');
   }

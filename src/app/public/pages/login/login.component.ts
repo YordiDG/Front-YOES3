@@ -7,8 +7,6 @@ import {Router} from "@angular/router";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit{
-  correo_electronico: any;
-  contrasena: any;
   currentSlide: number = 0;
 
   slides = [
@@ -84,9 +82,6 @@ export class LoginComponent implements OnInit{
     this.router.navigateByUrl('/sign-in');
   }
 
-  selectUserType(type: 'client' | 'admin') {
-    this.selectedUserType = type;
-  }
 
   login(){
     if(this.selectedUserType == 'client'){

@@ -5,7 +5,7 @@ import { LoginService } from "../../../services/login.service";
 import {Producto} from "../../../models/producto.service";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import {MatDialog} from "@angular/material/dialog";
-import {DialogLogComponent} from "../../../dialog-log/dialog-log.component";
+
 
 interface Carrito {
   id: number;

@@ -4,7 +4,6 @@ import {Producto} from "../../../models/producto.service";
 import {Router} from "@angular/router";
 import {MatDialog} from "@angular/material/dialog";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {DialogLogComponent} from "../../../dialog-log/dialog-log.component";
 
 
 interface Carrito {
@@ -47,16 +46,6 @@ export class CarnesComponent implements OnInit {
 
   currentSlide = 0;
 
-  slides = [
-    { title: 'Verduras', description: 'Brócoli, rabanito, limón, zanahoria, cebolla', imageUrl: 'https://media.discordapp.net/attachments/1239050988195942465/1239064832632815709/ver.webp?ex=6641908c&is=66403f0c&hm=8c18dc8b261a05da3584d8d5887244eb9bd17bb4991573e6323b69fe2ab04d20&=&format=webp&width=584&height=388' },
-    { title: 'Carnes', description: 'Cerdo, pescado, pollo, pato, res', imageUrl: 'https://media.discordapp.net/attachments/1239050988195942465/1239056622769410049/93505921_Meat_in_its_raw_state_-16-removebg-preview.png?ex=664188e7&is=66403767&hm=1c31fb515a2336e812980268dc8d1ff4c2956ebf8e34e40a98e88ba777f401d0&=&format=webp&quality=lossless&width=388&height=388' },
-    { title: 'Frutas', description: 'Uva, plátano, manzana, naranja, chirimoya', imageUrl: 'https://media.discordapp.net/attachments/1239050988195942465/1239056623167606875/81678404_Mix_fruits_-7-removebg-preview.png?ex=664188e7&is=66403767&hm=fe96f65c6bbf272ccb620fd521bc4cf912ca79c78cc647fcc641be48ebc6e36f&=&format=webp&quality=lossless&width=388&height=388' },
-    { title: 'Abarrotes', description: 'Arroz, azúcar, aceite, atún, leche', imageUrl: 'https://media.discordapp.net/attachments/1239050988195942465/1239056621808648293/pixelcut-export-removebg-preview.png?ex=664188e7&is=66403767&hm=fa52f33e1b0d55e0aa9c5de336734788cd43770bebc787c31aebac0a2d54d430&=&format=webp&quality=lossless&width=358&height=358' },
-    //añadir mas car
-    { title: 'Frutas', description: 'Uva, plátano, manzana, naranja, chirimoya', imageUrl: 'https://media.discordapp.net/attachments/1239050988195942465/1239056623167606875/81678404_Mix_fruits_-7-removebg-preview.png?ex=664188e7&is=66403767&hm=fe96f65c6bbf272ccb620fd521bc4cf912ca79c78cc647fcc641be48ebc6e36f&=&format=webp&quality=lossless&width=388&height=388' },
-    { title: 'Abarrotes', description: 'Arroz, azúcar, aceite, atún, leche', imageUrl: 'https://media.discordapp.net/attachments/1239050988195942465/1239056621808648293/pixelcut-export-removebg-preview.png?ex=664188e7&is=66403767&hm=fa52f33e1b0d55e0aa9c5de336734788cd43770bebc787c31aebac0a2d54d430&=&format=webp&quality=lossless&width=358&height=358' },
-  ];
-
   visibleSlides: any[] = [];
 
   constructor(private router: Router, private productoService: ProductoService, private dialog: MatDialog,private snackBar: MatSnackBar) {
@@ -78,7 +67,7 @@ export class CarnesComponent implements OnInit {
     );
     this.obtenerProductos();
     this.obtenerCategorias();
-    this.updateVisibleSlides();
+
   }
 
   isDisponible(producto: Producto): boolean {
@@ -86,25 +75,6 @@ export class CarnesComponent implements OnInit {
   }
   /*Productos de carrucel*/
 
-  updateVisibleSlides() {
-    this.visibleSlides = this.slides.slice(this.currentSlide, this.currentSlide + 4);
-  }
-
-  showSlide(index: number) {
-    this.currentSlide = index;
-    this.updateVisibleSlides();
-  }
-
-  nextSlide() {
-    this.currentSlide = (this.currentSlide + 1) % (this.slides.length - 3);
-    this.updateVisibleSlides();
-  }
-
-  prevSlide() {
-    this.currentSlide = (this.currentSlide - 1 + this.slides.length) % (this.slides.length - 3); // Restamos 3 para que siempre haya al menos 4 elementos visibles
-    this.updateVisibleSlides();
-  }
-  /**/
 
   showUserDialog(): void {
     this.showDialog = true;
@@ -141,11 +111,6 @@ export class CarnesComponent implements OnInit {
     );
   }
 
-  filtrarProductos(categoria: string) {
-    this.categoriaSeleccionada = categoria;
-    this.productosFiltrados = this.Productos.filter(producto => producto.category.toLowerCase() === categoria.toLowerCase());
-  }
-  /*-----------*/
 
   cantidadAnadida(productId: number): number {
     return this.carrito.filter(item => item.id === productId).reduce((total, item) => total + item.cantidad, 0);
@@ -156,11 +121,6 @@ export class CarnesComponent implements OnInit {
     this.snackBar.open('Producto añadido', 'Cerrar', {
       duration: 2000,
     });
-  }
-
-
-  isTarjetaActiva(producto: any): boolean {
-    return this.productoSeleccionado === producto;
   }
 
   agregarAlCarrito(producto: Producto) {
@@ -232,10 +192,6 @@ export class CarnesComponent implements OnInit {
     this.hideUserDialog();
   }
 
-
-  abrirFormularioCarrito() {
-    this.mostrarFormularioCarrito = true;
-  }
   removerDelCarrito(index: number) {
     const producto = this.carrito[index];
     this.totalCarrito -= producto.price * producto.cantidad;
@@ -255,26 +211,9 @@ export class CarnesComponent implements OnInit {
     this.mostrarFormularioCarrito = false;
   }
 
-  mostrarProducto(producto: any): boolean {
-    return this.Productos.length === 0 || this.Productos.includes(producto);
-  }
-
-  openUserDialog(): void {
-    const dialogRef = this.dialog.open(DialogLogComponent, {
-      width: '300px'
-    });
-  }
 
   toggleMenu(): void {
     this.isMenuOpen = !this.isMenuOpen;
-  }
-
-
-  signOut() {
-    localStorage.removeItem('currentUser');
-    localStorage.removeItem('accessToken');
-    this.router.navigate(['']).then();
-    console.log("Signed Out");
   }
 
   protected readonly Producto = Producto;

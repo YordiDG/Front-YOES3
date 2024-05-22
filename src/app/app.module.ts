@@ -33,7 +33,6 @@ import {MatTooltipModule} from "@angular/material/tooltip";
 
 import {MatSelectModule} from "@angular/material/select";
 import {MatRadioModule} from "@angular/material/radio";
-import { CarrucelComponent } from './public/carrucel/carrucel.component';
 import { LacteosComponent } from './public/pages/Categorias/lacteos/lacteos.component';
 import { CarnesComponent } from './public/pages/Categorias/carnes/carnes.component';
 import { VerdurasComponent } from './public/pages/Categorias/verduras/verduras.component';
@@ -46,7 +45,7 @@ import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {AddDataTableComponent} from "./public/pages/add-data-table/add-data-table.component";
 import {LogeoComponent} from "./public/registross/logeo/logeo.component";
-import {DialogLogComponent} from "./public/dialog-log/dialog-log.component";
+
 
 @NgModule({
   declarations: [
@@ -57,7 +56,6 @@ import {DialogLogComponent} from "./public/dialog-log/dialog-log.component";
     PageNotFoundComponent,
     KeeperComponent,
     UpdateProfileComponent,
-    CarrucelComponent,
     LacteosComponent,
     CarnesComponent,
     VerdurasComponent,
@@ -67,7 +65,6 @@ import {DialogLogComponent} from "./public/dialog-log/dialog-log.component";
     ComidasComponent,
     AddDataTableComponent,
     LogeoComponent,
-    DialogLogComponent
   ],
   imports: [
     AppRoutingModule,
