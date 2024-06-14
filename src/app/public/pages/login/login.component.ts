@@ -10,19 +10,18 @@ export class LoginComponent implements OnInit{
   currentSlide: number = 0;
 
   slides = [
-    { title: 'Minimarket Yoes', imageUrl: 'assets/post1.jpg' },
-    { title: 'Minimarket Yoes', imageUrl: 'assets/poster8.jpg'},
-    { title: 'Minimarket Yoes', imageUrl: 'assets/poster10.jpg'},
-    { title: 'Minimarket Yoes',  imageUrl: 'assets/post2.jpg' },
-    { title: 'Minimarket Yoes', imageUrl: 'assets/poster7.jpg'},
-    { title: 'Minimarket Yoes', imageUrl: 'assets/poster11.jpg'},
-    { title: 'Minimarket Yoes', imageUrl: 'assets/post3.jpg'},
-    { title: 'Minimarket Yoes', imageUrl: 'assets/post6.jpg'},
-    { title: 'Minimarket Yoes', imageUrl: 'assets/poster12.jpg'},
-    { title: 'Minimarket Yoes', imageUrl: 'assets/post4.jpg' },
-    { title: 'Minimarket Yoes', imageUrl: 'assets/post5.jpg'},
-    { title: 'Minimarket Yoes', imageUrl: 'assets/poster9.jpg'},
-
+    { title: 'Minimarket-Yoes', imageUrl: 'assets/post1.jpg' },
+    { title: 'Minimarket-Yoes', imageUrl: 'assets/post2.jpg' },
+    { title: 'Minimarket-Yoes', imageUrl: 'assets/post3.jpg' },
+    { title: 'Minimarket-Yoes', imageUrl: 'assets/post4.jpg' },
+    { title: 'Minimarket-Yoes', imageUrl: 'assets/post5.jpg' },
+    { title: 'Minimarket-Yoes', imageUrl: 'assets/post6.jpg' },
+    { title: 'Minimarket-Yoes', imageUrl: 'assets/poster7.jpg' },
+    { title: 'Minimarket-Yoes', imageUrl: 'assets/poster8.jpg' },
+    { title: 'Minimarket-Yoes', imageUrl: 'assets/poster9.jpg' },
+    { title: 'Minimarket-Yoes', imageUrl: 'assets/poster10.jpg' },
+    { title: 'Minimarket-Yoes', imageUrl: 'assets/poster11.jpg' },
+    { title: 'Minimarket-Yoes', imageUrl: 'assets/poster12.jpg' },
 
   ];
 

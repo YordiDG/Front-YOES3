@@ -49,6 +49,37 @@
   font-weight: bold;
 }
 
+/******welcome*********/
+.dialog-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.card {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.card-content {
+  margin: 0;
+}
+
+h1 {
+  color: #4CAF50;
+  margin-bottom: 10px;
+}
+
+p {
+  color: #333;
+}
+
+/****************/
 /**/
 .user-dialog {
   background-color: rgba(0, 0, 0, 0.4);
@@ -465,23 +496,121 @@ button.purple-button:focus {
   background-color: #9e9e9e;
   cursor: not-allowed;
 }
-/***************/
+
+
+
+/* Estilos para el diálogo de usuario */
+.user-dialog {
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 999;
+}
+
+.user-dialog-container {
+  padding-left: 0;
+  background-color: white;
+  color: #000000;
+  position: absolute;
+  top: 60px;
+  right: 0;
+  width: 200%;
+}
+
+.user-dialog-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: -1;
+}
+
+.user-dialog-container ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.user-dialog-container ul li {
+  margin-bottom: 10px;
+}
+
+.user-dialog-container ul li a {
+  color: #000000;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: bold;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.user-dialog-container ul li a:hover {
+  text-decoration: underline;
+  color: #00a6dc;
+}
+
+
+/*****************/
+.menu-lateral {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Fondo negro con transparencia */
+  z-index: 1000;
+  overflow-x: hidden;
+  transition: 0.5s; /* Transición suave para la animación */
+}
+
+.menus-items {
+  padding-top: 50px; /* Espacio para el encabezado */
+  width: 200px;
+  background-color: #06504e;
+  text-decoration: none;
+  font-size: 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+}
+
+.menus-items li a{
+  text-decoration: none;
+  color: white;
+  height: 40px;
+  font-weight: bold;
+  font-size: 21px;
+  margin-top: 5%;
+  margin-left: 15%;
+}
+
+
+
+.menus-items li a:hover{
+  background-color: #13aadc;
+}
+.menus-items li a mat-icon{
+  font-size: 21px;
+}
+
+.menu-lateral.active {
+  width: 100%;
+}
 
 .menu-btn {
-  display: none;
+  display: none; /* Oculta el botón del menú en pantallas grandes */
 }
 
-.menu-items {
-  display: flex;
-  flex-direction: column;
-}
-
-@media screen and (max-width: 600px) {
-  .toolbar > * {
-    display: none;
+@media screen and (max-width: 768px) {
+  .menu-btn {
+    display: block; /* Muestra el botón del menú en dispositivos pequeños */
   }
 
-  .menu-btn {
+  .menus-items {
+    width: 70%; /* Ancho del menú lateral en dispositivos pequeños */
+  }
+
+  /* Ajuste para mostrar el botón del menú lateral en dispositivos pequeños */
+  #menuIcon {
     display: inline-block;
   }
 }

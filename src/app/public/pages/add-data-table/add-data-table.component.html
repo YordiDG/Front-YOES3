@@ -63,15 +63,6 @@
             </mat-form-field>
           </div>
 
-          <div class="input-item">
-            <button mat-raised-button
-                    matTooltip="Cubre y garantiza en caso de muerte o invalidez total y permanente del asegurado.">
-              <mat-label style="color: #ffffff">Seguro Degravamen</mat-label>
-            </button>
-            <mat-form-field style="border-radius: 5px;">
-              <input matInput placeholder="Ingrese dato" formControlName="seguroDegravamen">
-            </mat-form-field>
-          </div>
 
           <div class="input-item">
             <button mat-raised-button
@@ -80,8 +71,11 @@
             </button>
             <mat-form-field>
               <mat-select formControlName="plazo">
-                <mat-option value="24">24</mat-option>
-                <mat-option value="36">36</mat-option>
+                <mat-option value="1">1</mat-option>
+                <mat-option value="2">2</mat-option>
+                <mat-option value="3">3</mat-option>
+                <mat-option value="4">4</mat-option>
+                <mat-option value="5">5</mat-option>
               </mat-select>
             </mat-form-field>
           </div>
@@ -106,15 +100,6 @@
             </mat-form-field>
           </div>
 
-          <div class="input-item">
-            <button mat-raised-button
-                    matTooltip="Es la tasa de interés que sirve para calcular el valor que tienen hoy una serie de ingresos que serán recibidos más adelante.">
-              <mat-label style="color: #ffffff">Tasa de Descuento (COK)</mat-label>
-            </button>
-            <mat-form-field style="border-radius: 5px;">
-              <input matInput placeholder="Ingrese dato" formControlName="tasaDescuentoCOK">
-            </mat-form-field>
-          </div>
 
           <div class="input-item">
             <button mat-raised-button
@@ -214,26 +199,6 @@
           <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
         </mat-table>
 
-
-        <br>
-        <h2 style="color: #0b6055;margin: 0px 0 0px 0 !important"> Indicadores de rentabilidad </h2>
-        <mat-table style="border: 2px solid #0b6055;" [dataSource]="dataSourceIndicadoresRentabilidad" class="mat-elevation-z8">
-
-
-          <ng-container matColumnDef="title">
-            <mat-cell *matCellDef="let element"> {{ element.title }}</mat-cell>
-          </ng-container>
-
-          <ng-container matColumnDef="value">
-            <mat-cell *matCellDef="let element" class="center-text">
-              {{ element.porct ? 'S/.' + element.value : element.value + '%' }}
-            </mat-cell>
-          </ng-container>
-
-          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-        </mat-table>
-        <br>
-
       </div>
 
       <div class="data-table-column">
@@ -272,6 +237,7 @@
 
           </div>
         </form>
+
       </div>
     </div>
   </div>

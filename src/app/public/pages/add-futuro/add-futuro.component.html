@@ -1,0 +1,161 @@
+<div class="name-view" style="margin-left: 0.7%" style="margin-left: 6%">
+  <mat-icon style="font-size: 28px">person</mat-icon>
+  <h1 style="padding-left: 10px; font-weight: bold" formControlName="name">
+    Bienvenido, {{ usuarioActual.firstName }} {{ usuarioActual.lastName }}</h1>
+</div>
+<div class="add-data-table">
+  <div class="example-container" style="margin-left: 6%">
+    <div class="input-item total-carrito"
+         style="margin-left: 0.9%;border: 3px solid #00a388;;background-color: #ffffff;border-radius: 15px; padding: 9px; width: 40%; font-family: 'Montserrat', sans-serif; font-weight: bold">
+      <h1 formControlName="totalCarrito">Total del carrito: <strong
+        style="font-size: 24px">{{ totalCarrito| number:'.2-2' }}</strong></h1>
+      <h1 formControlName="totalCarrito">Límite de Créditos: <strong style="font-size: 24px"> S/. 500 </strong></h1>
+    </div>
+    <form [formGroup]="form" style="margin-top: 2%; background-color: #ffffff; padding: 12px">
+      <div style="display: flex;flex-wrap: wrap; justify-content: space-between">
+        <div class="data-input">
+          <div class="input-item">
+            <button style="background-color: #00a388;" mat-raised-button
+                    matTooltip="Se ingresa el total a pagar por los productos">
+              <mat-label style=" color: #ffffff">Ingrese Total Carrito</mat-label>
+            </button>
+            <br>
+            <mat-form-field style="border-radius: 5px; ">
+              <input matInput placeholder="Ingrese dato" formControlName="precioVehicular">
+            </mat-form-field>
+          </div>
+          <div class="input-item">
+            <button mat-raised-button style="background-color: #00a388"
+                    matTooltip="Es indispensable que tengas un ingreso mensual bruto mínimo de S/ 800.">
+              <mat-label style="color: #ffffff">Ingreso Mensual (S/.)</mat-label>
+            </button>
+            <br>
+            <mat-form-field style="border-radius: 5px;">
+              <input matInput placeholder="Ingrese dato" formControlName="ingresoMensual">
+            </mat-form-field>
+          </div>
+          <div class="input-item">
+            <button mat-raised-button style="background-color: #00a388; min-width: 150px;"  matTooltip="La Tasa Nominal Anual o Efectiva se usa para calcular los pagos de interés de un préstamo o crédito.">
+              <mat-select style="color: #ffffff; width: 150px;" placeholder="Selecciona Tasa" formControlName="tipoTasaInteres">
+                <mat-option value="nominal"><strong>TNA (%)</strong></mat-option>
+                <mat-option value="efectiva"><strong>TEA (%)</strong></mat-option>
+              </mat-select>
+            </button>
+            <br>
+            <mat-form-field style="border-radius: 5px;">
+              <input matInput placeholder="Ingrese dato" formControlName="tna">
+            </mat-form-field>
+          </div>
+
+
+          <div class="input-item">
+            <button mat-raised-button style="background-color: #00a388" matTooltip="Selecciona la fecha de inicio">
+              <mat-label style="color: #ffffff">Fecha Inicial</mat-label>
+            </button>
+            <br>
+            <mat-form-field>
+              <input matInput [matDatepicker]="pickerInicio" placeholder="Seleccione fecha"
+                     formControlName="fechaInicio">
+              <mat-datepicker-toggle matSuffix [for]="pickerInicio"></mat-datepicker-toggle>
+              <mat-datepicker #pickerInicio></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div class="input-item">
+            <button style="background-color: #00a388" mat-raised-button matTooltip="Selecciona la fecha final">
+              <mat-label style=" color: #ffffff">Fecha Final</mat-label>
+            </button>
+            <br>
+            <mat-form-field>
+              <input matInput [matDatepicker]="pickerFin" placeholder="Seleccione fecha" formControlName="fechaFin">
+              <mat-datepicker-toggle matSuffix [for]="pickerFin"></mat-datepicker-toggle>
+              <mat-datepicker #pickerFin></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div class="input-item">
+            <button style="background-color: #00a388" mat-raised-button matTooltip="Selecciona el método de cálculo">
+              <mat-label style="color: #ffffff">Método de Cálculo</mat-label>
+            </button>
+            <br>
+            <mat-form-field>
+              <mat-select formControlName="metodoCalculo">
+                <mat-option value="americano">Americano</mat-option>
+                <mat-option value="frances">Francés</mat-option>
+                <mat-option value="aleman">Alemán</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <div class="btnCal">
+        <button mat-raised-button
+                style=" color: white; font-size: 21px; background-color: #d5760b; width: 15%; justify-content: center"
+                (click)="calcularTabla()">
+          Calcular
+        </button>
+        <button
+          type="button"
+          (click)="resetForm()"
+          mat-raised-button
+          style="width: 30%;color: white; font-size: 21px;background-color: #09a4b8; margin-left: 4%; justify-content: center"
+          class="px-6 py-2 font-bold text-lg hover:bg-transparent hover:text-primary-500 transition-all duration-300"
+        >
+          Limpiar
+        </button>
+      </div>
+    </form>
+  </div>
+
+</div>
+<br>
+<!-- Tabla donde se mostrarán los resultados -->
+<div style="margin-left: 80%">
+  <button (click)="guardarComoPDF()" style="background-color: white; border: none; padding: 5px;">
+    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-device-floppy" width="44" height="44"
+         viewBox="0 0 24 24" stroke-width="1.5" stroke="#009988" fill="none" stroke-linecap="round"
+         stroke-linejoin="round">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <path d="M6 4h10l4 4v10a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2"/>
+      <path d="M12 14m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"/>
+      <path d="M14 4l0 4l-6 0l0 -4"/>
+    </svg>
+  </button>
+
+  <button style="background-color: white; border: none; padding: 5px;" routerLink="/home-client">
+    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-logout" width="44" height="44"
+         viewBox="0 0 24 24" stroke-width="1.5" stroke="#009988" fill="none" stroke-linecap="round"
+         stroke-linejoin="round">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2"/>
+      <path d="M9 12h12l-3 -3"/>
+      <path d="M18 15l3 -3"/>
+    </svg>
+  </button>
+</div>
+<div style="display: flex; justify-content: space-between; align-items: center;">
+  <section #content class="table-data mat-elevation-z8" *ngIf="tablaVisible">
+    <table mat-table [dataSource]="tablaDatos" class="mat-table tabla-data-inside">
+      <!-- Definir las columnas de la tabla -->
+      <ng-container *ngFor="let col of displayedColumnsTable; let iteracion = index" [matColumnDef]="col">
+        <th style="min-width: 100px; font-size: 14px; text-align: center; background-color: rgb(121, 234, 226);"
+            mat-header-cell *matHeaderCellDef>
+          {{ col }}
+        </th>
+        <td
+          style="min-width: 120px; text-align: center; background-color: {{iteracion === 0 ? '#c4e4b4' : '' }}; color: {{element[col] < 0 ? '#FF0000' : ''}}"
+          mat-cell *matCellDef="let element">
+          {{
+            element[col] === -1 ? '' : (iteracion === 1 || iteracion === 2) ? (parseFloat(element[col]).toFixed(2) + '%') : (iteracion === 4 || iteracion === 3 || iteracion === 0) ? (element[col]) : (Math.abs(+element[col])).toLocaleString('en-US', {
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 2
+            })
+          }}
+        </td>
+      </ng-container>
+      <!-- Renderizar las filas -->
+      <tr mat-header-row *matHeaderRowDef="displayedColumnsTable; sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumnsTable"></tr>
+    </table>
+  </section>
+
+</div>
+

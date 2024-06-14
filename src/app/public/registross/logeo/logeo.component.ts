@@ -24,30 +24,30 @@ export class LogeoComponent  implements OnInit {
   formLogin: FormGroup
 
 
-  constructor(private router: Router,private loginService: LoginService, private formBuilder: FormBuilder,
-              private _userService: UserService, private userService:UserService) {
+  constructor(private router: Router, private loginService: LoginService, private formBuilder: FormBuilder,
+              private _userService: UserService, private userService: UserService) {
 
     this.formLogin = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
     });
 
-    this.registerForm=this.formBuilder.group({
-      firstName: ['',Validators.required],
+    this.registerForm = this.formBuilder.group({
+      firstName: ['', Validators.required],
       lastName: ['', Validators.required],
-      job:['', Validators.required],
-      dni:['', Validators.required],
-      salary:['', Validators.required],
-      email:['', Validators.required],
+      job: ['', Validators.required],
+      dni: ['', [Validators.required, Validators.maxLength(8), Validators.pattern('^[0-9]{1,8}$')]],
+      salary: ['', [Validators.required, Validators.min(700), Validators.max(20000)]],
+      email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
-      phoneNumber: ['', Validators.required],
+      phoneNumber: ['', [Validators.required, Validators.pattern('^[0-9]*$'), Validators.maxLength(9)]],
       role: ['', Validators.required],
     });
-
   }
 
+
   ngOnInit(): void {
-    console.log("Hello this is login design this was completed by user x")
+    console.log("Registration Successful")
   }
 
   switchTab(tab: string) {

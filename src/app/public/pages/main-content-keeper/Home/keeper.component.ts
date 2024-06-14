@@ -5,6 +5,8 @@ import { LoginService } from "../../../services/login.service";
 import {Producto} from "../../../models/producto.service";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import {MatDialog} from "@angular/material/dialog";
+import {DialogmessageComponent} from "../dialogmessage/dialogmessage.component";
+import {WelcomeComponent} from "../welcome/welcome.component";
 
 
 interface Carrito {
@@ -48,6 +50,9 @@ export class KeeperComponent implements OnInit {
   isMenuOpen: boolean = false;
   producto: boolean = false;
 
+  menuAbierto: boolean = false;
+  logoReducido: boolean = false;
+
   mostrarMensajeBusqueda: boolean = true;
 
   currentSlide: number = 0;
@@ -63,7 +68,7 @@ export class KeeperComponent implements OnInit {
   ];
 
 
-  constructor(private router: Router, private loginService: LoginService,private productoService: ProductoService, private dialog: MatDialog,private snackBar: MatSnackBar) {
+  constructor(public dialoge: MatDialog,private router: Router, private loginService: LoginService,private productoService: ProductoService, private dialog: MatDialog,private snackBar: MatSnackBar) {
     this.name = '';
     this.price = 0;
     this.description = '';
@@ -83,11 +88,28 @@ export class KeeperComponent implements OnInit {
     this.obtenerProductos();
     this.obtenerCategorias();
 
+    if (this.loginService.getCurrentUser()) {
+      this.showWelcomeDialog();
+    }
+
   }
+
 
   isDisponible(producto: Producto): boolean {
     return producto.cantidad_stock > 0;
   }
+
+  showWelcomeDialog() {
+    const dialogRef = this.dialog.open(WelcomeComponent, {
+      width: '500px',
+      disableClose: true
+    });
+
+    setTimeout(() => {
+      dialogRef.close();
+    }, 8000); // Cierra el diálogo después de 5 segundos
+  }
+
   /*Productos de carrucel*/
 
   nextSlide() {
@@ -105,6 +127,7 @@ export class KeeperComponent implements OnInit {
       this.currentSlide = this.slides.length - 4;
     }
   }
+
 
   goToSlide(index: number) {
     this.currentSlide = index;
@@ -130,8 +153,62 @@ export class KeeperComponent implements OnInit {
     this.hideUserDialog();
   }
 
-  /*----------------*/
+  /*******menu home *********/
+  toggleMenus() {
+    this.menuAbierto = !this.menuAbierto;
+  }
 
+  toggleLogo() {
+    this.logoReducido = !this.logoReducido;
+  }
+  /*----------------*/
+  openDialoge(): void {
+    this.dialog.open(DialogmessageComponent, {
+      width: '380px',
+      height: '280',
+      data: { message: 'Sus compras son menores a S/. 100 ' +
+          'Añada más productos al carrito 😊' }
+    });
+  }
+
+  openDialoge2(): void {
+    this.dialog.open(DialogmessageComponent, {
+      width: '380px',
+      height: '280',
+      data: { message: 'Sus compras excede el limite permitido a S/. 900 ' }
+    });
+  }
+
+  comprobarTotalYMostrarMensaje() {
+    if (this.totalCarrito < 100 ) {
+      this.openDialoge();
+    } else if(this.totalCarrito > 900) {
+      this.openDialoge2();
+    } else{
+      this.irAPagar();
+    }
+  }
+
+  comprobarMostrarMensaje() {
+    if (this.totalCarrito < 0 ) {
+      this.openDialoge();
+    } else{
+      this.PagosFuturos();
+    }
+  }
+
+
+  irAPagar() {
+    this.router.navigate(['/card']);
+    console.log("Redirigiendo a la página de pago...");
+  }
+
+  PagosFuturos() {
+    this.router.navigate(['/card-future']);
+    console.log("Redirigiendo a la página de pago...");
+  }
+
+  /***********************/
   obtenerProductos() {
     this.productoService.getAll().subscribe(
       (response: any) => {
@@ -233,6 +310,14 @@ export class KeeperComponent implements OnInit {
       this.name = '';
       this.onFilter();
     }
+  }
+
+  /*mesaage*/
+  openDialog(): void {
+    this.dialog.open(DialogmessageComponent, {
+      width: '250px',
+      data: { message: 'Sus compras son menores a 700. Añada más productos' }
+    });
   }
 
   abrirCerrarFormularioCarrito() {

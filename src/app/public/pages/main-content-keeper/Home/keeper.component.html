@@ -1,7 +1,7 @@
 <div style="background-image: radial-gradient(circle closest-corner at center, #00918E 40%, #0C7B76);">
   <div style="height: 100vh;  font-family: 'Montserrat', sans-serif">
     <mat-toolbar class="toolbar">
-      <a style="cursor:pointer;" ref="#"><img src="../../../../../assets/RecursoLogo.png" width="85px" style="margin-left: 8%" alt=""></a>
+      <img src="../../../../../assets/RecursoLogo.png" width="85px" style="margin-left: 8%" alt="">
       <div style="display: flex; align-items: center; width: 100%;">
         <input matInput placeholder="Buscar Producto" [(ngModel)]="name"
                style="border-radius: 15px 0 0 15px; border: 4px solid #00a6dc; width: 70%; color: black; margin-left: 12%; padding-left: 30px;"
@@ -9,17 +9,17 @@
         <div
           style="background-color: white; font-family: 'Montserrat', sans-serif; width: 90px; border-radius: 0 15px 15px 0; border: 4px solid #00a6dc; display: flex; align-items: center; padding: 5px;">
           <mat-icon matPrefix style="font-size: 30px;text-align: justify;margin-right: 15px ; cursor: pointer"
-                    color="primary" (click)="onFilter()">search
+                    color="primary" (click)="onFilter()" class="search-icon">search
           </mat-icon>
           <mat-icon matSuffix style="font-size: 30px; cursor: pointer" color="warn" (click)="toReset()">clear</mat-icon>
         </div>
       </div>
-      <button class="menu-btn" (click)="toggleMenu()"><strong>Menú</strong></button>
       <a class="buttonnav" mat-button style="font-size: 19px; " (click)="goToLogin()">INICIO</a>
       <a class="buttonnav" mat-button style="font-size: 19px; "><strong>TIENDA</strong></a>
-      <a  class="buttonnav" mat-button
+      <a class="buttonnav" mat-button
          style="font-size: 15px; border-radius: 0; border: none; cursor: pointer; background-color: transparent "
-         (click)="goToMessenger()"><img src="../../../../../assets/campana.png" style="width: 33px; height: 33px;" alt="Add product">
+         (click)="goToMessenger()"><img src="../../../../../assets/campana.png" style="width: 33px; height: 33px;"
+                                        alt="Add product">
       </a>
       <button mat-icon-button (click)="productosComprados()" aria-label="Add">
         <img src="../../../../../assets/shop.png" style="width: 35px; height: 30px;" alt="Add product">
@@ -29,7 +29,8 @@
       <!-- Diálogo de usuario -->
       <div class="container-me">
         <div style="position: relative;">
-          <a mat-button (click)="showUserDialog()" style="border-radius: 0; border: none; background-color: transparent; position: relative;">
+          <a mat-button (click)="showUserDialog()"
+             style="border-radius: 0; border: none; background-color: transparent; position: relative;">
             <img src="assets/person.png" style="width: 4em; margin-top: -15px; margin-left: 22px;">
           </a>
           <div class="user-dialog-overlay" *ngIf="showDialog" (click)="hideUserDialog();"></div>
@@ -49,6 +50,12 @@
                 <li><a routerLink="/sign-in" (click)="selectOption('Registrarse')">
                   <mat-icon style="margin-left: 20%;">person_add</mat-icon>
                   Registrarse</a></li>
+                <li>
+                  <a routerLink="/sign-in" (click)="selectOption('Historial')">
+                    <mat-icon style="margin-left: 20%;">history</mat-icon>
+                    Historial
+                  </a>
+                </li>
                 <li><a routerLink="/profile-client" (click)="selectOption('Mi Perfil')">
                   <mat-icon style="margin-left: 12%;">account_box</mat-icon>
                   Mi Perfil</a></li>
@@ -61,11 +68,28 @@
         </div>
       </div>
 
+      <!-- Botón del menú lateral -->
+      <button class="menu-btn" (click)="toggleMenus()">
+        <mat-icon>{{ menuAbierto ? 'close' : 'menu' }}</mat-icon>
+      </button>
     </mat-toolbar>
+
+    <!-- Menú lateral -->
+    <!--<div class="menu-lateral" [ngClass]="{'active': menuAbierto}">
+      <div class="menus-items">
+        <img src="../../../../../assets/RecursoLogo.png" width="200" style="margin-left: 14%" alt="">
+        <ul style="list-style: none; padding: 0;">
+          <li><a class="buttonnav" mat-button><mat-icon>home</mat-icon>Inicio</a></li>
+          <li><a class="buttonnav" mat-button><mat-icon>store</mat-icon>Tienda</a></li>
+          <li><a class="buttonnav" mat-button><mat-icon>notifications</mat-icon>Notificaciones</a></li>
+          <li><a class="buttonnav" mat-button><mat-icon>account_circle</mat-icon>Perfil</a></li>
+          <li><a href="#" class="buttonnav" mat-button style="color: #fbfbfb;"><mat-icon>exit_to_app</mat-icon>Cerrar Sesión</a></li>
+        </ul>
+      </div>
+    </div>-->
 
     <!--Seccion de carrucel-->
     <div class="general" style="">
-
       <!---->
       <div>
         <div style="font-size: 80px; margin: 20px 30px; color: #ffffff">
@@ -155,7 +179,9 @@
 
 
         <div *ngIf="Productos.length === 0">
-          <p style="font-size: 30px; width: 130%; margin-left: 7%; font-weight: bold;margin-bottom: 50% ;margin-top: 30%">No se han encontrado productos... 🥹</p>
+          <p
+            style="font-size: 30px; width: 130%; margin-left: 7%; font-weight: bold;margin-bottom: 50% ;margin-top: 30%">
+            No se han encontrado productos... 🥹</p>
         </div>
 
 
@@ -171,7 +197,8 @@
                 <h2>{{ productoSeleccionado.name }}</h2>
                 <p
                   style="font-size: 19px; font-family: 'Montserrat', sans-serif">{{ productoSeleccionado.description }}</p>
-                <p style="font-size: 19px;font-family: 'Montserrat', sans-serif"> {{ productoSeleccionado.category }}</p>
+                <p
+                  style="font-size: 19px;font-family: 'Montserrat', sans-serif"> {{ productoSeleccionado.category }}</p>
                 <p
                   style="font-size: 19px;font-family: 'Montserrat', sans-serif">{{ productoSeleccionado.cantidad_stock }}</p>
                 <p style="font-size: 22px; font-family: 'Montserrat', sans-serif; font-weight: bold;">
@@ -209,7 +236,8 @@
                 <h2>{{ productoSeleccionado.name }}</h2>
                 <p
                   style="font-size: 19px; font-family: 'Montserrat', sans-serif">{{ productoSeleccionado.description }}</p>
-                <p style="font-size: 19px;font-family: 'Montserrat', sans-serif"> {{ productoSeleccionado.category }}</p>
+                <p
+                  style="font-size: 19px;font-family: 'Montserrat', sans-serif"> {{ productoSeleccionado.category }}</p>
                 <p
                   style="font-size: 19px;font-family: 'Montserrat', sans-serif">{{ productoSeleccionado.cantidad_stock }}</p>
                 <p style="font-size: 22px; font-family: 'Montserrat', sans-serif; font-weight: bold;">
@@ -238,8 +266,6 @@
       </div>
 
     </div>
-
-
   </div>
 
   <!-- Formulario de lista de productos en el carrito -->
@@ -287,11 +313,19 @@
           vacío!</strong></h3>
       </div>
       <hr>
-      <p style="font-size: 23px; font-weight: bold; color: #000000; padding: 13px;">Total: {{ totalCarrito | number:'.2-2' }}</p>
-      <button mat-button [disabled]="totalCarrito === 0"  style="color: white" [routerLink]="['/card']" class="link-pago">Ir a Pagar</button>
+      <p style="font-size: 23px; font-weight: bold; color: #000000; padding: 13px;">
+        Total: {{ totalCarrito | number:'.2-2' }}</p>
+      <button mat-button (click)="comprobarTotalYMostrarMensaje()" [disabled]="totalCarrito === 0" style="color: white"
+              class="link-pago">
+        Ir a Pagar
+      </button>
+      <button mat-button (click)="comprobarMostrarMensaje()" [disabled]="totalCarrito === 0" style="color: white"
+              class="link-pago">
+        Pago Mensual
+      </button>
+
     </div>
   </div>
-
 
   <!-- Contenedor filtros -->
   <div class="examples-cards">

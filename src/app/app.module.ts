@@ -45,6 +45,10 @@ import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {AddDataTableComponent} from "./public/pages/add-data-table/add-data-table.component";
 import {LogeoComponent} from "./public/registross/logeo/logeo.component";
+import { DialogmessageComponent } from './public/pages/main-content-keeper/dialogmessage/dialogmessage.component';
+import { WelcomeComponent } from './public/pages/main-content-keeper/welcome/welcome.component';
+import { AddFuturoComponent } from './public/pages/add-futuro/add-futuro.component';
+import {MatNativeDateModule} from "@angular/material/core";
 
 
 @NgModule({
@@ -65,6 +69,9 @@ import {LogeoComponent} from "./public/registross/logeo/logeo.component";
     ComidasComponent,
     AddDataTableComponent,
     LogeoComponent,
+    DialogmessageComponent,
+    WelcomeComponent,
+    AddFuturoComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -97,6 +104,14 @@ import {LogeoComponent} from "./public/registross/logeo/logeo.component";
     MatCheckboxModule,
     MatTableModule,
     MatDatepickerModule,
+
+    BrowserModule,
+    BrowserAnimationsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatFormFieldModule,
+    MatInputModule,
+    ReactiveFormsModule,
 
 
   ],

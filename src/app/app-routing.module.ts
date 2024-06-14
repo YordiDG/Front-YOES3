@@ -15,6 +15,7 @@ import {AbarrotesComponent} from "./public/pages/Categorias/abarrotes/abarrotes.
 import {ComidasComponent} from "./public/pages/Categorias/comidas/comidas.component";
 import {AddDataTableComponent} from "./public/pages/add-data-table/add-data-table.component";
 import {LogeoComponent} from "./public/registross/logeo/logeo.component";
+import {AddFuturoComponent} from "./public/pages/add-futuro/add-futuro.component";
 
 
 const routes: Routes = [
@@ -29,6 +30,7 @@ const routes: Routes = [
   {path: 'comida', component: ComidasComponent},
   {path: 'messenger-client', component: MessengerKeeperComponent},
   {path: 'card', component: AddDataTableComponent},
+  {path: 'card-future', component: AddFuturoComponent},
   {path: 'profile-client', component: ProfileKeeperComponent},
   { path: 'sign-in', component : LogeoComponent  },
   {path: '', redirectTo: 'login', pathMatch: 'full'},

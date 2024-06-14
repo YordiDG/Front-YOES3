@@ -18,8 +18,12 @@ export class ProductoService extends BaseService<Producto>{
 
   public cartUpdated$: Subject<boolean> = new Subject();
 
-  getCategory(): Observable<any[]> {
+  /*getCategory(): Observable<any[]> {
     return this.http.get<any[]>('https://backend-yoes-final.onrender.com/api/minimarket/categorias/all-category');
+  }*/
+
+  getCategory(): Observable<any[]> {
+    return this.http.get<any[]>('https://minimarket-yoes.zeabur.app/api/minimarket/categorias/all-category');
   }
 
   createCategory(obj: any): Observable<any> {

@@ -1,0 +1,148 @@
+.example-container mat-form-field + mat-form-field {
+  margin-left: 8px;
+}
+
+.example-container mat-form-field {
+  width: 220px;
+}
+
+.example-container form {
+  margin-bottom: 20px;
+}
+
+.example-container form > * {
+  margin: 12px 0;
+}
+
+.example-container .mat-radio-button {
+  margin: 0 12px;
+}
+
+.example-form-fields {
+  display: flex;
+  align-items: flex-start;
+}
+
+.add-data-table{
+  padding: 0 0 0 8%;
+  display:flex;
+}
+
+.name-view{
+  padding: 1% 0 0 8%;
+  display: flex;
+}
+
+.data-input {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 80px;
+  font-weight: bold;
+  font-size: large;
+  margin-right: 20px;
+}
+
+.data-input button{
+  font-weight: bold;
+  font-size: 17px;
+  text-align: left;
+}
+
+.data-input-gastos-periodicos{
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  column-gap: 10px;
+  font-weight: bold;
+  font-size: large;
+}
+
+.input-item {
+  display: flex;
+  flex-direction: column;
+
+}
+
+.input-item > * {
+  margin-bottom: 2px;
+}
+
+.input-item button{
+  background-color: #00a388;
+  height: 55px;
+}
+
+.input-item mat-form-field{
+  width: 100%;
+}
+.data-table-container {
+  display: flex;
+}
+
+.data-table-column {
+  flex: 1;
+  margin-right: 20px;
+  text-align: center;
+}
+
+
+.data-table-1 {
+  min-width: 200px;
+  text-align: center;
+}
+
+.center-text{
+  max-width: 133px;
+
+}
+
+
+
+
+.table-data {
+  height: 400px;
+  width: 90%;
+  max-width: 100%;
+  overflow: auto;
+  margin-left: 8%;
+}
+
+.table-data table {
+  width: 800px;
+}
+
+.table-data td.mat-column-star {
+  width: 20px;
+  padding-right: 8px;
+}
+
+.table-data th.mat-column-position, td.mat-column-position {
+  padding-left: 8px;
+}
+
+.table-data  .mat-mdc-table-sticky-border-elem-right {
+  border-left: 1px solid black;
+}
+
+.table-data .mat-mdc-table-sticky-border-elem-left {
+  border-right: 1px solid black;
+}
+
+.tabla-data-inside .mat-table{
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.tabla-data-inside .mat-header-cell,
+.tabla-data-inside .mat-cell{
+  border: 5px solid black !important;
+  padding: 8px;
+  text-align: left;
+}
+
+.tabla-data-inside .mat-header-row,
+.tabla-data-inside .mat-row {
+  border-bottom: 5px solid black !important;
+  display: table-row;
+}
+
+

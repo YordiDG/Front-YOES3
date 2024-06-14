@@ -1,5 +1,4 @@
 
-
 <body>
 <div style="margin-top: 10%" class="wrapper">
   <div class="tabs">
@@ -56,15 +55,19 @@
         </div>
 
         <input formControlName="dni" type="text" placeholder="DNI"
-               [class.invalid]="registerForm.get('dni')?.invalid && registerForm.get('dni')?.touched" required>
+               [class.invalid]="registerForm.get('dni')?.invalid && registerForm.get('dni')?.touched"  required>
         <div *ngIf="registerForm.get('dni')?.invalid && registerForm.get('dni')?.touched">
-          <span class="error-message">Campo obligatorio</span>
+          <span *ngIf="registerForm.get('dni')?.errors?.['required']" class="error-message">Campo obligatorio</span>
+          <span *ngIf="registerForm.get('dni')?.errors?.['maxlength']" class="error-message">El DNI no puede tener más de 8 dígitos</span>
+          <span *ngIf="registerForm.get('dni')?.errors?.['pattern']" class="error-message">El DNI debe contener solo números</span>
         </div>
 
         <input formControlName="salary" type="number" placeholder="Salary"
-               [class.invalid]="registerForm.get('salary')?.invalid && registerForm.get('salary')?.touched" required>
+               [class.invalid]="registerForm.get('salary')?.invalid && registerForm.get('salary')?.touched"  required>
         <div *ngIf="registerForm.get('salary')?.invalid && registerForm.get('salary')?.touched">
-          <span class="error-message">Campo obligatorio</span>
+          <span *ngIf="registerForm.get('salary')?.errors?.['required']" class="error-message">Campo obligatorio</span>
+          <span *ngIf="registerForm.get('salary')?.errors?.['min']" class="error-message">El salario debe ser al menos 700</span>
+          <span *ngIf="registerForm.get('salary')?.errors?.['max']" class="error-message">El salario no puede ser más de 20000</span>
         </div>
 
         <input formControlName="email" type="text" placeholder="Email"

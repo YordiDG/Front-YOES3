@@ -10,6 +10,9 @@ import {ActivatedRoute} from "@angular/router";
 import {LoginService} from "../../services/login.service";
 import {Subscription} from "rxjs";
 import {Users} from "../../models/Users";
+import {OrderService} from "../../services/order.service";
+import {MatSnackBar} from "@angular/material/snack-bar";
+import {OrderDetailService} from "../../services/order-detail.service";
 
 
 export interface PeriodicElement {
@@ -80,7 +83,7 @@ export class AddDataTableComponent implements OnInit{
   paymentPlanForm=FormGroup;
 
 
-  constructor(private fb: FormBuilder,private loginService: LoginService, private cdr: ChangeDetectorRef, private route: ActivatedRoute) {
+  constructor(private fb: FormBuilder, private orderDetailService: OrderDetailService,private snackBar: MatSnackBar, private orderService: OrderService,private loginService: LoginService, private cdr: ChangeDetectorRef, private route: ActivatedRoute) {
     this.form = this.fb.group({
       precioTotal: [''],
 
@@ -99,14 +102,14 @@ export class AddDataTableComponent implements OnInit{
 
     this.form = this.fb.group({
       ingresoMensual: [1000, Validators.required],//input
-      precioVehicular: [700, Validators.required],//input
+      precioVehicular: [500, Validators.required],//input
       cuotaInicial: [15, Validators.required],
       cuotaFinal: [14, Validators.required],
       tipoTasaInteres: ['nominal', Validators.required],
       tna: [15, Validators.required],//input
       seguroDegravamen: [0.05, Validators.required],
       seguroVehicularAnual: [1, Validators.required],
-      plazo: ['24', Validators.required],//input
+      plazo: ['1', Validators.required],//input
       plazoGraciaTotal: [2, Validators.required],//input
       plazoGraciaParcial: [1, Validators.required],//input
       tasaDescuentoCOK: [13, Validators.required],//input
@@ -188,7 +191,6 @@ export class AddDataTableComponent implements OnInit{
     'Intereses',
     'Cuota',
     'Gastos Administrativos',
-    'Portes',
     'Amortización',
     'Saldo Final Para Cuota',
     'Flujo'
@@ -223,8 +225,69 @@ export class AddDataTableComponent implements OnInit{
   }
 
 
-  CalcularTabla(){
-    //this.calculateSaldoCapitalizado()
+  CalcularTabla() {
+
+    const van = this.calculateVAN();
+
+    const order = {
+      fecha: this.formatDate(new Date()),
+      montoPrestamo: this.dataSource[4].value,
+      tasaDescuento: this.dataSourceIndicadoresRentabilidad[0].value,
+      van: van,
+      tableData: this.tableData
+    };
+
+    this.orderService.saveOrder(order).subscribe(
+      (orderResponse: any) => {
+        const orderId = orderResponse.id;
+
+        const orderDetails = this.tableData.map((row, index) => ({
+          orderId: orderId,
+          numero: index + 1,
+          tea: row['TEA'],
+          tep: row['i\' = TEP = TEM'],
+          fecha: row['Fecha'],
+          pg: row['P.G'],
+          saldoInicialCuotaFinal: row['Saldo Inicial Cuota Final'],
+          interesCuotaFinal: row['Interes Cuota Final'],
+          amortizacionCuotaFinal: row['Amortizacion Cuota Final'],
+          saldoFinalCuotaFinal: row['Saldo Final Cuota Final'],
+          saldoInicialParaCuota: row['Saldo Inicial Para Cuota'],
+          intereses: row['Intereses'],
+          cuota: row['Cuota'],
+          seguroDegravamen: row['Seguro Degravamen'],
+          portes: row['Portes'],
+          gastosAdministrativos: row['Gastos Administrativos'],
+          saldoFinalParaCuota: row['Saldo Final Para Cuota'],
+          flujo: row['Flujo']
+        }));
+
+        console.log('Order Details:', JSON.stringify(orderDetails, null, 2));
+
+        this.orderDetailService.saveOrderDetail(orderDetails).subscribe(
+          response => {
+            this.snackBar.open('Detalles de la orden guardados con éxito', 'Cerrar', {
+              duration: 3000,
+            });
+          },
+          error => {
+            console.error('Error al guardar los detalles de la orden', error);
+            this.snackBar.open('Error al guardar los detalles de la orden', 'Cerrar', {
+              duration: 3000,
+            });
+          }
+        );
+      },
+      error => {
+        console.error('Error al guardar la orden principal', error);
+        this.snackBar.open('Error al guardar la orden principal', 'Cerrar', {
+          duration: 3000,
+        });
+      }
+    );
+
+
+    /***********/
 
     const plan_meses = parseInt( this.form.get('plazo')?.value);
     let rows = plan_meses + 2;
@@ -537,7 +600,6 @@ export class AddDataTableComponent implements OnInit{
     this.dataSourceTotales[0].value = this.calculateIntereses().toString()
     this.dataSourceTotales[1].value = this.calculateAmortizaciondelCapital().toString()
     this.dataSourceTotales[2].value = this.calculateSeguroDeGravamen().toString()
-    this.dataSourceTotales[3].value = this.calculateSeguroVehicular().toString()
     this.dataSourceTotales[4].value = this.calculateGPS().toString()
     this.dataSourceTotales[5].value = this.calculatePortes().toString()
     this.dataSourceTotales[6].value = this.calculateGastosAdministrativos().toString()
@@ -721,20 +783,19 @@ export class AddDataTableComponent implements OnInit{
     return (suma_gastos_administrativos*-1).toFixed(3)
   }
 
-  calculateVAN(){
+  calculateVAN() {
     const montoPrestamo = parseFloat(this.dataSource[4].value);
-    const tasaDescuento = parseFloat(this.dataSourceIndicadoresRentabilidad[0].value)/100;
+    const tasaDescuento = parseFloat(this.dataSourceIndicadoresRentabilidad[0].value) / 100;
     let suma = 0;
 
-
-
     for (let i = 0; i < this.tableData.length; i++) {
-      suma += ((parseFloat(this.tableData[i]['Flujo']))/((1+tasaDescuento)**(i)));
+      suma += parseFloat(this.tableData[i]['Flujo']) / ((1 + tasaDescuento) ** (i + 1));
     }
 
-
-    return  suma.toFixed(3);
+    const VAN = suma - montoPrestamo;
+    return VAN.toFixed(3);
   }
+
 
 
   calculateNPV(cashFlows: number[], rate: number): number {
