@@ -111,6 +111,7 @@ export class AddDataTableComponent implements OnInit{
       seguroVehicularAnual: [1, Validators.required],
       plazo: ['1', Validators.required],//input
       plazoGraciaTotal: [2, Validators.required],//input
+      interesMoratorio: [0, Validators.required],//input
       plazoGraciaParcial: [1, Validators.required],//input
       tasaDescuentoCOK: [13, Validators.required],//input
       periodoCapitalizacion: ['Diaria', Validators.required],
@@ -190,7 +191,6 @@ export class AddDataTableComponent implements OnInit{
     'Saldo Inicial Para Cuota',
     'Intereses',
     'Cuota',
-    'Gastos Administrativos',
     'Amortización',
     'Saldo Final Para Cuota',
     'Flujo'

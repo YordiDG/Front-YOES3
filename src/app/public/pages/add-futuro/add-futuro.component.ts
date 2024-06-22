@@ -21,16 +21,18 @@ export class AddFuturoComponent implements OnInit {
   displayedColumnsTable: string[] = ['Fecha', 'Interés', 'Amortización', 'Saldo Final', 'Flujo'];
   tablaDatos: any[] = [];
   tablaVisible: boolean = false;
+  today = new Date();
 
   constructor(private fb: FormBuilder, private loginService: LoginService, private snackBar: MatSnackBar, private cdr: ChangeDetectorRef) {
     this.form = this.fb.group({
       precioVehicular: [''],
       tipoTasaInteres: [''],
       tna: [''],
-      fechaInicio: [''],
+      fechaInicio: [null],
       fechaFin: [''],
       metodoCalculo: ['']
     });
+    this.today.setHours(0, 0, 0, 0);
   }
 
   ngOnInit() {
@@ -40,6 +42,12 @@ export class AddFuturoComponent implements OnInit {
       this.form.controls['precioTotal'].setValue(total);
     });
   }
+
+  myDateFilter = (d: Date | null): boolean => {
+    const date = (d || new Date());
+    // Prevent dates before today
+    return date >= this.today;
+  };
 
   calcularTabla() {
     const total = this.form.get('precioVehicular')?.value ?? 0;
@@ -115,12 +123,12 @@ export class AddFuturoComponent implements OnInit {
     }
   }
 
-// Método auxiliar para formatear números a cadena con 4 decimales
+
   formatNumber(value: number): string {
     if (typeof value === 'number' && !isNaN(value) && isFinite(value)) {
       return value.toFixed(4);
     } else {
-      return '0.0000'; // Otra cadena vacía o valor predeterminado según lo necesites
+      return '0.0000';
     }
   }
 

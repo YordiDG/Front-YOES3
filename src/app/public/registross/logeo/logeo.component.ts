@@ -19,10 +19,7 @@ export class LogeoComponent  implements OnInit {
   registroExitoso: boolean = false;
   loginExitoso: boolean = false;
 
-
-
   formLogin: FormGroup
-
 
   constructor(private router: Router, private loginService: LoginService, private formBuilder: FormBuilder,
               private _userService: UserService, private userService: UserService) {
@@ -37,7 +34,7 @@ export class LogeoComponent  implements OnInit {
       lastName: ['', Validators.required],
       job: ['', Validators.required],
       dni: ['', [Validators.required, Validators.maxLength(8), Validators.pattern('^[0-9]{1,8}$')]],
-      salary: ['', [Validators.required, Validators.min(700), Validators.max(20000)]],
+      salary: ['', [Validators.required, Validators.min(700), Validators.max(10000)]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
       phoneNumber: ['', [Validators.required, Validators.pattern('^[0-9]*$'), Validators.maxLength(9)]],

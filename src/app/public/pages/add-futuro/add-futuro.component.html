@@ -55,7 +55,7 @@
             <br>
             <mat-form-field>
               <input matInput [matDatepicker]="pickerInicio" placeholder="Seleccione fecha"
-                     formControlName="fechaInicio">
+                     formControlName="fechaInicio" [matDatepickerFilter]="myDateFilter">
               <mat-datepicker-toggle matSuffix [for]="pickerInicio"></mat-datepicker-toggle>
               <mat-datepicker #pickerInicio></mat-datepicker>
             </mat-form-field>
@@ -66,7 +66,8 @@
             </button>
             <br>
             <mat-form-field>
-              <input matInput [matDatepicker]="pickerFin" placeholder="Seleccione fecha" formControlName="fechaFin">
+              <input matInput [matDatepicker]="pickerFin" placeholder="Seleccione fecha"
+                     formControlName="fechaFin" [matDatepickerFilter]="myDateFilter">
               <mat-datepicker-toggle matSuffix [for]="pickerFin"></mat-datepicker-toggle>
               <mat-datepicker #pickerFin></mat-datepicker>
             </mat-form-field>
