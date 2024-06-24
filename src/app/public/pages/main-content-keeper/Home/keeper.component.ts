@@ -175,14 +175,14 @@ export class KeeperComponent implements OnInit {
     this.dialog.open(DialogmessageComponent, {
       width: '380px',
       height: '280',
-      data: { message: 'Sus compras excede el limite permitido a S/. 900 ' }
+      data: { message: 'Sus compras excede el limite permitido a S/. 500 ' }
     });
   }
 
   comprobarTotalYMostrarMensaje() {
     if (this.totalCarrito < 100 ) {
       this.openDialoge();
-    } else if(this.totalCarrito > 900) {
+    } else if(this.totalCarrito > 500) {
       this.openDialoge2();
     } else{
       this.irAPagar();

@@ -13,6 +13,7 @@ import {Users} from "../../models/Users";
 import {OrderService} from "../../services/order.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {OrderDetailService} from "../../services/order-detail.service";
+import {MatCheckboxChange} from "@angular/material/checkbox";
 
 
 export interface PeriodicElement {
@@ -81,12 +82,12 @@ export class AddDataTableComponent implements OnInit{
   form: FormGroup = new FormGroup({ });
   form2: FormGroup = new FormGroup({ });
   paymentPlanForm=FormGroup;
+  interesMoratorioEnabled: boolean = false;
 
 
   constructor(private fb: FormBuilder, private orderDetailService: OrderDetailService,private snackBar: MatSnackBar, private orderService: OrderService,private loginService: LoginService, private cdr: ChangeDetectorRef, private route: ActivatedRoute) {
     this.form = this.fb.group({
       precioTotal: [''],
-
     });
 
   }
@@ -103,18 +104,19 @@ export class AddDataTableComponent implements OnInit{
     this.form = this.fb.group({
       ingresoMensual: [1000, Validators.required],//input
       precioVehicular: [500, Validators.required],//input
-      cuotaInicial: [15, Validators.required],
-      cuotaFinal: [14, Validators.required],
+      cuotaInicial: [10, Validators.required],
+      cuotaFinal: [10, Validators.required],
       tipoTasaInteres: ['nominal', Validators.required],
-      tna: [15, Validators.required],//input
+      tna: [12, Validators.required],//input
       seguroDegravamen: [0.05, Validators.required],
       seguroVehicularAnual: [1, Validators.required],
       plazo: ['1', Validators.required],//input
-      plazoGraciaTotal: [2, Validators.required],//input
-      interesMoratorio: [0, Validators.required],//input
+      plazoGraciaTotal: [1, Validators.required],//input
+      interesMoratorio: ['5.45'],
+      incluirInteresMoratorio: [this.interesMoratorioEnabled],
       plazoGraciaParcial: [1, Validators.required],//input
       tasaDescuentoCOK: [13, Validators.required],//input
-      periodoCapitalizacion: ['Diaria', Validators.required],
+      periodoCapitalizacion: ['Mensual', Validators.required],
       frecuenciaPago: ['30', Validators.required],
       nDiasAnio: new FormControl({ value: 360, disabled :true}),
       costesNotariales: [ 0, Validators.required],
@@ -193,9 +195,20 @@ export class AddDataTableComponent implements OnInit{
     'Cuota',
     'Amortización',
     'Saldo Final Para Cuota',
-    'Flujo'
+    'Flujo',
   ];
-  //fechaContrato = new FormControl(_moment([2023, 0, 31]));
+
+  onCheckboxChange(event: MatCheckboxChange) {
+    this.interesMoratorioEnabled = event.checked;
+
+    if (!this.interesMoratorioEnabled) {
+      this.form.patchValue({
+        interesMoratorio: '5.25'
+      });
+    }
+  }
+
+
 
 
   resetForm(): void {
@@ -219,15 +232,18 @@ export class AddDataTableComponent implements OnInit{
   formatDate(date: Date): string {
     const day = date.getDate().toString().padStart(2, '0');
     const month = (date.getMonth() + 1).toString().padStart(2, '0');
-    const year = date.getFullYear();
+    const year = date.getFullYear().toString();
 
     return `${day}/${month}/${year}`;
   }
 
 
+
   CalcularTabla() {
 
     const van = this.calculateVAN();
+
+
 
     const order = {
       fecha: this.formatDate(new Date()),
@@ -246,7 +262,6 @@ export class AddDataTableComponent implements OnInit{
           numero: index + 1,
           tea: row['TEA'],
           tep: row['i\' = TEP = TEM'],
-          fecha: row['Fecha'],
           pg: row['P.G'],
           saldoInicialCuotaFinal: row['Saldo Inicial Cuota Final'],
           interesCuotaFinal: row['Interes Cuota Final'],
@@ -259,7 +274,8 @@ export class AddDataTableComponent implements OnInit{
           portes: row['Portes'],
           gastosAdministrativos: row['Gastos Administrativos'],
           saldoFinalParaCuota: row['Saldo Final Para Cuota'],
-          flujo: row['Flujo']
+          flujo: row['Flujo'],
+          interesMoratorio: row['Interes Moratorio'],
         }));
 
         console.log('Order Details:', JSON.stringify(orderDetails, null, 2));
@@ -302,7 +318,6 @@ export class AddDataTableComponent implements OnInit{
       'N°': -1,
       'TEA': -1,
       'i\' = TEP = TEM': -1,
-      'Fecha': this.formatDate(new Date()),
       'P.G': -1,
       'Saldo Inicial Cuota Final': -1,
       'Interes Cuota Final': -1,
@@ -320,6 +335,7 @@ export class AddDataTableComponent implements OnInit{
       'Seguro Vehicular': -1,
       'Saldo Final Para Cuota': -1,
       'Flujo': this.calculateMontoPrestamo(),
+      'Interes Moratorio': -1,
     });
 
     for (let i = 1; i < rows; i++) {
@@ -354,14 +370,21 @@ export class AddDataTableComponent implements OnInit{
           }
         }
 
-        else if (j == 3) {
-          const fechaActual = new Date(); // Obtener la fecha actual
-          let fechaIterada = new Date(fechaActual); // Crear una copia de la fecha actual
+        if (j === 3) {
+          const fechaActual = new Date();
+          let fechaIterada = new Date(fechaActual);
 
-          fechaIterada.setDate(fechaActual.getDate() + i - 1); // Aumentar la fecha por cada día del bucle
+          fechaIterada.setDate(fechaActual.getDate() + 30 * (i - 1));
 
-          rowObject['Fecha'] = this.formatDate(fechaIterada);
+          // Obtener el nombre del mes y año en formato texto
+          const nombreMes = fechaIterada.toLocaleString('es-ES', { month: 'long' });
+          const año = fechaIterada.getFullYear();
+
+          // Construir la fecha en el formato deseado (por ejemplo, "24 de junio de 2024")
+          rowObject['Fecha'] = `${fechaIterada.getDate()} de ${nombreMes} de ${año}`;
         }
+
+
 
 
         else if(j == 4) {
@@ -445,8 +468,6 @@ export class AddDataTableComponent implements OnInit{
           }
         }
 
-
-
         else if(j == 11 ) {
           rowObject['Intereses'] =((parseFloat(rowObject['Saldo Inicial Para Cuota'])* -1  * (parseFloat(this.dataSource[1].value)/100)).toFixed(7))
         }
@@ -476,8 +497,6 @@ export class AddDataTableComponent implements OnInit{
         else if(j == 13 ) {
           const gastosAdministrativos = parseFloat(this.form2.get('gastosAdministrativos')?.value) * -1;
           rowObject['Gastos Administrativos'] = gastosAdministrativos
-
-
 
         }
 
@@ -576,11 +595,17 @@ export class AddDataTableComponent implements OnInit{
           }
         }
 
+        else if (j == 21) {
+          if (this.interesMoratorioEnabled) {
+            this.calcularInteresMoratorio();
+          } else {
+            rowObject['Interes Moratorio'] = '0';
+          }
+        }
+
       }
 
       this.tableData.push(rowObject);
-
-
 
       if(plazoGraciaTotalValueAux == 0){
         this.dataSource[6].value = (saldoCapitalizadoAux).toFixed(3)
@@ -608,14 +633,6 @@ export class AddDataTableComponent implements OnInit{
     this.dataSourceIndicadoresRentabilidad[3].value = this.calculateVAN().toString()
 
     console.log(this.tableData)
-
-
-    const flujos = [28205.00, 151.76, 348.05, 348.13, 775.96, 775.96, 775.96, 775.96, 775.96, 775.96,
-      775.96, 775.96, 775.96, 775.96, 775.96, 775.96, 775.96, 775.96, 775.96, 775.96,
-      775.96, 775.96, 775.96, 775.96, 775.96, 775.96, 17500.00];
-
-    // const tir = this.calculateIRR(flujos);
-    // console.log(`La TIR encontrada es: ${tir.toFixed(6)}`);
 
   }
 
@@ -751,13 +768,6 @@ export class AddDataTableComponent implements OnInit{
     return (suma_seguro_degravamen*-1).toFixed(3)
   }
 
-  calculateSeguroVehicular(){
-    let suma_seguro_vehicular = 0;
-    for (let i = 1; i < this.tableData.length; i++) {
-      suma_seguro_vehicular += parseFloat(this.tableData[i]['Seguro Vehicular']);
-    }
-    return (suma_seguro_vehicular*-1).toFixed(3)
-  }
 
   calculateGPS(){
     let suma_gps = 0;
@@ -796,12 +806,6 @@ export class AddDataTableComponent implements OnInit{
     return VAN.toFixed(3);
   }
 
-
-
-  calculateNPV(cashFlows: number[], rate: number): number {
-    return cashFlows.reduce((acc, val, i) => acc + (val / Math.pow(1 + rate, i)), 0);
-  }
-
   calculateValorCuotaExtra(){
     const valorActualSaldoFinal = parseFloat(this.dataSource[8].value);
     const tem = parseFloat(this.dataSource[1].value)/100;
@@ -811,6 +815,19 @@ export class AddDataTableComponent implements OnInit{
 
     return (valorActualSaldoFinal * (tem*((1+tem)**(plazo - plazoGraciaTotal - plazoGraciaParcial)))/(((1+tem)**(plazo - plazoGraciaTotal-plazoGraciaParcial  ))-1)).toFixed(3)
   }
+
+  calcularInteresMoratorio() {
+    const saldoCapitalizado = parseFloat(this.dataSource[5].value);
+    const tasaInteresMoratorio = parseFloat(this.form.get('interesMoratorio')?.value);
+    const diasAtraso = parseFloat(this.form.get('nDiasAnio')?.value);
+
+    const interesMoratorio = (saldoCapitalizado * (tasaInteresMoratorio / 100) * (diasAtraso / 360)).toFixed(2);
+  console.log("No puedo jalar la dataaaaaaaaaaaaaaaaaa")
+    return interesMoratorio;
+  }
+
+
+
 
   protected readonly Math = Math;
   protected readonly parseFloat = parseFloat;
